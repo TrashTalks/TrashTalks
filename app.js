@@ -2,13 +2,22 @@
 
 const path = require('path');
 const express = require('express');
+const bodyParser = require("body-parser");
 const config = require('./config');
+const routes = require("./routes");
+
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, 'public')));
-require('./routes/employees.js')(app);
-require('./routes/mailingList.js')(app);
+// Define middleware here
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Add routes, both API and view
+app.use(routes);
 
 
 // Redirect root to /employees
