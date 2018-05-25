@@ -9,7 +9,7 @@ var PersonCard = props =>
     <Image src={props.imageLink} />
 
     <Card.Content>
-      <Card.Header>{props.personName}</Card.Header>
+      <Card.Header>{props.personName}></Card.Header>
       <Card.Meta>{props.personTitle}</Card.Meta>
       <Card.Description>{props.personDescription}</Card.Description>
     </Card.Content>
