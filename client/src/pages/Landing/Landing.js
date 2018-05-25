@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar";
-import {Segment, Image,Grid,Container,Modal,Header,Button} from "semantic-ui-react";
+import {Segment, Image, Grid, Container, Modal, Header, Button, Icon} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import EmailSignUp from "../../components/EmailSignUp";
@@ -18,7 +18,7 @@ class LandingPage extends Component {
 	  		{imageLink:"https://media.licdn.com/dms/image/C4D03AQHQRSCSXG12oQ/profile-displayphoto-shrink_800_800/0?e=1531958400&v=beta&t=1iPK7E-jkRxgejW1gj9y-rJ2I4601fZeqj-BikRW8tU"
 			,personName : "Luke Chambers"
 			,personTitle:"Founder"
-			,personDescription:"Luke was trained as an Environmental Engineer at Georgia Tech and has worked in the waste industry for 4 years and as a programmer for two."
+			,personDescription:"Luke was trained as an Environmental Engineer. He worked in the waste industry for 4 years and as a programmer for two."
 			,iconTypeName : "comment"
 			,funFact : "Luke has been interested in trash since he was 10 years old."
 			,fullBio: "Luke was trained as an Environmental Engineer at Georgia Tech and has worked in the waste industry for 4 years and as a programmer for two. He loves to listen to podcasts, to go rock climbing, playing with his dogs, and eating chocolate. Once prompt about trash, he'll talk your ear off. He truly is our #1 TrashTalker!"
@@ -136,10 +136,13 @@ class LandingPage extends Component {
 					open={this.state.modalOpen}
 					onClose={this.handleClose}
 				>
-	          
+			
 		          <Modal.Content image>
-		            <Image wrapped rounded src={this.state.modalImage} />
-
+				  	<div className="closeButton">
+					  <Icon name="close" size="large" color="grey" position="right" onClick={this.handleClose} />
+		            </div>
+					<Image rounded src={this.state.modalImage} />
+					
 		            <Modal.Description>
 		              <Header>{this.state.modalName}</Header>
 		              <p>{this.state.modalBio}</p>
