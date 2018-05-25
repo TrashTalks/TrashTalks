@@ -3,5 +3,6 @@ const router = require("express").Router();
 
 const getModel= require(`../../models/Employees.js`);
     
-router.route('/employee').post(getModel.update);
+router.route('/').post(getModel.update);
+router.route("/:id").get(getModel.read);
 module.exports =router;
