@@ -10,7 +10,7 @@ const dropdownChoices = [
 
 const leftMenuItems = [
   {word:"About",link:"#about"},
-  {word:"Founders",link:"#founders"}
+  {word:"Founders",link:"#founders"},
 ]
 
 const rightMenuItems = [
@@ -23,6 +23,7 @@ const sideItems = [
   { as: "a", content: "About", key: "about" },
   { as: "a", content: "Founders", key: "founders" }
 ];
+
 
 var NavComponent = (props) => 
 <div>
@@ -48,16 +49,6 @@ var NavComponent = (props) =>
   </Responsive>
 
   <Responsive {...Responsive.onlyMobile}>
-    <Sidebar.Pushable>
-      <Sidebar as={Menu} onClick={props.toggleMenu} animation="overlay" icon = "labeled " vertical visible = {props.visible}>
-        {leftMenuItems.map( item => <Menu.Item href={item.link}><h3>{item.word}</h3></Menu.Item>)}
-        {rightMenuItems.map( item => <Menu.Item href={item.link} target="_blank" rel="noopener noreferrer"><h3>{item.word}</h3><Icon disabled name={item.iconName} size='big' color='teal '/></Menu.Item>)}
-
-      </Sidebar>
-
-      <Sidebar.Pusher onClick={props.toggleMenu} dimmed={props.visible} style={{ minHeight: "100%" }}
->
-
         <Menu borderless>
 
           <Menu.Item >
@@ -70,9 +61,6 @@ var NavComponent = (props) =>
 
           <Menu.Item onClick={props.toggleMenu}><Icon name="sidebar" position='right'/></Menu.Item>
         </Menu>
-
-      </Sidebar.Pusher>
-    </Sidebar.Pushable>
   </Responsive>
 </div>
 
