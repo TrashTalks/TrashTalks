@@ -9,7 +9,7 @@ export default {
 	// actions on the front end that require database data), the format will look like:
 
 		addUserToEmailList: function(userInfo) {
-			return axios.post("/api/employees/employee",userInfo);
+			return axios.post("/api/mailingList/",userInfo);
 		}
 
 		//inside the "routes" directory, your "index.js" file will export the entire "api" directory
