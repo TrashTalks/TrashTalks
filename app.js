@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 //Use for local testing. Comment out once deployed
-app.use('/', proxy({target: 'localhost:8080', changeOrigin: true}));
+app.use('/', proxy({target: 'loc alhost:8080', changeOrigin: true}));
 
 // Redirect root to /employees
 // app.get('/', (req, res) => {
