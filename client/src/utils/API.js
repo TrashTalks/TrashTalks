@@ -1,15 +1,16 @@
 //-----   Using Axios for getting/posting to routes ---//
-	// import axios from "axios";
+	import axios from "axios";
 //----------------------------------------------------//
 
+export default {
 // -------- Use the following to get/post ------------//
 
 	// For using the "routes/api" directory (using express and 
 	// actions on the front end that require database data), the format will look like:
 
-		// addUser: function(userInfo) {
-			//return axios.post("/api/auth/signup",userInfo);
-		//},
+		addUserToEmailList: function(userInfo) {
+			return axios.post("/api/employees/employee",userInfo);
+		}
 
 		//inside the "routes" directory, your "index.js" file will export the entire "api" directory
 			// router.use("/api", requiredApiDirectory)
@@ -32,4 +33,4 @@
 		//getTweets:function(twitterHandle){
     		//return axios.get("/twitterfeed/"+twitterHandle);
   		//},
-
+}
