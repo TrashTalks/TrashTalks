@@ -64,7 +64,8 @@ class LandingPage extends Component {
       PersonName: this.state.PersonName.trim(),
       PersonEmail : this.state.PersonEmail.trim()
     };
-    API.addUserToEmailList(info);
+	API.addUserToEmailList(info);
+	console.log("landing api.addUserToEmailList"+info);
     this.setState({className:"success"});
     this.setState({msgHeader:"Thank You!"});
     this.setState({msgContent:"You have been successfully been added to our mailing list!"});
