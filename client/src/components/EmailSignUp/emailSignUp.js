@@ -6,7 +6,7 @@
 
 //-------------- Sign-up Log-In MODAL with the form -----------------//
 var EmailSignUp = props =>
-<Modal trigger={<Button content = "standard" size= 'medium'> Sign Up For Our Mailing List </Button>}>
+<Modal trigger={<Button content = "standard" size= 'medium' key="email"> Sign Up For Our Mailing List </Button>}>
 	<Modal.Header> Get place on our mailing list for updates! </Modal.Header>
 	<Modal.Content>
 		<Modal.Description>

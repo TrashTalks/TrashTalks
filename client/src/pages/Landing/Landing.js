@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../../components/Navbar";
-import {Segment, Image, Grid, Container, Modal, Header, Button, Icon} from "semantic-ui-react";
+import {Segment, Image,Grid,Container,Modal,Header,Icon} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import EmailSignUp from "../../components/EmailSignUp";
@@ -47,7 +46,11 @@ class LandingPage extends Component {
     	PersonEmail:"",
     	msgHeader:"",
     	msgContent:"",
-    	className:""
+		className:"",
+		leftMenuItems: [
+			{word:"About",link:"#about"},
+			{word:"Founders",link:"#founders"}
+			]
 
   };
 
@@ -68,7 +71,10 @@ class LandingPage extends Component {
 	console.log("landing api.addUserToEmailList"+info);
     this.setState({className:"success"});
     this.setState({msgHeader:"Thank You!"});
-    this.setState({msgContent:"You have been successfully been added to our mailing list!"});
+	this.setState({msgContent:"You have been successfully been added to our mailing list!"});
+	this.setState({PersonName:""});
+	this.setState({PersonEmail:""});
+
   };
   	
 
@@ -81,13 +87,19 @@ class LandingPage extends Component {
 		
 	};
 
-	handleClose = () => this.setState({ modalOpen: false })
-
-
+	handleClose = () => {
+		this.setState({ modalOpen: false })
+		this.setState({PersonName:""});
+	    this.setState({className:""});
+		this.setState({msgHeader:""});
+		this.setState({msgContent:""});
+	};
 
 	render() {
 		return(
 			<div>
+
+		  {/*------- Start of "PageContent"--------- */}
 			<Container id="about">
 				<Segment.Group>
 					<Segment inverted color="teal" className="landingTitle">
@@ -124,7 +136,7 @@ class LandingPage extends Component {
 									personTitle= {eachFounder.personTitle}
 									personDescription={eachFounder.personDescription}
 									funFact = {eachFounder.funFact}
-									iconTypeName = "comment"
+									iconTypeName = {eachFounder.TypeName}
 									showModalBio = {boundItemClick}
 								/>
 							</Grid.Column>
@@ -170,6 +182,7 @@ class LandingPage extends Component {
 	          msgHeader={this.state.msgHeader}
 	          msgContent={this.state.msgContent}
 	        />
+			{/*---------- End of "PageContent" ---------*/}
 
 			</div>
 	    )
