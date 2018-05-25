@@ -11,7 +11,7 @@ class Page2 extends Component {
                 <Container>
                     <Segment.Group>
                         <Segment inverted color="teal" className="landingTitle">
-                            <h1>Yo momma so smart....</h1>
+                            <h1>Yo momma so innovative....</h1>
                         </Segment>
                         
                         <Segment className="landingWords"> 
