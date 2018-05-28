@@ -5,8 +5,6 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const config = require('./config');
 const routes = require("./routes");
-const proxy = require('http-proxy-middleware');
-
 
 const app = express();
 
@@ -19,9 +17,6 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
-
-//Use for local testing. Comment out once deployed
-app.use('/', proxy({target: 'loc alhost:8080', changeOrigin: true}));
 
 // Redirect root to /employees
 // app.get('/', (req, res) => {
