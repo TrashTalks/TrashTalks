@@ -36,7 +36,7 @@ module.exports={
 
     ds.runQuery(theQuery,function(err,cbRes){
       if(err){
-        console.log(err)
+        res.json(err)
       } else if (cbRes.length == 0) {
         req.body.Subscriber_Email = req.body.Subscriber_Email.toLowerCase()
         ds.upsert ({
@@ -55,10 +55,9 @@ module.exports={
 
     ds.runQuery(theQuery,function(err,cbRes){
       if(err){
-      console.log(err)
+        res.json(err)
       }
-      console.log(cbRes)
-      res.json(cbRes);
+        res.json(cbRes);
     });
   },
   delete: function(req,res){
@@ -66,12 +65,24 @@ module.exports={
     const theQuery = ds.createQuery([kind])
       .filter('Subscriber_Email', '=',req.params.id)
 
-    ds.runQuery(theQuery,function(err,cbRes){
       if(err){
-      console.log("err at MailingList.js line 219")
+        res.json(err)
+      } else if (cbRes.length == 1) {
+        var theKey = ds.key([kind, parseInt(cbRes[0][ds.KEY].id, 10)])
+        ds.delete(theKey, function(err, cb) {
+          if (err) {
+            res.json(err)
+          }
+          res.json("Email has been removed from the list.");
+        });
+        
+      } else if (cbRes.length < 1) {
+        res.json("Email not found on the list!");
+      } else if (cbRes.length > 1) {
+        res.json("More than one email on the list! Please contact support");
+      } else {
+        res.json("Unknown Error! Please contact support");
       }
-
-      res.json(cbRes);
     });
   }
 };
