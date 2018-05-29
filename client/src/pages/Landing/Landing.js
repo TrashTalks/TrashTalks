@@ -139,7 +139,7 @@ class LandingPage extends Component {
 						</p>
 
 					</Segment>
-					<Button onClick={this.handleOpenESU} attached="bottom" color="teal">Sign Up for Our Mailing List</Button>
+					<Button onClick={this.handleOpenESU} attached="bottom" color="orange">Sign Up for Our Mailing List</Button>
 					<EmailSignUp
 						handleOpenESU = {this.handleOpenESU}
 						ESUmodalOpen={this.state.ESUmodalOpen}

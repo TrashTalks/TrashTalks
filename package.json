@@ -45,7 +45,8 @@
     "nconf": "0.10.0",
     "nodemon": "^1.17.5",
     "prompt": "1.0.0",
-    "uglify-js": "3.3.12"
+    "uglify-js": "3.3.12",
+    "validator": "^10.2.0"
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "2.2.1",
