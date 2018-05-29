@@ -59,7 +59,7 @@ var NavComponent = (props) =>
               <h2>TrashTalks</h2>
           </Menu.Item>
 
-          <Menu.Item onClick={props.toggleMenu}><Icon name="sidebar" position='right'/></Menu.Item>
+          <Menu.Item position="right" onClick={props.toggleMenu}><Icon name="sidebar" position='right' size="large"/></Menu.Item>
         </Menu>
   </Responsive>
 </div>

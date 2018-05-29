@@ -32,13 +32,13 @@ module.exports={
   },
   update: function(req,res){
     const theQuery = ds.createQuery([kind])
-      .filter('PersonEmail', '=', req.body.PersonEmail.toLowerCase())
+      .filter('Subscriber_Email', '=', req.body.Subscriber_Email.toLowerCase())
 
     ds.runQuery(theQuery,function(err,cbRes){
       if(err){
         console.log(err)
       } else if (cbRes.length == 0) {
-        req.body.PersonEmail = req.body.PersonEmail.toLowerCase()
+        req.body.Subscriber_Email = req.body.Subscriber_Email.toLowerCase()
         ds.upsert ({
           data:req.body,
           key:ds.key(kind)
@@ -46,12 +46,12 @@ module.exports={
         res.json("Email Added Succefully!");
       } else {
         res.json("Email Already on list!");
-      }
+      } 
     });
   },
   read: function(req,res){
     const theQuery = ds.createQuery([kind])
-      .filter('PersonEmail', '=', req.params.id)
+      .filter('Subscriber_Email', '=', req.params.id)
 
     ds.runQuery(theQuery,function(err,cbRes){
       if(err){
@@ -64,7 +64,7 @@ module.exports={
   delete: function(req,res){
     // var theKey = ds.key([kind, parseInt(req.params.id, 10)]);
     const theQuery = ds.createQuery([kind])
-      .filter('PersonEmail', '=',req.params.id)
+      .filter('Subscriber_Email', '=',req.params.id)
 
     ds.runQuery(theQuery,function(err,cbRes){
       if(err){
