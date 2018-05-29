@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import {Segment, Image,Grid,Container,Modal,Header,Icon} from "semantic-ui-react";
+import {Segment, Image,Grid,Container,Modal,Header,Icon,Button} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
+import PersonCardModal from "../../components/PersonCardModal";
 import EmailSignUp from "../../components/EmailSignUp";
 import "./Landing.css";
 import API from "../../utils/API";
@@ -42,7 +43,8 @@ class LandingPage extends Component {
 			}
 		],
 
-		PersonName: "",
+		PersonFirstName: "",
+		PersonLastName:"",
     	PersonEmail:"",
     	msgHeader:"",
     	msgContent:"",
@@ -50,36 +52,44 @@ class LandingPage extends Component {
 		leftMenuItems: [
 			{word:"About",link:"#about"},
 			{word:"Founders",link:"#founders"}
-			]
+			],
+		ESUmodalOpen: false
 
   };
 
-  handleNameChange = (e) =>{
-    this.setState({PersonName: e.target.value});
-  };  
-  handleEmailChange= (e) => {
-    this.setState({PersonEmail: e.target.value});
-  };
+	handleFNameChange = (e) =>{
+		this.setState({PersonFirstName: e.target.value});
+	}; 
+	handleLNameChange = (e) =>{
+		this.setState({PersonLastName: e.target.value});
+	};  
+	handleEmailChange= (e) => {
+		this.setState({PersonEmail: e.target.value});
+	};
 
   addEmailToDB = event => {
     event.preventDefault();
     var info = {
-      PersonName: this.state.PersonName.trim(),
-      PersonEmail : this.state.PersonEmail.trim()
-    };
-	API.addUserToEmailList(info);
-	console.log("landing api.addUserToEmailList"+info);
-    this.setState({className:"success"});
-    this.setState({msgHeader:"Thank You!"});
-	this.setState({msgContent:"You have been successfully been added to our mailing list!"});
-	this.setState({PersonName:""});
-	this.setState({PersonEmail:""});
+	  First_Name: this.state.PersonFirstName.trim(),
+	  Last_Name:this.state.PersonLastName.trim(),
+      Subscriber_Email : this.state.PersonEmail.trim()
+	};
+	
+	API.addUserToEmailList(info)
+		.then(res => {
+			this.setState({msgHeader:"Thank You!"});
+			this.setState({msgContent:res.data});
+			this.setState({PersonName:""});
+			this.setState({PersonEmail:""});
+		}).catch((error) => {
+			console.log(error);
+		});
+	}    
 
-  };
+  
   	
 
 	handleOpen = (personClicked,e) => {
-		console.log(personClicked);
 		this.setState({modalOpen: true });
 		this.setState({modalImage:personClicked.imageLink});
 		this.setState({modalName:personClicked.personName});
@@ -89,11 +99,22 @@ class LandingPage extends Component {
 
 	handleClose = () => {
 		this.setState({ modalOpen: false })
+	};
+
+	//ESU: Email Sign Up
+	handleOpenESU = () => {
+		this.setState({ESUmodalOpen: true });
+
+	};
+	handleCloseESU = () => {
+		this.setState({ESUmodalOpen: false })
 		this.setState({PersonName:""});
+		this.setState({PersonEmail:""});
 	    this.setState({className:""});
 		this.setState({msgHeader:""});
 		this.setState({msgContent:""});
-	};
+		this.setState({msgContent:""});
+	}
 
 	render() {
 		return(
@@ -116,8 +137,30 @@ class LandingPage extends Component {
 						<br/><br/>
 						The TrashTalks mobile application is coming soon! Please email trashtalks2018@gmail.com to request more information.
 						</p>
+
 					</Segment>
+					<Button onClick={this.handleOpenESU} attached="bottom" color="teal">Sign Up for Our Mailing List</Button>
+					<EmailSignUp
+						handleOpenESU = {this.handleOpenESU}
+						ESUmodalOpen={this.state.ESUmodalOpen}
+						handleCloseESU={this.handleCloseESU.bind(this)}
+
+						signUpFName={this.PersonFirstName}
+						handleFNameChange={this.handleFNameChange}
+
+						signUpLName={this.PersonLastName}
+						handleLNameChange={this.handleLNameChange}
+
+						signUpEmail={this.PersonEmail}
+						handleEmailChange = {this.handleEmailChange}
+
+						addEmailToDB={this.addEmailToDB}
+						className={this.state.className}
+						msgHeader={this.state.msgHeader}
+						msgContent={this.state.msgContent} 
+					/>
 				</Segment.Group>
+
 			</Container>
 
 			<Container id="founders">	
@@ -136,52 +179,25 @@ class LandingPage extends Component {
 									personTitle= {eachFounder.personTitle}
 									personDescription={eachFounder.personDescription}
 									funFact = {eachFounder.funFact}
-									iconTypeName = {eachFounder.TypeName}
+									iconTypeName = {eachFounder.iconTypeName}
 									showModalBio = {boundItemClick}
 								/>
-							</Grid.Column>
-							
+							</Grid.Column>	
 						)
 					})}
 
-				<Modal scrolling
-					open={this.state.modalOpen}
-					onClose={this.handleClose}
-				>
-			
-		          <Modal.Content image>
-				  	<div className="closeButton">
-					  <Icon name="close" size="large" color="grey" position="right" onClick={this.handleClose} />
-		            </div>
-					<Image rounded src={this.state.modalImage} />
-					
-		            <Modal.Description>
-		              <Header>{this.state.modalName}</Header>
-		              <p>{this.state.modalBio}</p>
+					<PersonCardModal
+						modalOpen = {this.state.modalOpen}
+						handleClose = {this.handleClose}
+						modalImage = {this.state.modalImage}
+						modalName = {this.state.modalName}
+						modalBio = {this.state.modalBio}
+					/>
 
-		            </Modal.Description>
-
-		          </Modal.Content>
-				
-				</Modal>
-
-						
 				</Founders>
 
 			</Container>
-
-			<EmailSignUp
-	          signUpName={this.PersonName}
-	          handleNameChange={this.handleNameChange}
-
-	          signUpEmail={this.PersonEmail}
-	          handleEmailChange = {this.handleEmailChange}
-
-	          addEmailToDB={this.addEmailToDB}
-	          className={this.state.className}
-	          msgHeader={this.state.msgHeader}
-	          msgContent={this.state.msgContent}
-	        />
+ 
 			{/*---------- End of "PageContent" ---------*/}
 
 			</div>

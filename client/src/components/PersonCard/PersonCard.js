@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import "./PersonCard.css"
-import {Image, Icon, Card,Grid} from 'semantic-ui-react'
+import {Image, Icon, Card} from 'semantic-ui-react'
 
 
 var PersonCard = props => 
@@ -22,6 +22,4 @@ var PersonCard = props =>
     </Card.Content>
 
   </Card>
-
-
 export default PersonCard;
