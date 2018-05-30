@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {Sidebar,Icon,Menu,Segment } from "semantic-ui-react";
-import Landing from "./pages/Landing";
-import Page2 from "./pages/Page2";
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
+import {Sidebar, Menu, Segment } from "semantic-ui-react";
+
+//------Pages to render ---------//
+  import Landing from "./pages/Landing";
+  import Page2 from "./pages/Page2";
+  import ItemInfo from "./pages/ItemInfo";
+// -----------------------------//
+
+// ---Components for all pages ---//
+  import Navbar from "./components/Navbar/Navbar";
+  import Footer from "./components/Footer/Footer";
+// -----------------------------//
 
 class App extends Component {
 
@@ -30,8 +37,8 @@ class App extends Component {
         <div className="App">
         <Sidebar.Pushable as={Segment}>
 
-          <Sidebar as={Menu} onClick={this.toggleMenu} icon = "labeled" animation='overlay' width='thin' visible={this.state.visible} icon='labeled' vertical inverted>
-		      	{this.state.leftMenuItems.map( item => <Menu.Item href={item.link}><h3>{item.word}</h3></Menu.Item>)}
+          <Sidebar as={Menu} onClick={this.toggleMenu} icon = "labeled" animation='overlay' width='thin' visible={this.state.visible} vertical inverted>
+		      	{this.state.leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
           </Sidebar>
 
           <Sidebar.Pusher dimmed={this.state.visible} onClick={this.handlePusher}>
@@ -44,6 +51,7 @@ class App extends Component {
             <Switch>
               <Route exact path = "/" component = {Landing} />
               <Route exact path = "/EasterEgg" component = {Page2}/>
+              <Route exact path = "/2" component = {ItemInfo}/>
             </Switch>
 
             <Footer />

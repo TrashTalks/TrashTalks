@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import "./PersonCard.css"
 import {Image, Icon, Card} from 'semantic-ui-react'
 
@@ -15,10 +15,8 @@ var PersonCard = props =>
     </Card.Content>
 
     <Card.Content extra>
-      <a>
         <Icon name={props.iconTypeName} />
         {props.funFact}
-      </a>
     </Card.Content>
 
   </Card>

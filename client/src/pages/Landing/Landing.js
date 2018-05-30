@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Segment, Image,Grid,Container,Modal,Header,Icon,Button} from "semantic-ui-react";
+import {Segment,Grid,Container,Button} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
@@ -53,9 +53,10 @@ class LandingPage extends Component {
 			{word:"About",link:"#about"},
 			{word:"Founders",link:"#founders"}
 			],
-		ESUmodalOpen: false
+		ESUmodalOpen: false,
+		foundersInfo:[]
 
-  };
+	};
 
 	handleFNameChange = (e) =>{
 		this.setState({PersonFirstName: e.target.value});
@@ -67,26 +68,34 @@ class LandingPage extends Component {
 		this.setState({PersonEmail: e.target.value});
 	};
 
-  addEmailToDB = event => {
-    event.preventDefault();
-    var info = {
-	  First_Name: this.state.PersonFirstName.trim(),
-	  Last_Name:this.state.PersonLastName.trim(),
-      Subscriber_Email : this.state.PersonEmail.trim()
-	};
-	
-	API.addUserToEmailList(info)
-		.then(res => {
-			this.setState({msgHeader:"Thank You!"});
-			this.setState({msgContent:res.data});
-			this.setState({PersonName:""});
-			this.setState({PersonEmail:""});
-		}).catch((error) => {
-			console.log(error);
-		});
-	}    
+	addEmailToDB = event => {
+		event.preventDefault();
+		var info = {
+		First_Name: this.state.PersonFirstName.trim(),
+		Last_Name:this.state.PersonLastName.trim(),
+		Subscriber_Email : this.state.PersonEmail.trim()
+		};
+		
+		API.addUserToEmailList(info)
+			.then(res => {
+				this.setState({msgHeader:"Thank You!"});
+				this.setState({msgContent:res.data});
+				this.setState({PersonName:""});
+				this.setState({PersonEmail:""});
+			}).catch((error) => {
+				console.log(error);
+			});
+	};   
+	componentDidMount() {
 
-  
+		API.grabFoundersInfo()
+			.then(res=>{
+				this.setState({foundersInfo:res.data});
+				console.log("API.grabFoundersInfo res: "+ res.data);
+			}).catch((error)=>{
+				console.log("API.grabFoundersInfo Error: "+ error);
+			})
+	};
   	
 
 	handleOpen = (personClicked,e) => {
@@ -168,18 +177,17 @@ class LandingPage extends Component {
 					titleHeading="Meet the Founders"
 				>
 
-					{this.state.FounderInfo.map(eachFounder => {
+					{this.state.foundersInfo.map((eachFounder,index) => {
 						let boundItemClick = this.handleOpen.bind(this, eachFounder);
 						return (
-							<Grid.Column mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
+							<Grid.Column key ={index} mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
 								<PersonCard
-									key ={eachFounder.id}
 									imageLink={eachFounder.imageLink}
-									personName = {eachFounder.personName}
+									personName = {eachFounder.founderName}
 									personTitle= {eachFounder.personTitle}
 									personDescription={eachFounder.personDescription}
 									funFact = {eachFounder.funFact}
-									iconTypeName = {eachFounder.iconTypeName}
+									iconTypeName = {"comment"}
 									showModalBio = {boundItemClick}
 								/>
 							</Grid.Column>	

@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Modal, Image, Header,Icon} from 'semantic-ui-react'
 
 var PersonCardModal =(props) => 

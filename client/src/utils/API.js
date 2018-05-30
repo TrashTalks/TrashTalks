@@ -10,8 +10,10 @@ export default {
 
 		addUserToEmailList: function(userInfo) {
 			return axios.post("/api/mailingList/",userInfo);
+		},
+		grabFoundersInfo:function(){
+			return axios.get("/api/founderInfo/");
 		}
-
 		//inside the "routes" directory, your "index.js" file will export the entire "api" directory
 			// router.use("/api", requiredApiDirectory)
 
