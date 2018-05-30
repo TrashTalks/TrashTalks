@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {Container,Image,Segment} from "semantic-ui-react";
 import "./Page2.css";
-import API from "../../utils/API";
 
 class Page2 extends Component {
 

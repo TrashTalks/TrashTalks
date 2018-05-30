@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Modal, Image, Header,Icon} from 'semantic-ui-react'
 
 var PersonCardModal =(props) => 
@@ -8,7 +8,7 @@ var PersonCardModal =(props) =>
       >
 
         <Header floated="right" id="PCmodalHeader">
-            <Icon name="close" size="large" color="grey"  onClick={props.handleClose} />
+            <Icon corner name="close" size="big" color="grey"  onClick={props.handleClose} />
         </Header>
 
         <Modal.Content image>

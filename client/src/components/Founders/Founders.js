@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import "./Founders.css"
 import {Grid,Container,Segment} from 'semantic-ui-react'
 

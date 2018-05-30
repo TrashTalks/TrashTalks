@@ -1,6 +1,6 @@
 //-------------- Imports ----------------------//
 	import React from "react";
-	import { Modal, Container,Button,Grid, Form,Message,Segment,Header,Icon} from 'semantic-ui-react';
+	import { Modal, Container, Button,Grid, Form, Segment, Header, Icon} from 'semantic-ui-react';
 	import "./emailSignUp.css";
 //--------------------------------------------//
 
@@ -12,7 +12,7 @@ var EmailSignUp = props =>
 		<Segment clearing>
 			<Header floated="left"> Get placed on our mailing list for updates! </Header>
 			<Header floated="right">
-					<Icon name="close" size="large" color="grey"  onClick={props.handleCloseESU} />
+					<Icon corner name="close" size="big" color="grey"  onClick={props.handleCloseESU} />
 			</Header>
 		</Segment>
 		<Modal.Content>
