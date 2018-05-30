@@ -8,7 +8,7 @@ var PersonCardModal =(props) =>
       >
 
         <Header floated="right" id="PCmodalHeader">
-            <Icon name="close" size="large" color="grey"  onClick={props.handleClose} />
+            <Icon corner name="close" size="big" color="grey"  onClick={props.handleClose} />
         </Header>
 
         <Modal.Content image>

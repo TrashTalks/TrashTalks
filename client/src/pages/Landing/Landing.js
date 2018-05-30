@@ -101,7 +101,7 @@ class LandingPage extends Component {
 	handleOpen = (personClicked,e) => {
 		this.setState({modalOpen: true });
 		this.setState({modalImage:personClicked.imageLink});
-		this.setState({modalName:personClicked.personName});
+		this.setState({modalName:personClicked.founderName});
 		this.setState({modalBio:personClicked.fullBio});
 		
 	};
