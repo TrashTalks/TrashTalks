@@ -32,7 +32,7 @@ module.exports={
     })
   },
   update: function(req,res){
-    const email = req.body.Subscriber_Email.toLowerCase().trim()
+    const email = validator.escape(req.body.Subscriber_Email).toLowerCase().trim()
     const firstName = validator.escape(req.body.First_Name.trim())
     const lastName = validator.escape(req.body.Last_Name.trim())
     req.body.Subscriber_Email = email
