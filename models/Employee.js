@@ -3,15 +3,11 @@
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config');
 
-// ------- General configuration for GCP DS 
+const ds = Datastore({
+  projectId: config.get('GCLOUD_PROJECT')
+});
 
-  const ds = Datastore({
-    projectId: config.get('GCLOUD_PROJECT')
-  });
-
-  const kind = 'SocialMediaInfo';
-
-// End of Configuation
+const kind = 'Employee';
 
 module.exports={
   // ------- Use 'read' to query the table/kind in ds

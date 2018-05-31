@@ -1,11 +1,9 @@
 const router = require("express").Router();
-const employeeRoutes = require("./employees");
+const employeeRoutes = require("./employee");
 const mailingListRoutes = require("./mailingList");
-const founderInfo = require("./founders");
 
 // Book routes
-router.use("/employees", employeeRoutes);
+router.use("/employee", employeeRoutes);
 router.use("/mailingList", mailingListRoutes);
-router.use("/founderInfo", founderInfo);
 
 module.exports = router;

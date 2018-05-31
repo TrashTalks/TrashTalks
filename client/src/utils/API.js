@@ -12,7 +12,7 @@ export default {
 			return axios.post("/api/mailingList/",userInfo);
 		},
 		grabFoundersInfo:function(){
-			return axios.get("/api/founderInfo/");
+			return axios.get("/api/employee/");
 		}
 		//inside the "routes" directory, your "index.js" file will export the entire "api" directory
 			// router.use("/api", requiredApiDirectory)
