@@ -37,7 +37,7 @@ var NavComponent = (props) =>
         {leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
         
         <Menu.Menu position = "right">
-          {rightMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link} target="_blank" rel="noopener noreferrer"><h3>{item.word}</h3><Icon disabled name={item.iconName} size='big' color='teal '/></Menu.Item>)}
+          {rightMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link} target="_blank" rel="noopener noreferrer"><h3>{item.word}</h3><Icon disabled name={item.iconName} size='big' color='teal'/></Menu.Item>)}
         </Menu.Menu>
     </Menu>
   </Responsive>

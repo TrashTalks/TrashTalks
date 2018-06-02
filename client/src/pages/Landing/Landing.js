@@ -147,10 +147,10 @@ class LandingPage extends Component {
 					titleHeading="Meet the Founders"
 				>
 
-					{this.state.foundersInfo.map((eachFounder,index) => {
+					{this.state.foundersInfo.map((eachFounder, index) => {
 						let boundItemClick = this.handleOpen.bind(this, eachFounder);
 						return (
-							<Grid.Column key ={index} mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
+							<Grid.Column key={index} mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
 								<PersonCard
 									imageLink={eachFounder.imageLink}
 									personName = {eachFounder.personName}
