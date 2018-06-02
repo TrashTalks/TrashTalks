@@ -7,7 +7,10 @@ class ItemInfo extends Component {
 
     state = { 
         materialSearch: "",
-        msgContent:""
+        components: [],
+        material_name: "",
+        producing_company: "",
+        product_description: ""
     }
     handleMaterialSearchChange = (e) =>{
 		this.setState({materialSearch: e.target.value});
@@ -21,7 +24,10 @@ class ItemInfo extends Component {
 		
 		API.searchMaterial(material)
 			.then(res => {
-				this.setState({msgContent:res.data});
+                this.setState({material_name:res.data[0].material_name});
+                this.setState({producing_company:res.data[0].producing_company});
+                this.setState({product_description:res.data[0].product_description});
+                this.setState({components:res.data[0].components});
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -66,12 +72,20 @@ class ItemInfo extends Component {
                         <Grid.Column>
                             <Segment.Group>
                                 <Segment inverted color="teal" className="landingTitle">
-                                    <h1>??? The Item Information/ Bin Location ???</h1>
+                                    <h1>The Item Information/ Bin Location</h1>
                                 </Segment>
                                 
                                 <Segment className="landingWords"> 
-                                    <p>Item Infor</p>
-                                    <p>Bin Location </p>
+                                    <Container>
+                                        <Grid centered columns = "equal" stackable>
+                                            <div>{this.state.material_name}</div>
+                                            <div>{this.state.producing_company}</div>
+                                            <div>{this.state.product_description}</div>
+                                            {this.state.components.map((component, index) => {
+                                                return (<div key={index}>{component}</div>)
+                                            })}
+                                        </Grid>
+                                    </Container>
                                 </Segment>
                             </Segment.Group>
                         </Grid.Column>

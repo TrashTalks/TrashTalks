@@ -9,13 +9,12 @@ const ds = Datastore({
 });
 const kind = 'Waste';
 
-module.exports={
+module.exports = {
     
   read: function(req, res) {
 
     const waste = validator.escape(req.body.material_name).toLowerCase().trim()
     req.body.material_name = waste
-console.log(waste)
     const theQuery = ds.createQuery([kind])
     .filter('material_name', '=', waste)
 
@@ -26,9 +25,14 @@ console.log(waste)
         console.log("Material Not Found!")
         res.json("Material Not Found!");
     } else {
+        cbRes[0].material_name = cbRes[0].material_name.toProperCase()
         console.log(cbRes)
         res.json(cbRes);
     } 
     });
   }
 }
+
+String.prototype.toProperCase = function () {
+  return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
