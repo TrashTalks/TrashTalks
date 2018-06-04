@@ -4,6 +4,7 @@ import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
 import EmailSignUp from "../../components/EmailSignUp";
+import SlideDeck from "../../components/SlideDeck";
 import "./Landing.css";
 import API from "../../utils/API";
 class LandingPage extends Component {
@@ -24,7 +25,11 @@ class LandingPage extends Component {
 			{word:"Founders",link:"#founders"}
 			],
 		ESUmodalOpen: false,
-		foundersInfo:[]
+		foundersInfo:[],
+		SDmodalOpen: false,
+		slideCount: 0,
+		slideTitles:["One","Two","Three","Four","Five","Six"]
+		
 
 	};
 
@@ -93,7 +98,37 @@ class LandingPage extends Component {
 		this.setState({msgHeader:""});
 		this.setState({msgContent:""});
 		this.setState({msgContent:""});
-	}
+	};
+
+	SDmodalOpen = () =>{
+		this.setState({SDmodalOpen:true})
+	};
+	SDhandleClose = () => {
+		this.setState({SDmodalOpen:false})
+		this.setState({slideCount:0})
+	};
+	slideBackNow = () => {
+		var theCount = this.state.slideCount;
+		if(theCount==0){
+			this.setState({slideCount:5})
+		}
+		else{
+			theCount -=1;
+			this.setState({slideCount: theCount});
+		}
+		this.setState({})
+	};
+	slideForwardNow = () => {
+		var theCount = this.state.slideCount;
+		if(theCount==5){
+			this.setState({slideCount:0})
+		}
+		else{
+			theCount +=1;
+			this.setState({slideCount:theCount});
+		}
+		this.setState({})
+	};
 
 	render() {
 		return(
@@ -165,7 +200,7 @@ class LandingPage extends Component {
 					})}
 
 					<PersonCardModal
-						modalOpen = {this.state.modalOpen}
+						modalOpen = {this.modalOpen}
 						handleClose = {this.handleClose}
 						modalImage = {this.state.modalImage}
 						modalName = {this.state.modalName}
@@ -177,7 +212,15 @@ class LandingPage extends Component {
 			</Container>
  
 			{/*---------- End of "PageContent" ---------*/}
-
+			<SlideDeck
+				modalOpen = {this.state.SDmodalOpen}
+				handleClose = {this.SDhandleClose}
+				modalImage = {"TrashTalks_Slide"+(this.state.slideCount+1)+".png"} 
+				SDtitle = {this.state.slideTitles[this.state.slideCount]}
+				slideBack = {this.slideBackNow}
+				slideForward = {this.slideForwardNow}
+			/>
+			<Button onClick = {this.SDmodalOpen} content = "Slide Deck"/>
 			</div>
 	    )
 	}
