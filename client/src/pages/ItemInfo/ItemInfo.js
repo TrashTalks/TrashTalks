@@ -62,10 +62,7 @@ class ItemInfo extends Component {
 										/>
 									</Form.Field>
                                     <Button type = "submit" onClick = {this.searchMaterialDB} color="teal">
-										Print Report
-									</Button>
-                                    <Button type = "submit" onClick = {this.searchMaterialDB} color="teal">
-										More Info
+										Submit
 									</Button>
                                 </Form>
                                 </Segment>
