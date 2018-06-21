@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Segment, Grid, Form, Button } from "semantic-ui-react";
 import "./ItemInfo.css";
+import ItemModal from "../../components/ItemModal";
 import API from "../../utils/API";
 
 class ItemInfo extends Component {
@@ -11,7 +12,9 @@ class ItemInfo extends Component {
         components: [],
         material_name: "",
         producing_company: "",
-        product_description: ""
+        product_description: "",
+        isItemOpen: false,
+        isRecyclable: ""
     }
 
     handleMaterialSearchChange = (e) =>{
@@ -35,17 +38,21 @@ class ItemInfo extends Component {
                 this.setState({producing_company:res.data[0].producing_company});
                 this.setState({product_description:res.data[0].product_description});
                 this.setState({components:res.data[0].components});
+                this.setState({isItemOpen: true})
+                this.setState({isRecyclable:res.data[0].wholly_recyclable})
 			}).catch((error) => {
 				console.log(error);
 			});
 	}; 
-    
+    closeItem = () => {
+        this.setState({isItemOpen: false})
+    };
 
     render() {
 		return(
 			<div>
                 <Container id="infoBinColumns"> 
-                    <Grid columns={2} stackable>
+                    <Grid columns={1} centered>
                         <Grid.Column>
                             <Segment.Group>
                                 <Segment inverted color="teal" className="landingTitle">
@@ -54,7 +61,7 @@ class ItemInfo extends Component {
                                 
                                 <Segment className="landingWords"> 
                                 <div id="scanner-container">
-                                    <input type="button" id="scannerButton" value="Start/Stop the scanner" />
+                                    <Button  id="scannerButton" color = "teal" > Start/Stop the Scanner </Button>
                                 </div>
                                 <Form>
 									<Form.Field>
@@ -85,28 +92,29 @@ class ItemInfo extends Component {
                             </Segment.Group>
                         </Grid.Column>
 
-                        <Grid.Column>
-                            <Segment.Group>
-                                <Segment inverted color="teal" className="landingTitle">
-                                    <h1>The Item Information/ Bin Location</h1>
-                                </Segment>
-                                
-                                <Segment className="landingWords"> 
-                                    <Container>
-                                        <Grid centered columns = "equal" stackable>
-                                            <div>{this.state.material_name}</div>
-                                            <div>{this.state.producing_company}</div>
-                                            <div>{this.state.product_description}</div>
-                                            {this.state.components.map((component, index) => {
-                                                return (<div key={index}>{component}</div>)
-                                            })}
-                                        </Grid>
-                                    </Container>
-                                </Segment>
-                            </Segment.Group>
-                        </Grid.Column>
                     </Grid>
+
+                    {this.state.components !== undefined ?
+                        <ItemModal
+                            modalOpen = {this.state.isItemOpen}
+                            handleClose = {this.closeItem}
+                            itemName = {this.state.material_name}
+                            itemImage = "http://www.imsrecycling.com/wp-content/uploads/2012/08/soda-can.jpeg"
+                            isRecyclable = {this.state.isRecyclable}
+                            productDescription = {this.state.product_description}
+                            companyName = {this.state.producing_company}
+                            binLocation = "Starbucks - Across Info Desk"
+                            binType = "Aluminum Bin"
+                            binMapImage = "Culc2ndFloor.png"
+                        >
+                            {this.state.components.map((component, index) => {
+                                return (<div key={index}>{component}</div>)
+                            })}
+                        </ItemModal>
+                :null}
+                
                 </Container>
+
             </div>
         )
     }
