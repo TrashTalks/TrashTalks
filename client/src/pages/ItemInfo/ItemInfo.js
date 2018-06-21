@@ -7,19 +7,26 @@ class ItemInfo extends Component {
 
     state = { 
         materialSearch: "",
+        upcSearch: "",
         components: [],
         material_name: "",
         producing_company: "",
         product_description: ""
     }
+
     handleMaterialSearchChange = (e) =>{
 		this.setState({materialSearch: e.target.value});
+    };
+
+    handleUpcSearchChange = (e) =>{
+		this.setState({upcSearch: e.target.value});
     };
 
     searchMaterialDB = event => {
 		event.preventDefault();
 		var material = {
-            material_name: this.state.materialSearch.trim()
+            material_name: this.state.materialSearch.trim(),
+            upc_code: this.state.upcSearch.trim()
 		};
 		
 		API.searchMaterial(material)
@@ -51,14 +58,23 @@ class ItemInfo extends Component {
                                 </div>
                                 <Form>
 									<Form.Field>
-										<label> Search: </label>
+										<label> Material Search: </label>
 										<Form.Input
 										className = "form-control"
-										placeholder = "Waste-Material"
+										placeholder = "Waste Material"
 										id = "wasteMaterialSearch"
 										type = "text"
 										value = {this.materialSearch}
 										onChange = {this.handleMaterialSearchChange}
+										/>
+                                        <label> UPC Search: </label>
+										<Form.Input
+										className = "form-control"
+										placeholder = "UPC Code"
+										id = "wasteUpcSearch"
+										type = "text"
+										value = {this.upcSearch}
+										onChange = {this.handleUpcSearchChange}
 										/>
 									</Form.Field>
                                     <Button type = "submit" onClick = {this.searchMaterialDB} color="teal">

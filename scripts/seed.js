@@ -14,8 +14,9 @@ const wasteSeed = [{
     product_description: "beer can",
     submitted_by: "test@test.com",
     timestamp: new Date(Date.now()),
-    upc_code: 855385007003,
-    wholly_recyclable: true
+    upc_code: "855385007003",
+    wholly_recyclable: true,
+    verified: true
 },
 {
     components: ["aluminum can"],
@@ -25,7 +26,8 @@ const wasteSeed = [{
     submitted_by: "test@test.com",
     timestamp: new Date(Date.now()),
     upc_code: null,
-    wholly_recyclable: true
+    wholly_recyclable: true,
+    verified: true
 }]
 
 const componentSeed = [{
