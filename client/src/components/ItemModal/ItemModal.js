@@ -19,7 +19,7 @@ var ItemModal =(props) =>
       <Message className = {props.isRecyclable ?"positive":"negative"} >
         <Message.Header>This {props.itemName} {props.isRecyclable ? <span><u>IS</u> recyclable.</span> : <span>is <u>NOT</u> recyclable.</span>}</Message.Header>
         <p>
-          Appropriate Disposal: In <b>Aluminum Bin</b>
+          Appropriate Disposal: In <b>{props.binType}</b>
         </p>
       </Message>
 
@@ -29,7 +29,7 @@ var ItemModal =(props) =>
 
         <Segment>
               <Header>Closest Recycling Station {props.binLocation}</Header>
-              <p centered> Aluminum Bin {props.binType}</p>
+              <p centered> {props.binType}</p>
               <Image rounded src={props.binMapImage} />
         </Segment>
 

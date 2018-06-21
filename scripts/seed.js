@@ -14,8 +14,10 @@ const wasteSeed = [{
     product_description: "beer can",
     submitted_by: "test@test.com",
     timestamp: new Date(Date.now()),
-    upc_code: 855385007003,
-    wholly_recyclable: true
+    upc_code: "855385007003",
+    wholly_recyclable: true,
+    verified: true,
+    img_url: "https://res.cloudinary.com/ratebeer/image/upload/d_beer_img_default.png,f_auto/beer_357263"
 },
 {
     components: ["aluminum can"],
@@ -24,8 +26,10 @@ const wasteSeed = [{
     product_description: "aluminum can generally used for beverage distribution.",
     submitted_by: "test@test.com",
     timestamp: new Date(Date.now()),
-    upc_code: null,
-    wholly_recyclable: true
+    upc_code: "",
+    wholly_recyclable: true,
+    verified: true,
+    img_url: "https://5.imimg.com/data5/UO/FB/MY-10726817/200-ml-aluminium-can-500x500.jpg"
 }]
 
 const componentSeed = [{
