@@ -109,7 +109,7 @@ class LandingPage extends Component {
 	};
 	slideBackNow = () => {
 		var theCount = this.state.slideCount;
-		if(theCount==0){
+		if(theCount===0){
 			this.setState({slideCount:5})
 		}
 		else{
@@ -120,7 +120,7 @@ class LandingPage extends Component {
 	};
 	slideForwardNow = () => {
 		var theCount = this.state.slideCount;
-		if(theCount==5){
+		if(theCount===5){
 			this.setState({slideCount:0})
 		}
 		else{
