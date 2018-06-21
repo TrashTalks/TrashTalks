@@ -14,7 +14,8 @@ class ItemInfo extends Component {
         producing_company: "",
         product_description: "",
         isItemOpen: false,
-        isRecyclable: ""
+        isRecyclable: "",
+        itemImage: ""
     }
 
     handleMaterialSearchChange = (e) =>{
@@ -40,6 +41,7 @@ class ItemInfo extends Component {
                 this.setState({components:res.data[0].components});
                 this.setState({isItemOpen: true})
                 this.setState({isRecyclable:res.data[0].wholly_recyclable})
+                this.setState({itemImage: res.data[0].img_url})
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -99,7 +101,7 @@ class ItemInfo extends Component {
                             modalOpen = {this.state.isItemOpen}
                             handleClose = {this.closeItem}
                             itemName = {this.state.material_name}
-                            itemImage = "http://www.imsrecycling.com/wp-content/uploads/2012/08/soda-can.jpeg"
+                            itemImage = {this.state.itemImage}
                             isRecyclable = {this.state.isRecyclable}
                             productDescription = {this.state.product_description}
                             companyName = {this.state.producing_company}

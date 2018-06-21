@@ -1,6 +1,6 @@
 import React from 'react'
-import {Modal, Image, Header,Icon,Segment,Container,Message} from 'semantic-ui-react'
-
+import {Modal, Image, Header,Icon,Segment,Grid,Message} from 'semantic-ui-react'
+import "./ItemModal.css";
 var ItemModal =(props) => 
   <Modal scrolling
     open={props.modalOpen}
@@ -14,7 +14,10 @@ var ItemModal =(props) =>
 		</Segment>
 
   <Modal.Content>
-      <Image rounded src={props.itemImage} wrapped />
+    <Grid centered>
+    <Grid.Column mobile={12} tablet={5} computer={5} largeScreen={5} widescreen={5} textAlign = "center" >
+
+      <Image rounded src={props.itemImage} wrapped  size='small'/>
 
       <Message className = {props.isRecyclable ?"positive":"negative"} >
         <Message.Header>This {props.itemName} {props.isRecyclable ? <span><u>IS</u> recyclable.</span> : <span>is <u>NOT</u> recyclable.</span>}</Message.Header>
@@ -22,14 +25,12 @@ var ItemModal =(props) =>
           Appropriate Disposal: In <b>{props.binType}</b>
         </p>
       </Message>
+    </Grid.Column>
+    <Grid.Column mobile={12} tablet={11} computer={11} largeScreen={11} widescreen={11}>
 
-
-    <Modal.Description>
-      <Header></Header>
-
-        <Segment>
+        <Segment textAlign = "center">
               <Header>Closest Recycling Station {props.binLocation}</Header>
-              <p centered> {props.binType}</p>
+              <p> <b>{props.binType}</b></p>
               <Image rounded src={props.binMapImage} />
         </Segment>
 
@@ -44,12 +45,8 @@ var ItemModal =(props) =>
             {props.children}
         </Segment>
 
-
-
-    </Modal.Description>
-
-  </Modal.Content>
-        
- </Modal> 
-
+    </Grid.Column>
+    </Grid>
+ </Modal.Content> 
+</Modal>
 export default ItemModal;
