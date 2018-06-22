@@ -137,8 +137,8 @@ class LandingPage extends Component {
 		  {/*------- Start of "PageContent"--------- */}
 			<Container id="about">
 				<Segment.Group>
-					<Segment inverted color="teal" className="landingTitle">
-				  		<h1>TrashTalks - We Listen!</h1>
+					<Segment inverted   className="landingTitle" id  = "landingTitleBackground">
+				  		<h1 >TrashTalks - We Listen!</h1>
 					</Segment>
 					<Segment className="landingWords"> 
 						<p>
@@ -153,7 +153,7 @@ class LandingPage extends Component {
 						</p>
 
 					</Segment>
-					<Button onClick={this.handleOpenESU} attached="bottom" color="orange">Sign Up for Our Mailing List</Button>
+					<Button onClick={this.handleOpenESU} attached="bottom" className = "emailButton" id ="landingTitleButton">Sign Up for Our Mailing List</Button>
 					<EmailSignUp
 						handleOpenESU = {this.handleOpenESU}
 						ESUmodalOpen={this.state.ESUmodalOpen}

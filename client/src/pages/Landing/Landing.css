@@ -25,3 +25,15 @@ p {
   position: relative;
   top: 20%;
 }*/
+#landingTitleBackground{
+    background-color: #163B53
+}
+
+#landingTitleButton{
+     /* background-color: #308DB7;  */
+     /* background-color: #114C75;  */
+     background-color:#22859A;
+    color:white;
+    font-size: 18px;
+
+}
