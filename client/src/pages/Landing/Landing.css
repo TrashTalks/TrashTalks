@@ -29,7 +29,7 @@ p {
     background-color: #163B53
 }
 
-#landingTitleButton{
+#isemailModalOpen, #isSlideDeckOpen{
      /* background-color: #308DB7;  */
      /* background-color: #114C75;  */
      background-color:#22859A;

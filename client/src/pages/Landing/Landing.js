@@ -10,7 +10,7 @@ import API from "../../utils/API";
 class LandingPage extends Component {
 
 	state = { 
-		modalOpen: false,
+		isPersonModalOpen: false,
 		modalName: "",
 		modalImage: "",
 		modalBio:"",
@@ -24,24 +24,19 @@ class LandingPage extends Component {
 			{word:"About",link:"#about"},
 			{word:"Founders",link:"#founders"}
 			],
-		ESUmodalOpen: false,
+		isemailModalOpen: false,
 		foundersInfo:[],
-		SDmodalOpen: false,
+		isSlideDeckOpen: false,
 		slideCount: 0,
 		slideTitles:["One","Two","Three","Four","Five","Six"]
 		
 
 	};
 
-	handleFNameChange = (e) =>{
-		this.setState({PersonFirstName: e.target.value});
+	handleChanges = (e) =>{
+		const {name,value} = e.target;
+		this.setState({[name]: value});
 	}; 
-	handleLNameChange = (e) =>{
-		this.setState({PersonLastName: e.target.value});
-	};  
-	handleEmailChange= (e) => {
-		this.setState({PersonEmail: e.target.value});
-	};
 
 	addEmailToDB = event => {
 		event.preventDefault();
@@ -73,25 +68,26 @@ class LandingPage extends Component {
 	};
   	
 
-	handleOpen = (personClicked,e) => {
-		this.setState({modalOpen: true });
-		this.setState({modalImage:personClicked.imageLink});
-		this.setState({modalName:personClicked.personName});
-		this.setState({modalBio:personClicked.fullBio});
+	openThisModal = (personClicked,e) => {
+		personClicked.target === undefined 
+		? this.displayPersonModalInfo(personClicked)
+		: this.setState({[personClicked.target.id]: true})
 		
 	};
 
+	displayPersonModalInfo = (personClicked) => {
+		this.setState({isPersonModalOpen: true });
+			this.setState({modalImage:personClicked.imageLink});
+			this.setState({modalName:personClicked.personName});
+			this.setState({modalBio:personClicked.fullBio});
+	}
+
 	handleClose = () => {
-		this.setState({ modalOpen: false })
+		this.setState({ isPersonModalOpen: false })
 	};
 
-	//ESU: Email Sign Up
-	handleOpenESU = () => {
-		this.setState({ESUmodalOpen: true });
-
-	};
 	handleCloseESU = () => {
-		this.setState({ESUmodalOpen: false })
+		this.setState({isemailModalOpen: false })
 		this.setState({PersonName:""});
 		this.setState({PersonEmail:""});
 	    this.setState({className:""});
@@ -100,11 +96,8 @@ class LandingPage extends Component {
 		this.setState({msgContent:""});
 	};
 
-	SDmodalOpen = () =>{
-		this.setState({SDmodalOpen:true})
-	};
 	SDhandleClose = () => {
-		this.setState({SDmodalOpen:false})
+		this.setState({isSlideDeckOpen:false})
 		this.setState({slideCount:0})
 	};
 	slideBackNow = () => {
@@ -153,20 +146,20 @@ class LandingPage extends Component {
 						</p>
 
 					</Segment>
-					<Button onClick={this.handleOpenESU} attached="bottom" className = "emailButton" id ="landingTitleButton">Sign Up for Our Mailing List</Button>
+					<Button id = "isemailModalOpen" onClick={this.openThisModal} attached="bottom" className = "emailButton">Sign Up for Our Mailing List</Button>
 					<EmailSignUp
-						handleOpenESU = {this.handleOpenESU}
-						ESUmodalOpen={this.state.ESUmodalOpen}
+						handleOpenESU = {this.openThisModal}
+						isModalOpen={this.state.isemailModalOpen}
 						handleCloseESU={this.handleCloseESU.bind(this)}
 
 						signUpFName={this.PersonFirstName}
-						handleFNameChange={this.handleFNameChange}
+						handleFNameChange={this.handleChanges}
 
 						signUpLName={this.PersonLastName}
-						handleLNameChange={this.handleLNameChange}
+						handleLNameChange={this.handleChanges}
 
 						signUpEmail={this.PersonEmail}
-						handleEmailChange = {this.handleEmailChange}
+						handleEmailChange = {this.handleChanges}
 
 						addEmailToDB={this.addEmailToDB}
 						className={this.state.className}
@@ -183,7 +176,7 @@ class LandingPage extends Component {
 				>
 
 					{this.state.foundersInfo.map((eachFounder, index) => {
-						let boundItemClick = this.handleOpen.bind(this, eachFounder);
+						let boundItemClick = this.openThisModal.bind(this, eachFounder);
 						return (
 							<Grid.Column key={index} mobile={16} tablet={8} computer={8} largeScreen={5} widescreen={5}>
 								<PersonCard
@@ -200,7 +193,7 @@ class LandingPage extends Component {
 					})}
 
 					<PersonCardModal
-						modalOpen = {this.modalOpen}
+						modalOpen = {this.state.isPersonModalOpen}
 						handleClose = {this.handleClose}
 						modalImage = {this.state.modalImage}
 						modalName = {this.state.modalName}
@@ -213,14 +206,14 @@ class LandingPage extends Component {
  
 			{/*---------- End of "PageContent" ---------*/}
 			<SlideDeck
-				modalOpen = {this.state.SDmodalOpen}
+				modalOpen = {this.state.isSlideDeckOpen}
 				handleClose = {this.SDhandleClose}
 				modalImage = {"TrashTalks_Slide"+(this.state.slideCount+1)+".png"} 
 				SDtitle = {this.state.slideTitles[this.state.slideCount]}
 				slideBack = {this.slideBackNow}
 				slideForward = {this.slideForwardNow}
 			/>
-			<Button onClick = {this.SDmodalOpen} content = "Slide Deck"/>
+			<Button id ="isSlideDeckOpen" onClick = {this.openThisModal} content = "Slide Deck"/>
 			</div>
 	    )
 	}
