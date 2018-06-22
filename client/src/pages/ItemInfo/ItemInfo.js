@@ -14,7 +14,8 @@ class ItemInfo extends Component {
         producing_company: "",
         product_description: "",
         isItemOpen: false,
-        isRecyclable: ""
+        isRecyclable: "",
+        itemImage: ""
     }
 
     handleMaterialSearchChange = (e) =>{
@@ -40,6 +41,7 @@ class ItemInfo extends Component {
                 this.setState({components:res.data[0].components});
                 this.setState({isItemOpen: true})
                 this.setState({isRecyclable:res.data[0].wholly_recyclable})
+                this.setState({itemImage: res.data[0].img_url})
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -55,13 +57,13 @@ class ItemInfo extends Component {
                     <Grid columns={1} centered>
                         <Grid.Column>
                             <Segment.Group>
-                                <Segment inverted color="teal" className="landingTitle">
-                                    <h1>Barcode Scanner/Search Bar</h1>
+                                <Segment inverted  className="landingTitle" id="landingTitleBackground">
+                                    <h1 >Barcode Scanner/Search Bar</h1>
                                 </Segment>
                                 
                                 <Segment className="landingWords"> 
                                 <div id="scanner-container">
-                                    <Button  id="scannerButton" color = "teal" > Start/Stop the Scanner </Button>
+                                    <Button  id="scannerButton" > Start/Stop the Scanner </Button>
                                 </div>
                                 <Form>
 									<Form.Field>
@@ -84,7 +86,7 @@ class ItemInfo extends Component {
 										onChange = {this.handleUpcSearchChange}
 										/>
 									</Form.Field>
-                                    <Button type = "submit" onClick = {this.searchMaterialDB} color="teal">
+                                    <Button type = "submit" onClick = {this.searchMaterialDB} id="MatSearchButton">
 										Submit
 									</Button>
                                 </Form>
@@ -99,7 +101,7 @@ class ItemInfo extends Component {
                             modalOpen = {this.state.isItemOpen}
                             handleClose = {this.closeItem}
                             itemName = {this.state.material_name}
-                            itemImage = "http://www.imsrecycling.com/wp-content/uploads/2012/08/soda-can.jpeg"
+                            itemImage = {this.state.itemImage}
                             isRecyclable = {this.state.isRecyclable}
                             productDescription = {this.state.product_description}
                             companyName = {this.state.producing_company}

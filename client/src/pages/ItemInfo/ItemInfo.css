@@ -1,3 +1,12 @@
 #infoBinColumns{
     margin:50px;
 }
+#landingTitleBackground{
+       background-color: #114C75;   
+     /* background-color:#22859A; */
+     color:white;
+}
+#MatSearchButton, #scannerButton {
+       background-color: #308DB7;  
+       color:white; 
+}

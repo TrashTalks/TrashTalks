@@ -8,7 +8,7 @@ var Founders = props =>
 
 			<Segment.Group >
 
-				<Segment inverted color="teal" className="foundersTitle">
+				<Segment inverted className="foundersTitle" id = "foundersTitleBackground">
 					<h2>{props.titleHeading}</h2>
 				</Segment>
 

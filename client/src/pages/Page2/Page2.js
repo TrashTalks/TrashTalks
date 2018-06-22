@@ -7,9 +7,9 @@ class Page2 extends Component {
     render() {
 		return(
 			<div>
-                <Container>
-                    <Segment.Group>
-                        <Segment inverted color="teal" className="landingTitle">
+                <Container className = "page2Container">
+                    <Segment.Group >
+                        <Segment inverted className="landingTitle" id="EELandingTitle">
                             <h1>Yo momma so innovative....</h1>
                         </Segment>
                         
