@@ -26,7 +26,7 @@ var NavComponent = (props) =>
       <Menu.Item>
 
         <Icon.Group size='huge'> 
-          <Icon name='trash' color="teal"/>
+          <Icon name='trash' className = "navbarIcons"/>
         </Icon.Group>
 
         <h2>TrashTalks</h2>
@@ -37,7 +37,7 @@ var NavComponent = (props) =>
         {leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
         
         <Menu.Menu position = "right">
-          {rightMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link} target="_blank" rel="noopener noreferrer"><h3>{item.word}</h3><Icon disabled name={item.iconName} size='big' color='teal'/></Menu.Item>)}
+          {rightMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link} target="_blank" rel="noopener noreferrer"><h3>{item.word}</h3><Icon  name={item.iconName} size='big' className = "navbarIcons"/></Menu.Item>)}
         </Menu.Menu>
     </Menu>
   </Responsive>
@@ -47,13 +47,13 @@ var NavComponent = (props) =>
 
           <Menu.Item >
               <Icon.Group size='huge'> 
-               <Icon name='trash' color="teal"/>
+               <Icon name='trash' className = "navbarIconsHam"/>
               </Icon.Group>
 
               <h2>TrashTalks</h2>
           </Menu.Item>
 
-          <Menu.Item position="right" onClick={props.toggleMenu}><Icon name="sidebar" position='right' size="large"/></Menu.Item>
+          <Menu.Item position="right" onClick={props.toggleMenu}><Icon name="sidebar" position='right' size="large" className = "navbarIconsHam"/></Menu.Item>
         </Menu>
   </Responsive>
 </div>

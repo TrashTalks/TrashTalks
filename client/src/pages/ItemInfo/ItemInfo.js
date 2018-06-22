@@ -57,13 +57,13 @@ class ItemInfo extends Component {
                     <Grid columns={1} centered>
                         <Grid.Column>
                             <Segment.Group>
-                                <Segment inverted color="teal" className="landingTitle">
-                                    <h1>Barcode Scanner/Search Bar</h1>
+                                <Segment inverted  className="landingTitle" id="landingTitleBackground">
+                                    <h1 >Barcode Scanner/Search Bar</h1>
                                 </Segment>
                                 
                                 <Segment className="landingWords"> 
                                 <div id="scanner-container">
-                                    <Button  id="scannerButton" color = "teal" > Start/Stop the Scanner </Button>
+                                    <Button  id="scannerButton" > Start/Stop the Scanner </Button>
                                 </div>
                                 <Form>
 									<Form.Field>
@@ -86,7 +86,7 @@ class ItemInfo extends Component {
 										onChange = {this.handleUpcSearchChange}
 										/>
 									</Form.Field>
-                                    <Button type = "submit" onClick = {this.searchMaterialDB} color="teal">
+                                    <Button type = "submit" onClick = {this.searchMaterialDB} id="MatSearchButton">
 										Submit
 									</Button>
                                 </Form>
