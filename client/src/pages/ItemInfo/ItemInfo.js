@@ -7,8 +7,8 @@ import API from "../../utils/API";
 class ItemInfo extends Component {
 
     state = { 
-        materialSearch: "",
-        upcSearch: "",
+        materialInput: "",
+        upcInput: "",
         components: [],
         material_name: "",
         producing_company: "",
@@ -18,19 +18,16 @@ class ItemInfo extends Component {
         itemImage: ""
     }
 
-    handleMaterialSearchChange = (e) =>{
-		this.setState({materialSearch: e.target.value});
-    };
-
-    handleUpcSearchChange = (e) =>{
-		this.setState({upcSearch: e.target.value});
+    handleChanges = (e) =>{
+        const {target:{name,value}} = e;
+		this.setState({[name]:value});
     };
 
     searchMaterialDB = event => {
 		event.preventDefault();
 		var material = {
-            material_name: this.state.materialSearch.trim(),
-            upc_code: this.state.upcSearch.trim()
+            material_name: this.state.materialInput.trim(),
+            upc_code: this.state.upcInput.trim()
 		};
 		
 		API.searchMaterial(material)
@@ -73,8 +70,8 @@ class ItemInfo extends Component {
 										placeholder = "Waste Material"
 										id = "wasteMaterialSearch"
 										type = "text"
-										value = {this.materialSearch}
-										onChange = {this.handleMaterialSearchChange}
+										onChange = {this.handleChanges}
+                                        name = "materialInput"
 										/>
                                         <label> UPC Search: </label>
 										<Form.Input
@@ -82,8 +79,8 @@ class ItemInfo extends Component {
 										placeholder = "UPC Code"
 										id = "wasteUpcSearch"
 										type = "text"
-										value = {this.upcSearch}
-										onChange = {this.handleUpcSearchChange}
+										onChange = {this.handleChanges}
+                                        name = "upcInput"
 										/>
 									</Form.Field>
                                     <Button type = "submit" onClick = {this.searchMaterialDB} id="MatSearchButton">
