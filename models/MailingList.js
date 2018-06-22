@@ -53,8 +53,10 @@ module.exports={
             key:ds.key(kind)
           })
           res.json("Email Added Succefully!");
-        } else {
+        } else if (cbRes.length > 0) {
           res.json("Email Not Saved! Email Already on list!");
+        } else {
+          res.json("Email Not Saved! Unknown Error!");
         } 
       });
     }
