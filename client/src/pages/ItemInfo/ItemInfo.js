@@ -15,7 +15,10 @@ class ItemInfo extends Component {
         product_description: "",
         isItemOpen: false,
         isRecyclable: "",
-        itemImage: ""
+        isVerified:"",
+        itemImage: "",
+        binLocation:"",
+        binType:""
     }
 
     handleChanges = (e) =>{
@@ -38,7 +41,17 @@ class ItemInfo extends Component {
                 this.setState({components:res.data[0].components});
                 this.setState({isItemOpen: true})
                 this.setState({isRecyclable:res.data[0].wholly_recyclable})
+                this.setState({isVerified:res.data[0].verified})
                 this.setState({itemImage: res.data[0].img_url})
+
+                res.data[0].bin_location !== ""
+                    ? this.setState({binLocation:res.data[0].bin_location}) 
+                    : this.setState({binLocation:""})
+                
+                res.data[0].bin_type !== ""
+                    ? this.setState({binType:res.data[0].bin_type}) 
+                    : this.setState({binType:""})
+                
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -100,10 +113,11 @@ class ItemInfo extends Component {
                             itemName = {this.state.material_name}
                             itemImage = {this.state.itemImage}
                             isRecyclable = {this.state.isRecyclable}
+                            isVerified = {this.state.isVerified}
                             productDescription = {this.state.product_description}
                             companyName = {this.state.producing_company}
-                            binLocation = "Starbucks - Across Info Desk"
-                            binType = "Aluminum Bin"
+                            binLocation = {this.state.binLocation}
+                            binType = {this.state.binType}
                             binMapImage = "Culc2ndFloor.png"
                         >
                             {this.state.components.map((component, index) => {
