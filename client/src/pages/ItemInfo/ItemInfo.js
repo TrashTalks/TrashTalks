@@ -44,13 +44,13 @@ class ItemInfo extends Component {
                 this.setState({isVerified:res.data[0].verified})
                 this.setState({itemImage: res.data[0].img_url})
 
-                res.data[0].bin_location !== ""
+                res.data[0].bin_location !== "g"
                     ? this.setState({binLocation:res.data[0].bin_location}) 
-                    : this.setState({binLocation:""})
+                    : this.setState({binLocation:"g"})
                 
-                res.data[0].bin_type !== ""
+                res.data[0].bin_type !== "g"
                     ? this.setState({binType:res.data[0].bin_type}) 
-                    : this.setState({binType:""})
+                    : this.setState({binType:"g"})
                 
 			}).catch((error) => {
 				console.log(error);
