@@ -19,19 +19,34 @@ var ItemModal =(props) =>
 
       <Image rounded src={props.itemImage} wrapped  size='small'/>
 
-      <Message className = {props.isRecyclable ?"positive":"negative"} >
-        <Message.Header>This {props.itemName} {props.isRecyclable ? <span><u>IS</u> recyclable.</span> : <span>is <u>NOT</u> recyclable.</span>}</Message.Header>
-        <p>
-          Appropriate Disposal: In <b>{props.binType}</b>
-        </p>
+      <Message className = {props.isRecyclable && props.isVerified ?"positive": props.isRecyclable? "warning" :  "negative"} >
+        <Message.Header>
+          This {props.itemName} {' '}
+
+          {props.isRecyclable && props.isVerified
+          ? <span><u> IS</u> recyclable.</span> 
+          : !props.isVerified ? <span> is not in our database yet. We'll make sure to add and verify it soon. Place in landfill to prevent contaminating other recyclables. </span>
+          : <span> is <u>NOT</u> recyclable.</span>}
+          
+        </Message.Header>
+  
+        {props.binType === "" 
+         ? <p> Place in <b> landfill </b> bin </p>
+         : <p> Appropriate Disposal: In <b>{props.binType}</b> </p>
+        }
       </Message>
     </Grid.Column>
     <Grid.Column mobile={12} tablet={11} computer={11} largeScreen={11} widescreen={11}>
 
         <Segment textAlign = "center">
-              <Header>Closest Recycling Station {props.binLocation}</Header>
-              <p> <b>{props.binType}</b></p>
-              <Image rounded src={props.binMapImage} />
+
+          {props.binLocation !== ""  
+            ?  <Header>Closest Recycling Station {props.binLocation}</Header>
+            :  ""
+          }
+
+          <Image rounded src={props.binMapImage} />
+          
         </Segment>
 
         <Segment>

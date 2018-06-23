@@ -7,30 +7,30 @@ import API from "../../utils/API";
 class ItemInfo extends Component {
 
     state = { 
-        materialSearch: "",
-        upcSearch: "",
+        materialInput: "",
+        upcInput: "",
         components: [],
         material_name: "",
         producing_company: "",
         product_description: "",
         isItemOpen: false,
         isRecyclable: "",
-        itemImage: ""
+        isVerified:"",
+        itemImage: "",
+        binLocation:"",
+        binType:""
     }
 
-    handleMaterialSearchChange = (e) =>{
-		this.setState({materialSearch: e.target.value});
-    };
-
-    handleUpcSearchChange = (e) =>{
-		this.setState({upcSearch: e.target.value});
+    handleChanges = (e) =>{
+        const {target:{name,value}} = e;
+		this.setState({[name]:value});
     };
 
     searchMaterialDB = event => {
 		event.preventDefault();
 		var material = {
-            material_name: this.state.materialSearch.trim(),
-            upc_code: this.state.upcSearch.trim()
+            material_name: this.state.materialInput.trim(),
+            upc_code: this.state.upcInput.trim()
 		};
 		
 		API.searchMaterial(material)
@@ -41,7 +41,17 @@ class ItemInfo extends Component {
                 this.setState({components:res.data[0].components});
                 this.setState({isItemOpen: true})
                 this.setState({isRecyclable:res.data[0].wholly_recyclable})
+                this.setState({isVerified:res.data[0].verified})
                 this.setState({itemImage: res.data[0].img_url})
+
+                res.data[0].bin_location !== ""
+                    ? this.setState({binLocation:res.data[0].bin_location}) 
+                    : this.setState({binLocation:""})
+                
+                res.data[0].bin_type !== ""
+                    ? this.setState({binType:res.data[0].bin_type}) 
+                    : this.setState({binType:""})
+                
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -73,8 +83,8 @@ class ItemInfo extends Component {
 										placeholder = "Waste Material"
 										id = "wasteMaterialSearch"
 										type = "text"
-										value = {this.materialSearch}
-										onChange = {this.handleMaterialSearchChange}
+										onChange = {this.handleChanges}
+                                        name = "materialInput"
 										/>
                                         <label> UPC Search: </label>
 										<Form.Input
@@ -82,8 +92,8 @@ class ItemInfo extends Component {
 										placeholder = "UPC Code"
 										id = "wasteUpcSearch"
 										type = "text"
-										value = {this.upcSearch}
-										onChange = {this.handleUpcSearchChange}
+										onChange = {this.handleChanges}
+                                        name = "upcInput"
 										/>
 									</Form.Field>
                                     <Button type = "submit" onClick = {this.searchMaterialDB} id="MatSearchButton">
@@ -103,10 +113,11 @@ class ItemInfo extends Component {
                             itemName = {this.state.material_name}
                             itemImage = {this.state.itemImage}
                             isRecyclable = {this.state.isRecyclable}
+                            isVerified = {this.state.isVerified}
                             productDescription = {this.state.product_description}
                             companyName = {this.state.producing_company}
-                            binLocation = "Starbucks - Across Info Desk"
-                            binType = "Aluminum Bin"
+                            binLocation = {this.state.binLocation}
+                            binType = {this.state.binType}
                             binMapImage = "Culc2ndFloor.png"
                         >
                             {this.state.components.map((component, index) => {

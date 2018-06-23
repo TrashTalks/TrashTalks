@@ -8,7 +8,7 @@
 var EmailSignUp = props =>
 <div id="emailButtonContainer"><span onClick={props.handleOpenESU}>{props.signUpClickWords}</span>
 
-	<Modal onClose={props.handleCloseESU} open={props.ESUmodalOpen}>
+	<Modal onClose={props.handleCloseESU} open={props.isModalOpen}>
 		<Segment clearing>
 			<Header floated="left"> Get placed on our mailing list for updates! </Header>
 			<Header floated="right">
@@ -34,6 +34,7 @@ var EmailSignUp = props =>
 										type = "text"
 										value = {props.signUpFName}
 										onChange = {props.handleFNameChange}
+										name ="PersonFirstName"
 										/>
 									</Form.Field>
 
@@ -46,6 +47,7 @@ var EmailSignUp = props =>
 										type = "text"
 										value = {props.signUpLName}
 										onChange = {props.handleLNameChange}
+										name="PersonLastName"
 										/>
 									</Form.Field>
 
@@ -58,6 +60,7 @@ var EmailSignUp = props =>
 										type = "email"
 										value = {props.signUpEmail}
 										onChange = {props.handleEmailChange}
+										name = "PersonEmail"
 										/>
 									</Form.Field>
 									<div>
