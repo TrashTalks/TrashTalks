@@ -67,7 +67,7 @@ module.exports = {
                 components: [],
                 material_name: response.data.items[0].name.toLowerCase(),
                 producing_company: response.data.items[0].brandName.toLowerCase(),
-                product_description: "",
+                product_description: response.data.items[0].shortDescription.toLowerCase(),
                 submitted_by: "",
                 timestamp: new Date(Date.now()),
                 upc_code: response.data.items[0].upc,
