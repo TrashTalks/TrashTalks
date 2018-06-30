@@ -45,7 +45,7 @@ var NavComponent = (props) =>
 
           <Menu.Item >
               <Icon.Group size='huge'> 
-               <Image src = "logo.png" size ="small" href ="/" />
+               <Image src = "logo.png" size ="small" href ="/"/>
               </Icon.Group>
 
           </Menu.Item>
