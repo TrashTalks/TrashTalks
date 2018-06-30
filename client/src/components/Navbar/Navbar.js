@@ -45,10 +45,9 @@ var NavComponent = (props) =>
 
           <Menu.Item >
               <Icon.Group size='huge'> 
-               <Icon name='trash' className = "navbarIconsHam"/>
+               <Image src = "logo.png" size ="small" href ="/"/>
               </Icon.Group>
 
-              <h2>TrashTalks</h2>
           </Menu.Item>
 
           <Menu.Item position="right" onClick={props.toggleMenu}><Icon name="sidebar" position='right' size="large" className = "navbarIconsHam"/></Menu.Item>
