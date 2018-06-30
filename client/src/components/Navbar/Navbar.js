@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Navbar.css";
-import { Menu, Icon, Responsive} from 'semantic-ui-react';
+import { Menu, Icon, Responsive, Image} from 'semantic-ui-react';
 
 // const dropdownChoices = [
 //   { key: 1, text: 'Choice 1', value: 1 },
@@ -26,10 +26,8 @@ var NavComponent = (props) =>
       <Menu.Item>
 
         <Icon.Group size='huge'> 
-          <Icon name='trash' className = "navbarIcons"/>
+          <Image src = "logo.png" size ="small" href ="/" />
         </Icon.Group>
-
-        <h2>TrashTalks</h2>
 
       </Menu.Item>
      
@@ -47,10 +45,9 @@ var NavComponent = (props) =>
 
           <Menu.Item >
               <Icon.Group size='huge'> 
-               <Icon name='trash' className = "navbarIconsHam"/>
+               <Image src = "logo.png" size ="small" href ="/"/>
               </Icon.Group>
 
-              <h2>TrashTalks</h2>
           </Menu.Item>
 
           <Menu.Item position="right" onClick={props.toggleMenu}><Icon name="sidebar" position='right' size="large" className = "navbarIconsHam"/></Menu.Item>
