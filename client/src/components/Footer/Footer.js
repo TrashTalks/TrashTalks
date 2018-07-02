@@ -15,7 +15,7 @@ class Footer extends Component {
                     </Grid.Row>
                     </Grid>
                     <div className="copyright">
-                      Copyright &copy; TrashTalks 2018
+                      Copyright &copy;<a href = "/easteregg">.</a> TrashTalks 2018
                     </div>
             </div>
       </div>

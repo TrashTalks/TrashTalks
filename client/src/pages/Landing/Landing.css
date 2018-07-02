@@ -26,7 +26,8 @@ p {
   top: 20%;
 }*/
 #landingTitleBackground{
-    background-color: #163B53
+    background-color: #163B53;
+    color: white;
 }
 
 #isemailModalOpen, #isSlideDeckOpen{

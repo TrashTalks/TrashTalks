@@ -205,7 +205,7 @@ class LandingPage extends Component {
 			</Container>
  
 			{/*---------- End of "PageContent" ---------*/}
-			<SlideDeck
+			{/* <SlideDeck
 				modalOpen = {this.state.isSlideDeckOpen}
 				handleClose = {this.SDhandleClose}
 				modalImage = {"TrashTalks_Slide"+(this.state.slideCount+1)+".png"} 
@@ -213,7 +213,7 @@ class LandingPage extends Component {
 				slideBack = {this.slideBackNow}
 				slideForward = {this.slideForwardNow}
 			/>
-			<Button id ="isSlideDeckOpen" onClick = {this.openThisModal} content = "Slide Deck"/>
+			<Button id ="isSlideDeckOpen" onClick = {this.openThisModal} content = "Slide Deck"/> */}
 			</div>
 	    )
 	}
