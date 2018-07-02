@@ -35,21 +35,21 @@ class ItemInfo extends Component {
 		
 		API.searchMaterial(material)
 			.then(res => {
-                this.setState({material_name:res.data[0].material_name});
-                this.setState({producing_company:res.data[0].producing_company});
-                this.setState({product_description:res.data[0].product_description});
-                this.setState({components:res.data[0].components});
+                this.setState({material_name:res.data.material_name});
+                this.setState({producing_company:res.data.producing_company});
+                this.setState({product_description:res.data.product_description});
+                this.setState({components:res.data.components});
                 this.setState({isItemOpen: true})
-                this.setState({isRecyclable:res.data[0].wholly_recyclable})
-                this.setState({isVerified:res.data[0].verified})
-                this.setState({itemImage: res.data[0].img_url})
+                this.setState({isRecyclable:res.data.wholly_recyclable})
+                this.setState({isVerified:res.data.verified})
+                this.setState({itemImage: res.data.img_url})
 
-                res.data[0].bin_location !== "g"
-                    ? this.setState({binLocation:res.data[0].bin_location}) 
+                res.data.bin_location !== "g"
+                    ? this.setState({binLocation:res.data.bin_location}) 
                     : this.setState({binLocation:"g"})
                 
-                res.data[0].bin_type !== "g"
-                    ? this.setState({binType:res.data[0].bin_type}) 
+                res.data.bin_type !== "g"
+                    ? this.setState({binType:res.data.bin_type}) 
                     : this.setState({binType:"g"})
                 
 			}).catch((error) => {
@@ -68,7 +68,7 @@ class ItemInfo extends Component {
                         <Grid.Column>
                             <Segment.Group>
                                 <Segment inverted  className="landingTitle" id="landingTitleBackground">
-                                    <h1 >Barcode Scanner/Search Bar</h1>
+                                    <h1>Search Waste Material</h1>
                                 </Segment>
                                 
                                 <Segment className="landingWords"> 
