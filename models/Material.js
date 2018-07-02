@@ -28,7 +28,7 @@ module.exports = {
           })
           // res.json([req])
         } else {
-          res.json({error:"UPC not added"});
+          res.json({error: "Unable to locate item"});
         } 
       });
   },
