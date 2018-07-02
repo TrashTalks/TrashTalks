@@ -9,8 +9,9 @@ import { Menu, Icon, Responsive, Image} from 'semantic-ui-react';
 // ];
 
 const leftMenuItems = [
-  {word:"About",link:"#about"},
-  {word:"Founders",link:"#founders"},
+  {word:"About", link:"/#about"},
+  {word:"Founders", link:"/#founders"},
+  {word:"Item Scanner", link:"/scanner" }
 ]
 
 const rightMenuItems = [
