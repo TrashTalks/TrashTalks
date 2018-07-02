@@ -1,6 +1,8 @@
 //-------------- Imports ----------------------//
 	import React from "react";
-	import { Modal, Container, Button, Grid, Form, Segment, Header, Icon } from 'semantic-ui-react';
+	import { Modal, Container, Button, Grid, Form, 
+		Segment, Header, Icon, Message,
+		Loader, Dimmer} from 'semantic-ui-react';
 	import "./emailSignUp.css";
 //--------------------------------------------//
 
@@ -8,9 +10,9 @@
 var EmailSignUp = props =>
 <div id="emailButtonContainer"><span onClick={props.handleOpenESU}>{props.signUpClickWords}</span>
 
-	<Modal onClose={props.handleCloseESU} open={props.isModalOpen}>
+	<Modal onClose={props.handleCloseESU} open={props.isModalOpen} size = "small">
 		<Segment clearing>
-			<Header floated="left"> Get placed on our mailing list for updates! </Header>
+			<Header floated="left">{"Sign up for our mailing list!"}</Header>
 			<Header floated="right">
 					<Icon corner name="close" size="big" color="grey"  onClick={props.handleCloseESU} />
 			</Header>
@@ -19,65 +21,77 @@ var EmailSignUp = props =>
 			<Modal.Description>
 				<Container>
 					<Grid stackable >
-						<Grid.Row verticalAlign='middle'>
+						<Grid.Row centered verticalAlign='middle'>
+							
+							<Grid.Column mobile={16} tablet={14} computer={12} largeScreen={12} widescreen={12}>
 
-							<Grid.Column mobile={15} tablet={8} computer={8} largeScreen={8} widescreen={8}>
-								<Form>
-									<h3>Sign Up for our Mailing List </h3>
+								{props.showMessage ?
+									<Message className = {props.msgHeader[0]==="T" ?"positive": "warning"} >
+										<Message.Header>
+											{props.msgHeader}
+										</Message.Header>
+										{props.msgContent}
+									</Message>
+								: null}
 
-									<Form.Field required>
-										<label> First Name: </label>
-										<Form.Input
-										className = "form-control"
-										placeholder = "Preferred-First-Name"
-										id = "signUpFName"
-										type = "text"
-										value = {props.signUpFName}
-										onChange = {props.handleFNameChange}
-										name ="PersonFirstName"
-										/>
-									</Form.Field>
+								{props.showForm ?
+									<Form>
 
-									<Form.Field required>
-										<label> Last Name: </label>
-										<Form.Input
-										className = "form-control"
-										placeholder = "Last-Name"
-										id = "signUpLName"
-										type = "text"
-										value = {props.signUpLName}
-										onChange = {props.handleLNameChange}
-										name="PersonLastName"
-										/>
-									</Form.Field>
+										<Form.Field required>
+											<label> First Name: </label>
+											<Form.Input
+											className = "form-control"
+											placeholder = "Preferred-First-Name"
+											id = "signUpFName"
+											type = "text"
+											value = {props.signUpFName}
+											onChange = {props.handleFNameChange}
+											name ="PersonFirstName"
+											/>
+										</Form.Field>
 
-									<Form.Field required>
-										<label> Email: </label>
-										<Form.Input
-										className = "form-control"
-										placeholder = "Email Address Here"
-										id = "signUpEmail"
-										type = "email"
-										value = {props.signUpEmail}
-										onChange = {props.handleEmailChange}
-										name = "PersonEmail"
-										/>
-									</Form.Field>
-									<div>
-										<span>
-											{props.msgHeader}<br/><br/>
-											{props.msgContent}
-										</span>
-									</div>
-									<Button type = "submit" onClick = {props.addEmailToDB}>
-										Sign Up
+										<Form.Field required>
+											<label> Last Name: </label>
+											<Form.Input
+											className = "form-control"
+											placeholder = "Last-Name"
+											id = "signUpLName"
+											type = "text"
+											value = {props.signUpLName}
+											onChange = {props.handleLNameChange}
+											name="PersonLastName"
+											/>
+										</Form.Field>
 
-									</Button>
-								</Form>
+										<Form.Field required>
+											<label> Email: </label>
+											<Form.Input
+											className = "form-control"
+											placeholder = "Email Address Here"
+											id = "signUpEmail"
+											type = "email"
+											value = {props.signUpEmail}
+											onChange = {props.handleEmailChange}
+											name = "PersonEmail"
+											/>
+										</Form.Field>
+
+										<Button type = "submit" onClick = {props.addEmailToDB} id = "emailSignUpButton">
+											Sign Up
+
+										</Button>
+									</Form>
+								: null}
+
 							</Grid.Column>
-						</Grid.Row>
+							
+						</Grid.Row>	
 					</Grid>
 				</Container>
+				
+				<Dimmer active = {props.showLoader}>
+					<Loader indeterminate>Checking mailing list ...</Loader>
+				</Dimmer>
 			</Modal.Description>
 		</Modal.Content>
 	</Modal>

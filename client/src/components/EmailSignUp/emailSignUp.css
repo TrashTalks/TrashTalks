@@ -5,3 +5,8 @@
 /* #emailButtonContainer {
     margin:50px;
 } */
+
+#emailSignUpButton{
+    background-color: #163B53;
+    color: white;
+}

@@ -7,5 +7,4 @@ const materialRoutes = require("./material");
 router.use("/employee", employeeRoutes);
 router.use("/mailingList", mailingListRoutes);
 router.use("/material", materialRoutes);
-
 module.exports = router;

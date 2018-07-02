@@ -4,7 +4,7 @@ import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
 import EmailSignUp from "../../components/EmailSignUp";
-import SlideDeck from "../../components/SlideDeck";
+// import SlideDeck from "../../components/SlideDeck";
 import "./Landing.css";
 import API from "../../utils/API";
 class LandingPage extends Component {
@@ -28,7 +28,10 @@ class LandingPage extends Component {
 		foundersInfo:[],
 		isSlideDeckOpen: false,
 		slideCount: 0,
-		slideTitles:["One","Two","Three","Four","Five","Six"]
+		slideTitles:["One","Two","Three","Four","Five","Six"],
+		showEmailForm:true,
+		showMessage: false,
+		showLoader: false
 		
 
 	};
@@ -37,21 +40,37 @@ class LandingPage extends Component {
 		const {name,value} = e.target;
 		this.setState({[name]: value});
 	}; 
+	emailAdded = (theRes) => {
+		this.setState({msgHeader:"Thank You!"});
+		this.setState({msgContent:theRes.data["added"]});
+		this.setState({PersonName:""});
+		this.setState({PersonEmail:""});
+		this.setState({showEmailForm:false});
+		this.setState({showLoader:false});
+		this.setState({showMessage:true});
+	};
+	emailNotAdded = (theRes) => {
+		this.setState({showMessage:true});
 
+		theRes.data["error"]==="Email Already on list!" 
+		? this.setState({msgHeader:"Awesome!"})
+		: this.setState({msgHeader:"Sorry! Email Not Added"})
+	 
+		this.setState({msgContent:theRes.data["error"]});
+		this.setState({showLoader:false});
+	};
 	addEmailToDB = event => {
+		this.setState({showLoader:true});
 		event.preventDefault();
 		var info = {
 		First_Name: this.state.PersonFirstName.trim(),
 		Last_Name:this.state.PersonLastName.trim(),
 		Subscriber_Email : this.state.PersonEmail.trim()
 		};
-		
+
 		API.addUserToEmailList(info)
 			.then(res => {
-				this.setState({msgHeader:"Thank You!"});
-				this.setState({msgContent:res.data});
-				this.setState({PersonName:""});
-				this.setState({PersonEmail:""});
+				res.data["added"] ? this.emailAdded(res) : this.emailNotAdded(res) 
 			}).catch((error) => {
 				console.log(error);
 			});
@@ -93,7 +112,9 @@ class LandingPage extends Component {
 	    this.setState({className:""});
 		this.setState({msgHeader:""});
 		this.setState({msgContent:""});
-		this.setState({msgContent:""});
+		this.setState({showEmailForm:true});
+		this.setState({showMessage:false});
+
 	};
 
 	SDhandleClose = () => {
@@ -148,6 +169,7 @@ class LandingPage extends Component {
 					</Segment>
 					<Button id = "isemailModalOpen" onClick={this.openThisModal} attached="bottom" className = "emailButton">Sign Up for Our Mailing List</Button>
 					<EmailSignUp
+						showForm = {this.state.showEmailForm}
 						handleOpenESU = {this.openThisModal}
 						isModalOpen={this.state.isemailModalOpen}
 						handleCloseESU={this.handleCloseESU.bind(this)}
@@ -165,6 +187,8 @@ class LandingPage extends Component {
 						className={this.state.className}
 						msgHeader={this.state.msgHeader}
 						msgContent={this.state.msgContent} 
+						showMessage = {this.state.showMessage}
+						showLoader = {this.state.showLoader}
 					/>
 				</Segment.Group>
 
