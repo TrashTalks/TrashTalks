@@ -5,13 +5,10 @@ var ItemModal =(props) =>
   <Modal scrolling
     open={props.modalOpen}
     onClose={props.handleClose}
+    closeIcon
   >
-		<Segment clearing id="ItemmodalHeader">
-			<Header floated="left"> {props.itemName}</Header>
-			<Header floated="right">
-					<Icon corner name="close" size="big" color="grey"  onClick={props.handleClose} />
-			</Header>
-		</Segment>
+	
+  <Modal.Header floated="left"> {props.itemName}</Modal.Header>
 
   <Modal.Content>
     <Grid centered>
