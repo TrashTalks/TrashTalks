@@ -74,12 +74,6 @@ class LandingPage extends Component {
 			}).catch((error) => {
 				console.log(error);
 			});
-		// API.sendSignUpConfirmEmail(info.Subscriber_Email)
-		// 	.then(res => {
-		// 		console.log("check your email")
-		// 	}).catch((error) =>{
-		// 		console.log(error);
-		// 	});
 	};   
 	componentDidMount() {
 
