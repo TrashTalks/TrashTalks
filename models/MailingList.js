@@ -2,7 +2,15 @@
 
 const Datastore = require('@google-cloud/datastore');
 const config = require('../config');
-const validator = require('validator')
+const validator = require('validator');
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+         user: config.get('TRASHTALKS_GMAIL'),
+         pass: config.get('GMAIL_PASSWORD')
+     }
+ });
 
 const ds = Datastore({
   projectId: config.get('GCLOUD_PROJECT')
@@ -52,6 +60,18 @@ module.exports={
             data:req.body,
             key:ds.key(kind)
           })
+          const mailOptions = {
+            from: config.get('TRASHTALKS_GMAIL'), // sender address
+            to: email, // list of receivers
+            subject: 'TestEmail', // Subject line
+            html: '<h3>Hello, ' + firstName + '</h3><br><p>Thank you for joing the TrashTalks Mailing</p><br><p>This will help you stay up to date with TrashTalks</p>',// plain text body
+            };
+          transporter.sendMail(mailOptions, function (err, info) {
+            if(err)
+              console.log(err)
+            else
+              console.log(info);
+         });
           res.json("Email Added Succefully!");
         } else if (cbRes.length > 0) {
           res.json("Email Not Saved! Email Already on list!");
