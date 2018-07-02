@@ -47,7 +47,7 @@ module.exports={
     req.body.First_Name = firstName
     req.body.Last_Name = lastName
     if (!validator.isEmail(email)) {
-      res.json("Email Not Saved! Email Incorrect.");
+      res.json({error: "Email Not Saved! Email Incorrect."});
     } else {
       const theQuery = ds.createQuery([kind])
         .filter('Subscriber_Email', '=', email)
@@ -72,11 +72,11 @@ module.exports={
             else
               console.log(info);
          });
-          res.json("Email Added Succefully!");
+          res.json({added: "Email Added Succefully!"});
         } else if (cbRes.length > 0) {
-          res.json("Email Not Saved! Email Already on list!");
+          res.json({error: "Email Not Saved! Email Already on list!"});
         } else {
-          res.json("Email Not Saved! Unknown Error!");
+          res.json({error: "Email Not Saved! Unknown Error!"});
         } 
       });
     }
@@ -105,15 +105,15 @@ module.exports={
         if (err) {
           res.json(err)
         }
-        res.json("Email has been removed from the list.");
+        res.json({removed: "Email has been removed from the list."});
       });
       
     } else if (cbRes.length < 1) {
-      res.json("Email not found on the list!");
+      res.json({error: "Email not found on the list!"});
     } else if (cbRes.length > 1) {
-      res.json("More than one email on the list! Please contact support");
+      res.json({error: "More than one email on the list! Please contact support"});
     } else {
-      res.json("Unknown Error! Please contact support");
+      res.json({error: "Unknown Error! Please contact support"});
     }
   }
 }

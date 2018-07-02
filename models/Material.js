@@ -50,7 +50,7 @@ module.exports = {
       } else {
           cbRes[0].material_name = cbRes[0].material_name.toProperCase()
           console.log(cbRes)
-          res.json(cbRes);
+          res.json(cbRes[0]);
       } 
       });
     } else if (upcCode) {
@@ -76,7 +76,7 @@ module.exports = {
                 img_url: response.data.items[0].mediumImage.toLowerCase()
               }
               module.exports.update(newMaterial) //need to add the res parameter and get it back from the update function
-              res.json([newMaterial])
+              res.json(newMaterial)
               // .then(response => {
               //   console.log(response)
               //   res.json(response)
@@ -87,13 +87,13 @@ module.exports = {
               
             })
             .catch(error => {
-              res.json(error);
+              res.json({error: "Unable to locate item"});
             });
             // res.json(newMaterial);
         } else {
             cbRes[0].material_name = cbRes[0].material_name.toProperCase()
             console.log(cbRes)
-            res.json(cbRes);
+            res.json(cbRes[0]);
         } 
         });
     } else {
