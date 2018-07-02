@@ -46,7 +46,7 @@ module.exports = {
           res.json(err)
       } else if (cbRes.length == 0) {
           console.log("Material Not Found!")
-          res.json("Material Not Found!");
+          res.json({error:"Empty Submission"})
       } else {
           cbRes[0].material_name = cbRes[0].material_name.toProperCase()
           console.log(cbRes)
