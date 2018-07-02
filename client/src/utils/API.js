@@ -16,5 +16,8 @@ export default {
 	},
 	searchMaterial: function(material) {
 		return axios.post("/api/material/", material);
+	},
+	sendSignUpConfirmEmail: function(userEmail) {
+		return axios.post("/api/nodeMail/sendEmail",userEmail);
 	}
 }

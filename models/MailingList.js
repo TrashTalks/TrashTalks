@@ -74,7 +74,7 @@ module.exports={
          });
           res.json({added: "Email Added Succefully!"});
         } else if (cbRes.length > 0) {
-          res.json({error: "Email Not Saved! Email Already on list!"});
+          res.json({error: "Email Already on list!"});
         } else {
           res.json({error: "Email Not Saved! Unknown Error!"});
         } 
