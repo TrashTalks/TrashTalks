@@ -1,48 +1,61 @@
 import React, { Component } from "react";
-import { Container, Segment, Grid, Form, Button } from "semantic-ui-react";
+import { Segment, Grid, Form, Button, Modal, Dimmer, Loader } from "semantic-ui-react";
 import "./ItemInfo.css";
 import ItemModal from "../../components/ItemModal";
 import API from "../../utils/API";
 
 class ItemInfo extends Component {
 
-    state = { 
+    state = {
         materialInput: "",
-        upcInput: "",
+        upcInput: "no",
         components: [],
         material_name: "",
         producing_company: "",
         product_description: "",
-        isItemOpen: false,
+        isItemInfoShown: false,
         isRecyclable: "",
         isVerified:"",
         itemImage: "",
         binLocation:"",
-        binType:""
+        binType:"",
+        isScannerContentShown:false,
+        isModalOpen:false,
+        showLoader:false,
+        test:"did it work?"
+    }
+    printsomething = () =>{
+                console.log(this.state.test)
+    }
+    componentDidMount() {
+        this.props.onRef(this)
     }
 
     handleChanges = (e) =>{
         const {target:{name,value}} = e;
-		this.setState({[name]:value});
+        this.setState({[name]:value});
     };
 
     searchMaterialDB = event => {
-		event.preventDefault();
-		var material = {
+        event.preventDefault();
+        this.setState({showLoader:true})
+        var material = {
             material_name: this.state.materialInput.trim(),
             upc_code: this.state.upcInput.trim()
-		};
-		
-		API.searchMaterial(material)
-			.then(res => {
-                this.setState({material_name:res.data.material_name});
-                this.setState({producing_company:res.data.producing_company});
-                this.setState({product_description:res.data.product_description});
-                this.setState({components:res.data.components});
-                this.setState({isItemOpen: true})
-                this.setState({isRecyclable:res.data.wholly_recyclable})
-                this.setState({isVerified:res.data.verified})
-                this.setState({itemImage: res.data.img_url})
+        };
+        
+        API.searchMaterial(material)
+            .then(res => {
+                this.setState({
+                    material_name:res.data.material_name,
+                    producing_company:res.data.producing_company,
+                    product_description:res.data.product_description,
+                    components:res.data.components,
+                    isItemInfoShown: true,
+                    isRecyclable:res.data.wholly_recyclable,
+                    isVerified:res.data.verified,
+                    itemImage: res.data.img_url
+                })
 
                 res.data.bin_location !== "g"
                     ? this.setState({binLocation:res.data.bin_location}) 
@@ -51,65 +64,111 @@ class ItemInfo extends Component {
                 res.data.bin_type !== "g"
                     ? this.setState({binType:res.data.bin_type}) 
                     : this.setState({binType:"g"})
-                
-			}).catch((error) => {
-				console.log(error);
-			});
-	}; 
-    closeItem = () => {
-        this.setState({isItemOpen: false})
+                this.setState({showLoader:false})
+                this.hideScannerContent()
+                this.showItemContent()
+            }).catch((error) => {
+                console.log(error);
+                this.setState({showLoader:false})
+                this.hideScannerContent()
+                this.showItemContent()
+            });
+    }; 
+        
+    openThisModal = () => {
+        // personClicked.target === undefined 
+        // ? this.displayPersonModalInfo(personClicked):
+        this.setState({isModalOpen: true})
+        this.setState({isScannerContentShown:true})
+        
+    };
+    hideScannerContent = () =>{
+        this.setState({isScannerContentShown:false});
+    };
+    showItemContent = () => {
+        this.setState({isItemInfoShown:true});
+    };
+    scanAnother = () => {
+        this.setState({isScannerContentShown:true});
+        this.setState({isItemInfoShown:false});
+    };
+    handleClose = () => {
+        this.setState({isModalOpen:false})
     };
 
     render() {
 		return(
 			<div>
-                <Container id="infoBinColumns"> 
-                    <Grid columns={1} centered>
-                        <Grid.Column>
-                            <Segment.Group>
-                                <Segment inverted  className="landingTitle" id="landingTitleBackground">
-                                    <h1>Search Waste Material</h1>
-                                </Segment>
-                                
-                                <Segment className="landingWords"> 
-                                <div id="scanner-container">
-                                    <Button  id="scannerButton" > Start/Stop the Scanner </Button>
-                                </div>
-                                <Form>
-									<Form.Field>
-										<label> Material Search: </label>
-										<Form.Input
-										className = "form-control"
-										placeholder = "Waste Material"
-										id = "wasteMaterialSearch"
-										type = "text"
-										onChange = {this.handleChanges}
-                                        name = "materialInput"
-										/>
-                                        <label> UPC Search: </label>
-										<Form.Input
-										className = "form-control"
-										placeholder = "UPC Code"
-										id = "wasteUpcSearch"
-										type = "text"
-										onChange = {this.handleChanges}
-                                        name = "upcInput"
-										/>
-									</Form.Field>
-                                    <Button type = "submit" onClick = {this.searchMaterialDB} id="MatSearchButton">
-										Submit
-									</Button>
-                                </Form>
-                                </Segment>
-                            </Segment.Group>
-                        </Grid.Column>
+            {/* <Button id = "isModalOpen" onClick = {this.openThisModal}> To the Scanner </Button> */}
+ 
+            <Modal scrolling
+                open={this.state.isModalOpen}
+                onClose={this.props.parentRefToCloseModal}
+                closeIcon
+            >
+                
+                <Modal.Header floated="left"> 
+                    {this.state.isScannerContentShown
+                        ? "Find out if an item is recyclable"
+                        : this.state.components !== undefined
+                        ? this.state.material_name
+                        : null
+                    }
+                </Modal.Header>
+                    
+                <Modal.Content>
+                    {this.state.isScannerContentShown  
 
-                    </Grid>
+                    ? 
+                        <Grid columns={1} centered>
+                            <Grid.Column>
+                                <Segment.Group>
+                                    <Segment inverted  className="landingTitle" id="landingTitleBackground">
+                                        <h1>Search Waste Material</h1>
+                                    </Segment>
+                                    
+                                    <Segment className="landingWords"> 
+                                    <div id="scanner-container">
+                                        <Button  id="scannerButton" >Scan an Item </Button>
+                                    </div>
+                                    <Form>
+                                        <Form.Field>
+                                            <label> Material Search: </label>
+                                            <Form.Input
+                                            className = "form-control"
+                                            placeholder = "Waste Material"
+                                            id = "wasteMaterialSearch"
+                                            type = "text"
+                                            onChange = {this.handleChanges}
+                                            name = "materialInput"
+                                            />
+                                            <label> UPC Search: </label>
+                                            <Form.Input
+                                            className = "form-control"
+                                            placeholder = "UPC Code"
+                                            id = "wasteUpcSearch"
+                                            type = "text"
+                                            onChange = {this.handleChanges}
+                                            name = "upcInput"
+                                            />
+                                        </Form.Field>
+                                        <Button type = "submit" onClick = {this.searchMaterialDB} id="MatSearchButton">
+                                            Submit
+                                        </Button>
+                                    </Form>
+                                    </Segment>
+                                </Segment.Group>
+                            </Grid.Column>
 
-                    {this.state.components !== undefined ?
+                        </Grid>
+               
+                    : this.state.isItemInfoShown
+
+                    ? 
+                    <div>
                         <ItemModal
-                            modalOpen = {this.state.isItemOpen}
-                            handleClose = {this.closeItem}
+                            modalOpen = {this.state.isItemInfoShown}
+                            scanAnother = {this.scanAnother}
                             itemName = {this.state.material_name}
                             itemImage = {this.state.itemImage}
                             isRecyclable = {this.state.isRecyclable}
@@ -124,9 +183,13 @@ class ItemInfo extends Component {
                                 return (<div key={index}>{component}</div>)
                             })}
                         </ItemModal>
-                :null}
-                
-                </Container>
+                    </div>
+                    :null}
+                </Modal.Content>
+                <Dimmer active = {this.state.showLoader}>
+                    <Loader indeterminate>Searching Our Database ...</Loader>
+                </Dimmer>
+            </Modal>
 
             </div>
         )

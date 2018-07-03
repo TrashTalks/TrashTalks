@@ -1,3 +1,9 @@
 #itemModalDescription{
     margin-left:15px;
 }
+
+#anotherItemButton{
+    /* background-color: #308DB7; */
+     background-color: #163B53; 
+    color: white;
+}

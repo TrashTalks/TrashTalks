@@ -10,8 +10,8 @@ import { Menu, Icon, Responsive, Image} from 'semantic-ui-react';
 
 const leftMenuItems = [
   {word:"About", link:"/#about"},
-  {word:"Founders", link:"/#founders"},
-  {word:"Item Scanner", link:"/scanner" }
+  {word:"Founders", link:"/#founders"}
+  // ,{word:"Item Scanner", link:"/scanner" }
 ]
 
 const rightMenuItems = [
@@ -34,7 +34,7 @@ var NavComponent = (props) =>
      
         
         {leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
-        
+        <Menu.Item key = {3} onClick={props.navbarRefToOpenItemInfo}> <h3>{"Item Scanner"}</h3></Menu.Item>
         <Menu.Menu position = "right">
           {rightMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link} target="_blank" rel="noopener noreferrer"><h3>{item.word}</h3><Icon  name={item.iconName} size='big' className = "navbarIcons"/></Menu.Item>)}
         </Menu.Menu>

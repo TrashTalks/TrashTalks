@@ -6,7 +6,7 @@
       /* background-color:#22859A;  */
      /* color:white;
 }   */
-#MatSearchButton, #scannerButton {
+#MatSearchButton, #scannerButton, #isModalOpen {
        background-color: #308DB7;  
        color:white; 
 }

@@ -1,16 +1,8 @@
 import React from 'react'
-import {Modal, Image, Header,Icon,Segment,Grid,Message} from 'semantic-ui-react'
+import {Image, Header, Segment, Grid, Message, Button} from 'semantic-ui-react'
 import "./ItemModal.css";
 var ItemModal =(props) => 
-  <Modal scrolling
-    open={props.modalOpen}
-    onClose={props.handleClose}
-    closeIcon
-  >
-	
-  <Modal.Header floated="left"> {props.itemName}</Modal.Header>
 
-  <Modal.Content>
     <Grid centered>
     <Grid.Column mobile={12} tablet={5} computer={5} largeScreen={5} widescreen={5} textAlign = "center" >
 
@@ -32,6 +24,7 @@ var ItemModal =(props) =>
          : <p> Appropriate Disposal: In <b>{props.binType}</b> </p>
         }
       </Message>
+      <Button id="anotherItemButton" onClick = {props.scanAnother}>Scan Another Item </Button>
     </Grid.Column>
     <Grid.Column mobile={12} tablet={11} computer={11} largeScreen={11} widescreen={11}>
 
@@ -59,6 +52,4 @@ var ItemModal =(props) =>
 
     </Grid.Column>
     </Grid>
- </Modal.Content> 
-</Modal>
 export default ItemModal;

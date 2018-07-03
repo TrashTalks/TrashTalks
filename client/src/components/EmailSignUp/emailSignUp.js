@@ -1,8 +1,6 @@
 //-------------- Imports ----------------------//
 	import React from "react";
-	import { Modal, Container, Button, Grid, Form, 
-		Segment, Header, Icon, Message,
-		Loader, Dimmer} from 'semantic-ui-react';
+	import { Modal, Container, Button, Grid, Form, Message,Loader, Dimmer} from 'semantic-ui-react';
 	import "./emailSignUp.css";
 //--------------------------------------------//
 
