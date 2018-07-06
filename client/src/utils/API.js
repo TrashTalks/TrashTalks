@@ -18,6 +18,6 @@ export default {
 		return axios.post("/api/material/", material);
 	},
 	sendTrashTalksAnEmail: function(contactForm){
-		return axios.post("/api/mailingList/contactUs")
+		return axios.post("/api/mailingList/contactUs",contactForm);
 	}
 }

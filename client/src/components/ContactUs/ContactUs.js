@@ -39,13 +39,13 @@ class ContactUs extends Component {
             ContactPhone:this.state.ContactPhone.trim(),
             ContactMessage:this.state.ContactMessage.trim(),
         };
-        console.log(theEmail)
-        // API.sendTrashTalksAnEmail(theEmail)
-        // .then( res => 
-        //     console.log(res),
-        //     this.setState({showLoader:false})
-        // )
-        // .catch( err => console.log(err))
+        
+        API.sendTrashTalksAnEmail(theEmail)
+        .then( res => 
+            console.log(res),
+            this.setState({showLoader:false})
+        )
+        .catch( err => console.log(err))
     }; 
         
     openThisModal = () => {
