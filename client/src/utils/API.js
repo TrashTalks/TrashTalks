@@ -16,5 +16,8 @@ export default {
 	},
 	searchMaterial: function(material) {
 		return axios.post("/api/material/", material);
+	},
+	sendTrashTalksAnEmail: function(contactForm){
+		return axios.post("/api/mailingList/contactUs")
 	}
 }
