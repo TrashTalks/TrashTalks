@@ -19,7 +19,7 @@ class App extends Component {
   state={
     visible:false,
     leftMenuItems: [
-			{word:"About",link:"/#about"},
+			{word:"Updates",link:"/#updates"},
 			{word:"Founders",link:"/#founders"}
 			]
   }
@@ -39,7 +39,7 @@ class App extends Component {
 
           <Sidebar as={Menu} onClick={this.toggleMenu} icon = "labeled" animation='overlay' width='thin' visible={this.state.visible} vertical inverted>
 		      	{this.state.leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
-            <Menu.Item key = {2} href={"/scanner"}> <h3>{"Item Scanner"}</h3></Menu.Item>
+            {/* <Menu.Item key = {2} href={"/scanner"}> <h3>{"Item Scanner"}</h3></Menu.Item> */}
           </Sidebar>
 
           <Sidebar.Pusher dimmed={this.state.visible} onClick={this.handlePusher}>

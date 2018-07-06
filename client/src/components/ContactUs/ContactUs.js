@@ -53,17 +53,22 @@ class ContactUs extends Component {
     };
 
     handleClose = () => {
-        this.setState({isModalOpen:false})
+        this.setState({
+            isModalOpen:false,
+            showLoader:false,
+        })
+
     };
 
     render() {
 		return(
 			<div>
 
-            <Modal scrolling
+            <Modal
                 open={this.state.isModalOpen}
                 onClose={this.props.parentRefToCloseModal}
                 closeIcon
+                size = "small"
             >
                 
                 <Modal.Header floated="left"> 
@@ -73,13 +78,13 @@ class ContactUs extends Component {
                 <Modal.Content>
                     
                     <Grid columns={1} centered>
-                        <Grid.Column>
+                        <Grid.Column mobile={14} tablet={14} computer={14} largeScreen={14} widescreen={14}>
                             <Form>
-                                <Form.Field>
+                                <Form.Group>
                                     <Form.Input 
                                         required
+                                        width = {10}
                                         label = "Name"
-                                        className = "form-control"
                                         placeholder = "First and Last Name"
                                         id = "ContactName"
                                         type = "text"
@@ -87,44 +92,45 @@ class ContactUs extends Component {
                                         name = "ContactName"
                                     />
                                     <Form.Input
+                                        width = {6}
                                         required
                                         label = "Email Address:"
-                                        className = "form-control"
                                         placeholder = "Your Email Adress"
                                         id = "ContactEmail"
                                         type = "text"
                                         onChange = {this.handleChanges}
                                         name = "ContactEmail"
                                     />
+                                </Form.Group>
+                                <Form.Group>
                                     <Form.Input
-                                        label = "Phone #:"
-                                        className = "form-control"
-                                        placeholder = "Optional"
+                                        width = {6}
+                                        label = "Phone # (Optional)"
+                                        placeholder = "888-888-8888"
                                         id = "ContactPhone"
                                         type = "text"
                                         onChange = {this.handleChanges}
                                         name = "ContactPhone"
                                     />
                                     <Form.Input
+                                        width = {10}
                                         label =  "Your Orginaztion/Company"
-                                        className = "form-control"
                                         placeholder = "Orginazation Name"
                                         id = "ContactOrg"
                                         type = "text"
                                         onChange = {this.handleChanges}
                                         name = "ContactOrg"
                                     />
-                                    <Form.TextArea 
+                                </Form.Group>
+                                     <Form.TextArea 
                                         required
                                         label='Message: ' 
-                                        className = "form-control"
                                         placeholder='Tell us how we can assist you...' 
                                         id = "ContactMessage"
                                         onChange = {this.handleChanges}
                                         name = "ContactMessage"
                                         
-                                    />
-                                </Form.Field>
+                                    /> 
                                 <Button type = "submit" onClick = {this.sendTrashTalksAnEmail} id="sendTrashTalksAnEmailButton">
                                     Send TrashTalks An Email
                                 </Button>
@@ -144,4 +150,4 @@ class ContactUs extends Component {
     }
 }   
 
-export default ItemInfo;
+export default ContactUs;

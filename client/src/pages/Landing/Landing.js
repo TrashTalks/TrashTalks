@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Segment,Grid,Container,Button} from "semantic-ui-react";
+import {Segment, Grid, Container, Button, Icon, Card} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
@@ -34,7 +34,24 @@ class LandingPage extends Component {
 		showMessage: false,
 		showLoader: false,
 		isBoxChecked: false,
-		ContactUsModal:false
+		ContactUsModal:false,
+		annoucements: [
+			{
+				header: "The Beginning",
+				meta: "May 15, 2018",
+				description: "TrashTalks Inc. began their start-up journey with Create-X and is currently conducting customer interviews. To request a meeting to discuss your experiences with your trash hauler, click here:  "
+			},
+			{
+				header: "Product Day",
+				meta: "June 11, 2018",
+				description: "TrashTalks Inc. will have a table on the 2nd floor of Georgia Tech's Clough Commons between 4 pm - 8pm."
+			},
+			{
+				header: "Coming Soon",
+				meta: "TBA",
+				description: "Sign up for our mailing list for general TrashTalks updates and for news about our mobile app."
+			}
+		]
 		
 
 	};
@@ -154,18 +171,22 @@ class LandingPage extends Component {
 	handleCheckboxChange = () =>{
 		this.setState({ isBoxChecked:true})
 	}
-	handleContactUsClose = () => {
-		this.setState({ContactUsModal: false})
+
+	closeContactUsModal = () => {
+		this.ContactUsModal.handleClose()
+	}
+	openContactUsModal = () => {
+		this.ContactUsModal.openThisModal()
 	}
 	render() {
 		return(
 			<div>
 
 		  {/*------- Start of "PageContent"--------- */}
-			<Container id="about">
+			<Container id="annoucement">
 				<Segment.Group>
-					<Segment inverted   className="landingTitle" id  = "landingTitleBackground">
-				  		<h1 >Updates/Announcements</h1>
+					<Segment inverted   className="landingTitle" id  = "landingAnnoucements" >
+				  		<h1 id="h1Annoucement"><Icon name="announcement" />Announcement</h1>
 					</Segment>
 					<Segment className="landingWords"> 
 						<p>
@@ -173,14 +194,33 @@ class LandingPage extends Component {
 						what we have been working on with Create-X this summer. Mark your calendars for July 
 						11th 4pm-8pm, and be sure to stop by our booth at Clough Undergraduate Learning 
 						Commons, on the 2nd Floor, to speak with us in person about our vision and goals.
-						<br/><br/>
-						TrashTalks Inc. began their start-up journey with Create-X on May 15th and is currently 
-						conducting customer interviews. Request a meeting to discuss your frustrations with 
-						your trash hauler <span id = "ContactUsModal" onClick ={this.openThisModal}>here.</span>
 						</p>
-
 					</Segment>
-					<Button id = "isemailModalOpen" onClick={this.openThisModal} attached="bottom" className = "emailButton">Click Here Recieve Our Business Card</Button>
+					<Button id = "isemailModalOpen" onClick={this.openThisModal} attached="bottom" className = "emailButton">Click Here To Recieve Our Business Cards</Button>
+				</Segment.Group>
+			</Container>
+			<Container id = "updates">
+				<Segment.Group>
+					<Segment inverted   className="landingTitle" id  = "landingTitleBackground">
+				  		<h1 >Updates</h1>
+					</Segment>
+					<Segment className="landingWords">
+						<Card.Group centered> 
+						
+							{this.state.annoucements.map(oneAncmt => 	
+								    <Card 
+										header={oneAncmt.header}
+										meta = {oneAncmt.meta}
+										description={
+											oneAncmt.header ==="The Beginning" 
+											? <div><br/>{oneAncmt.description} <Icon link name = "mail" id = "ContactUsModal" onClick={this.openContactUsModal}/></div>
+											: <div><br/>{oneAncmt.description}</div>}>
+											
+									</Card>
+							)}	
+						</Card.Group>
+					</Segment>
+				
 					<EmailSignUp
 						showForm = {this.state.showEmailForm}
 						handleOpenESU = {this.openThisModal}
@@ -239,10 +279,10 @@ class LandingPage extends Component {
 						modalName = {this.state.modalName}
 						modalBio = {this.state.modalBio}
 					/>
-					{/* <ContactUsModal
-						modalOpen = {this.state.ContactUsModal}
-						handleClose = {this.handleContactUsClose}
-					/> */}
+					<ContactUsModal
+						onRef = {ref => (this.ContactUsModal = ref)}
+						parentRefToCloseModal = {this.closeContactUsModal}
+					/>
 				</Founders>
 
 			</Container>
