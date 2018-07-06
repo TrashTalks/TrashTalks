@@ -7,6 +7,7 @@ import {Sidebar, Menu, Segment } from "semantic-ui-react";
   import Landing from "./pages/Landing";
   import Page2 from "./pages/Page2";
   import ItemInfo from "./pages/ItemInfo";
+  import ContactUsModal from ".components/ContactUs"
 // -----------------------------//
 
 // ---Components for all pages ---//
@@ -31,6 +32,11 @@ class App extends Component {
     this.props.history.replace(`/${route}`)
   }
 
+	openContactUsModal = () => {
+		this.ContactUsModal.openThisModal()
+	}
+
+
   render() {
     return (
       <Router>
@@ -40,6 +46,7 @@ class App extends Component {
           <Sidebar as={Menu} onClick={this.toggleMenu} icon = "labeled" animation='overlay' width='thin' visible={this.state.visible} vertical inverted>
 		      	{this.state.leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
             {/* <Menu.Item key = {2} href={"/scanner"}> <h3>{"Item Scanner"}</h3></Menu.Item> */}
+            <Menu.Item key = {3} onClick={this.openContactUsModal}> <h3>{"Contact Us"}</h3></Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher dimmed={this.state.visible} onClick={this.handlePusher}>
@@ -56,6 +63,9 @@ class App extends Component {
             </Switch>
 
             <Footer />
+            <ContactUsModal
+              onRef = {ref => (this.ContactUsModal = ref)}
+					  />
           </Sidebar.Pusher>
 		    </Sidebar.Pushable>
         </div>
