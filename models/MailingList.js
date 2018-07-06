@@ -43,9 +43,13 @@ module.exports={
     const email = validator.escape(req.body.Subscriber_Email).toLowerCase().trim()
     const firstName = validator.escape(req.body.First_Name.trim())
     const lastName = validator.escape(req.body.Last_Name.trim())
-    req.body.Subscriber_Email = email
-    req.body.First_Name = firstName
-    req.body.Last_Name = lastName
+    let mailingListData = {
+      First_Name: firstName,
+      Last_Name: lastName,
+      Subscriber_Email: email,
+      mailing_list: req.body.MailList,
+      timestamp: new Date(Date.now())
+    }
     if (!validator.isEmail(email)) {
       res.json({error: "Email Not Saved! Email Incorrect."});
     } else {
@@ -57,15 +61,29 @@ module.exports={
           res.json(err)
         } else if (cbRes.length == 0) {
           ds.upsert ({
-            data:req.body,
+            data:mailingListData,
             key:ds.key(kind)
           })
           const mailOptions = {
             from: config.get('TRASHTALKS_GMAIL'), // sender address
             to: email, // list of receivers
-            subject: 'TestEmail', // Subject line
-            html: '<h3>Hello, ' + firstName + '</h3><br><p>Thank you for joing the TrashTalks Mailing</p><br><p>This will help you stay up to date with TrashTalks</p>',// plain text body
-            };
+            subject: 'TrashTalks Virtual Business Cards', // Subject line
+            html: '<p>Hello ' + firstName + ',</p><br><p>Thank you for your request. We appreciate your willingness to assist us in our efforts to reduce waste. Our virtual business cards are attached.</p><br><img src="cid:artuorSalmeron@cid"/><br><img src="cid:lukeChambers@cid"/><br><img src="cid:jacquelineAlexander@cid"/>',// plain text body
+            attachments: [
+              {
+                path: 'https://i.imgur.com/sEcmgLS.jpg',
+                cid: 'artuorSalmeron@cid'
+              },
+              {
+                path: 'https://i.imgur.com/4WIxav4.jpg',
+                cid: 'lukeChambers@cid'
+              },
+              {
+                path: 'https://i.imgur.com/UVcPIHd.jpg',
+                cid: 'jacquelineAlexander@cid'
+              }
+            ]
+          };
           transporter.sendMail(mailOptions, function (err, info) {
             if(err)
               console.log(err)

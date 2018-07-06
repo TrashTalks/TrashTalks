@@ -180,7 +180,7 @@ class LandingPage extends Component {
 						</p>
 
 					</Segment>
-					<Button id = "isemailModalOpen" onClick={this.openThisModal} attached="bottom" className = "emailButton">Sign Up for Our Mailing List</Button>
+					<Button id = "isemailModalOpen" onClick={this.openThisModal} attached="bottom" className = "emailButton">Click Here Recieve Our Business Card</Button>
 					<EmailSignUp
 						showForm = {this.state.showEmailForm}
 						handleOpenESU = {this.openThisModal}
@@ -239,10 +239,10 @@ class LandingPage extends Component {
 						modalName = {this.state.modalName}
 						modalBio = {this.state.modalBio}
 					/>
-					<ContactUsModal
+					{/* <ContactUsModal
 						modalOpen = {this.state.ContactUsModal}
 						handleClose = {this.handleContactUsClose}
-					/>
+					/> */}
 				</Founders>
 
 			</Container>
