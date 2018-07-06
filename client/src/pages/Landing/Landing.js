@@ -279,7 +279,10 @@ class LandingPage extends Component {
 						modalName = {this.state.modalName}
 						modalBio = {this.state.modalBio}
 					/>
-					
+					<ContactUsModal
+						onRef = {ref => (this.ContactUsModal = ref)}
+						parentRefToCloseModal = {this.closeContactUsModal}
+					/>
 				</Founders>
 
 			</Container>

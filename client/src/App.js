@@ -7,7 +7,7 @@ import {Sidebar, Menu, Segment } from "semantic-ui-react";
   import Landing from "./pages/Landing";
   import Page2 from "./pages/Page2";
   import ItemInfo from "./pages/ItemInfo";
-  import ContactUsModal from ".components/ContactUs"
+  import ContactUsModal from "./components/ContactUs"
 // -----------------------------//
 
 // ---Components for all pages ---//
@@ -35,7 +35,9 @@ class App extends Component {
 	openContactUsModal = () => {
 		this.ContactUsModal.openThisModal()
 	}
-
+  closeContactUsModal = () => {
+    this.ContactUsModal.handleClose();
+  }
 
   render() {
     return (
@@ -54,6 +56,8 @@ class App extends Component {
               toggleMenu = {this.toggleMenu}
               handlePusher = {this.handlePusher}
               visible={this.state.visible}
+              openContactUsModal = {this.openContactUsModal}
+
             />
 
             <Switch>
@@ -64,8 +68,9 @@ class App extends Component {
 
             <Footer />
             <ContactUsModal
-              onRef = {ref => (this.ContactUsModal = ref)}
-					  />
+    					onRef = {ref => (this.ContactUsModal = ref)}
+  						parentRefToCloseModal = {this.closeContactUsModal}
+					/>
           </Sidebar.Pusher>
 		    </Sidebar.Pushable>
         </div>
