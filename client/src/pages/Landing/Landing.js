@@ -5,7 +5,7 @@ import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
 import EmailSignUp from "../../components/EmailSignUp";
 // import SlideDeck from "../../components/SlideDeck";
-import ContactUsModal from "../../componenets/ContactUs"
+import ContactUsModal from "../../components/ContactUs"
 import "./Landing.css";
 import API from "../../utils/API";
 class LandingPage extends Component {
@@ -176,7 +176,7 @@ class LandingPage extends Component {
 						<br/><br/>
 						TrashTalks Inc. began their start-up journey with Create-X on May 15th and is currently 
 						conducting customer interviews. Request a meeting to discuss your frustrations with 
-						your trash hauler <span id = "ContactUsModal" onClick ={openThisModal}>here.</span>
+						your trash hauler <span id = "ContactUsModal" onClick ={this.openThisModal}>here.</span>
 						</p>
 
 					</Segment>
