@@ -43,9 +43,13 @@ module.exports={
     const email = validator.escape(req.body.Subscriber_Email).toLowerCase().trim()
     const firstName = validator.escape(req.body.First_Name.trim())
     const lastName = validator.escape(req.body.Last_Name.trim())
-    req.body.Subscriber_Email = email
-    req.body.First_Name = firstName
-    req.body.Last_Name = lastName
+    let mailingListData = {
+      First_Name: firstName,
+      Last_Name: lastName,
+      Subscriber_Email: email,
+      mailing_list: req.body.MailList,
+      timestamp: new Date(Date.now())
+    }
     if (!validator.isEmail(email)) {
       res.json({error: "Email Not Saved! Email Incorrect."});
     } else {
@@ -57,7 +61,7 @@ module.exports={
           res.json(err)
         } else if (cbRes.length == 0) {
           ds.upsert ({
-            data:req.body,
+            data:mailingListData,
             key:ds.key(kind)
           })
           const mailOptions = {
