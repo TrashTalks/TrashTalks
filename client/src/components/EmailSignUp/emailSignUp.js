@@ -8,15 +8,13 @@
 
 //-------------- Sign-up Log-In MODAL with the form -----------------//
 var EmailSignUp = props =>
-<div id="emailButtonContainer"><span onClick={props.handleOpenESU}>{props.signUpClickWords}</span>
 
-	<Modal onClose={props.handleCloseESU} open={props.isModalOpen} size = "small">
-		<Segment clearing>
-			<Header floated="left">{"Sign up for our mailing list!"}</Header>
-			<Header floated="right">
-					<Icon corner name="close" size="big" color="grey"  onClick={props.handleCloseESU} />
-			</Header>
-		</Segment>
+	<Modal onClose={props.handleCloseESU} open={props.isModalOpen} size = "small" closeIcon>
+		
+		<Modal.Header> 
+			{"Sign up for our mailing list!"}
+		</Modal.Header>
+
 		<Modal.Content>
 			<Modal.Description>
 				<Container>
@@ -75,9 +73,16 @@ var EmailSignUp = props =>
 											name = "PersonEmail"
 											/>
 										</Form.Field>
-
+										<Form.Field>
+											<Checkbox
+												label='Join our mailing list'
+												name='checkToJoinMailingList'
+												checked={props.isBoxChecked}
+												onChange={props.handleCheckboxChange}
+											/>
+										</Form.Field>
 										<Button type = "submit" onClick = {props.addEmailToDB} id = "emailSignUpButton">
-											Sign Up
+											Receive Business Cards
 
 										</Button>
 									</Form>
@@ -95,5 +100,4 @@ var EmailSignUp = props =>
 			</Modal.Description>
 		</Modal.Content>
 	</Modal>
-</div>
 export default EmailSignUp;
