@@ -73,9 +73,16 @@ var EmailSignUp = props =>
 											name = "PersonEmail"
 											/>
 										</Form.Field>
-
+										<Form.Field>
+											<Checkbox
+												label='Join our mailing list'
+												name='checkToJoinMailingList'
+												checked={props.isBoxChecked}
+												onChange={props.handleCheckboxChange}
+											/>
+										</Form.Field>
 										<Button type = "submit" onClick = {props.addEmailToDB} id = "emailSignUpButton">
-											Sign Up
+											Receive Business Cards
 
 										</Button>
 									</Form>

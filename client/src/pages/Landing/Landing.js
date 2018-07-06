@@ -5,6 +5,7 @@ import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
 import EmailSignUp from "../../components/EmailSignUp";
 // import SlideDeck from "../../components/SlideDeck";
+import ContactUsModal from "../../componenets/ContactUs"
 import "./Landing.css";
 import API from "../../utils/API";
 class LandingPage extends Component {
@@ -31,7 +32,9 @@ class LandingPage extends Component {
 		slideTitles:["One","Two","Three","Four","Five","Six"],
 		showEmailForm:true,
 		showMessage: false,
-		showLoader: false
+		showLoader: false,
+		isBoxChecked: false,
+		ContactUsModal:false
 		
 
 	};
@@ -41,13 +44,14 @@ class LandingPage extends Component {
 		this.setState({[name]: value});
 	}; 
 	emailAdded = (theRes) => {
-		this.setState({msgHeader:"Thank You!"});
-		this.setState({msgContent:theRes.data["added"]});
-		this.setState({PersonName:""});
-		this.setState({PersonEmail:""});
-		this.setState({showEmailForm:false});
-		this.setState({showLoader:false});
-		this.setState({showMessage:true});
+		this.setState({msgHeader:"Thank You!",
+			msgContent:theRes.data["added"],
+			PersonName:"",
+			PersonEmail:"",
+			showEmailForm:false,
+			showLoader:false,
+			showMessage:true
+		});
 	};
 	emailNotAdded = (theRes) => {
 		this.setState({showMessage:true});
@@ -56,16 +60,18 @@ class LandingPage extends Component {
 		? this.setState({msgHeader:"Awesome!"})
 		: this.setState({msgHeader:"Sorry! Email Not Added"})
 	 
-		this.setState({msgContent:theRes.data["error"]});
-		this.setState({showLoader:false});
+		this.setState({msgContent:theRes.data["error"],
+			showLoader:false
+		});
 	};
 	addEmailToDB = event => {
 		this.setState({showLoader:true});
 		event.preventDefault();
 		var info = {
-		First_Name: this.state.PersonFirstName.trim(),
-		Last_Name:this.state.PersonLastName.trim(),
-		Subscriber_Email : this.state.PersonEmail.trim()
+			First_Name: this.state.PersonFirstName.trim(),
+			Last_Name:this.state.PersonLastName.trim(),
+			Subscriber_Email : this.state.PersonEmail.trim(),
+			MailList: this.state.isBoxChecked
 		};
 
 		API.addUserToEmailList(info)
@@ -95,10 +101,11 @@ class LandingPage extends Component {
 	};
 
 	displayPersonModalInfo = (personClicked) => {
-		this.setState({isPersonModalOpen: true });
-			this.setState({modalImage:personClicked.imageLink});
-			this.setState({modalName:personClicked.personName});
-			this.setState({modalBio:personClicked.fullBio});
+		this.setState({isPersonModalOpen: true ,
+			modalImage:personClicked.imageLink,
+			modalName:personClicked.personName,
+			modalBio:personClicked.fullBio
+		});
 	}
 
 	handleClose = () => {
@@ -106,20 +113,21 @@ class LandingPage extends Component {
 	};
 
 	handleCloseESU = () => {
-		this.setState({isemailModalOpen: false })
-		this.setState({PersonName:""});
-		this.setState({PersonEmail:""});
-	    this.setState({className:""});
-		this.setState({msgHeader:""});
-		this.setState({msgContent:""});
-		this.setState({showEmailForm:true});
-		this.setState({showMessage:false});
-
+		this.setState({isemailModalOpen: false ,		
+			PersonName:"",
+			PersonEmail:"",
+			className:"",
+			msgHeader:"",
+			msgContent:"",
+			showEmailForm:true,
+			showMessage:false,
+			isBoxChecked:false
+		})
 	};
 
 	SDhandleClose = () => {
-		this.setState({isSlideDeckOpen:false})
-		this.setState({slideCount:0})
+		this.setState({isSlideDeckOpen:false,
+		slideCount:0})
 	};
 	slideBackNow = () => {
 		var theCount = this.state.slideCount;
@@ -143,7 +151,12 @@ class LandingPage extends Component {
 		}
 		this.setState({})
 	};
-
+	handleCheckboxChange = () =>{
+		this.setState({ isBoxChecked:true})
+	}
+	handleContactUsClose = () => {
+		this.setState({ContactUsModal: false})
+	}
 	render() {
 		return(
 			<div>
@@ -152,18 +165,18 @@ class LandingPage extends Component {
 			<Container id="about">
 				<Segment.Group>
 					<Segment inverted   className="landingTitle" id  = "landingTitleBackground">
-				  		<h1 >TrashTalks - We Listen!</h1>
+				  		<h1 >Updates/Announcements</h1>
 					</Segment>
 					<Segment className="landingWords"> 
 						<p>
-						TrashTalks has a mission to change the way that people think about their waste. 
-						Through data analytics, consulting services, and innovative technology we educate 
-						people and businesses to create a world where trash is no longer viewed as a waste, 
-						but instead a resource. We believe that a circular economy is possible and we want 
-						to do our part in creating it. TrashTalks is honored to begin as part of the Georgia 
-						Tech CREATE-X accelerator where we are excited to grow and blossom.
+						Product Day is coming up on July 11th at Georgia Tech! We are super excited to share 
+						what we have been working on with Create-X this summer. Mark your calendars for July 
+						11th 4pm-8pm, and be sure to stop by our booth at Clough Undergraduate Learning 
+						Commons, on the 2nd Floor, to speak with us in person about our vision and goals.
 						<br/><br/>
-						The TrashTalks mobile application is coming soon! Please email trashtalks2018@gmail.com to request more information.
+						TrashTalks Inc. began their start-up journey with Create-X on May 15th and is currently 
+						conducting customer interviews. Request a meeting to discuss your frustrations with 
+						your trash hauler <span id = "ContactUsModal" onClick ={openThisModal}>here.</span>
 						</p>
 
 					</Segment>
@@ -189,6 +202,9 @@ class LandingPage extends Component {
 						msgContent={this.state.msgContent} 
 						showMessage = {this.state.showMessage}
 						showLoader = {this.state.showLoader}
+
+						isBoxChecked = {this.state.isBoxChecked}
+						handleCheckboxChange = {this.handleCheckboxChange}
 					/>
 				</Segment.Group>
 
@@ -223,7 +239,10 @@ class LandingPage extends Component {
 						modalName = {this.state.modalName}
 						modalBio = {this.state.modalBio}
 					/>
-
+					<ContactUsModal
+						modalOpen = {this.state.ContactUsModal}
+						handleClose = {this.handleContactUsClose}
+					/>
 				</Founders>
 
 			</Container>
