@@ -138,7 +138,7 @@ module.exports={
     //add all relevent code below
     res.json({
       Yes: "MailingList was reached via router",
-      TheReq: req
-  })
+      Req: req.body
+    })
   }
 }
