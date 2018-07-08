@@ -133,5 +133,12 @@ module.exports={
     } else {
       res.json({error: "Unknown Error! Please contact support"});
     }
+  },
+  contactUs:function(req,res){
+    //add all relevent code below
+    res.json({
+      Yes: "MailingList was reached via router",
+      Req: req.body
+    })
   }
 }
