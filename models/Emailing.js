@@ -3,7 +3,8 @@
 const validator = require('validator');
 const config = require('../config');
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
+var transporter = nodemailer.createTransport(
+  {
   service: 'gmail',
   auth: {
          user: config.get('TRASHTALKS_GMAIL'),
@@ -14,7 +15,7 @@ var transporter = nodemailer.createTransport({
  module.exports={
      signedUp: function (email, firstName) {
         const mailOptions = {
-            from: config.get('TRASHTALKS_GMAIL'), // sender address
+            from: config.get('TRASHTALKS_ALIAS'), // sender address
             to: email, // list of receivers
             subject: 'TrashTalks Virtual Business Cards', // Subject line
             html: '<p>Hello ' + firstName + ',</p><br><p>Thank you for your request. We appreciate your willingness to assist us in our efforts to reduce waste. Our virtual business cards are attached.</p><br><img src="cid:artuorSalmeron@cid"/><br><img src="cid:lukeChambers@cid"/><br><img src="cid:jacquelineAlexander@cid"/>',// plain text body
@@ -58,8 +59,8 @@ var transporter = nodemailer.createTransport({
           res.json({error: "Message Can Not Be Empty."});
         } else {
           const mailOptions = {
-            from: config.get('TRASHTALKS_GMAIL'), // sender address
-            to: ['lukechambers91@gmail.com', 'arturosalmeron24@gmail.com'], // list of receivers
+            from: config.get('TRASHTALKS_ALIAS'), // sender address
+            to: ['luke@trashtalks.info', 'arturo@trashtalks.info, jackie@trashtalks.info'], // list of receivers
             subject: 'Contact Us Form', // Subject line
             html: '<p>Name: ' + name + '</p><br>' +
                   '<p>Email: ' + email + '</p><br>' +
