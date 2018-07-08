@@ -83,7 +83,7 @@ class ContactUs extends Component {
             <Modal
                 open={this.state.isModalOpen}
                 onClose={this.props.parentRefToCloseModal}
-                closeIcon
+                closeIcon={{ name: 'close', color: 'grey' }}
                 size = "small"
             >
                 

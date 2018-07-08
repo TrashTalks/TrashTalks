@@ -5,7 +5,7 @@ var ItemModal =(props) =>
   <Modal scrolling
     open={props.modalOpen}
     onClose={props.handleClose}
-    closeIcon
+    closeIcon={{ name: 'close', color: 'grey' }}
   >
 	
   <Modal.Header floated="left"> {props.itemName}</Modal.Header>

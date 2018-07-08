@@ -281,7 +281,7 @@ class LandingPage extends Component {
 					<ContactUsModal
 						onRef = {ref => (this.ContactUsModal = ref)}
 						parentRefToCloseModal = {this.closeContactUsModal}
-					/>
+					/>	
 				</Founders>
 
 			</Container>

@@ -35,6 +35,8 @@ var NavComponent = (props) =>
         
         {leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
         <Menu.Item key = {3} onClick={props.openContactUsModal}> <h3>{"Contact Us"}</h3></Menu.Item>
+        <Menu.Item key = {4} onClick={props.openMapModal}> <h3>{"Life of Trash"}</h3></Menu.Item>
+
         <Menu.Menu position = "right">
           {rightMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link} target="_blank" rel="noopener noreferrer"><h3>{item.word}</h3><Icon  name={item.iconName} size='big' className = "navbarIcons"/></Menu.Item>)}
         </Menu.Menu>

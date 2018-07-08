@@ -9,7 +9,12 @@
 //-------------- Sign-up Log-In MODAL with the form -----------------//
 var EmailSignUp = props =>
 
-	<Modal onClose={props.handleCloseESU} open={props.isModalOpen} size = "small" closeIcon>
+	<Modal 
+		onClose={props.handleCloseESU} 
+		open={props.isModalOpen} 
+		size = "small" 
+		closeIcon={{ name: 'close', color: 'grey' }}
+	>
 		
 		<Modal.Header> 
 			{"Sign up for our mailing list!"}
