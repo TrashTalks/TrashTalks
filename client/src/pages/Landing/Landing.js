@@ -243,7 +243,6 @@ class LandingPage extends Component {
 						showMessage = {this.state.showMessage}
 						showLoader = {this.state.showLoader}
 
-						isBoxChecked = {this.state.isBoxChecked}
 						handleCheckboxChange = {this.handleCheckboxChange}
 					/>
 				</Segment.Group>

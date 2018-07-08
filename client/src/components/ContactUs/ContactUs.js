@@ -16,8 +16,8 @@ class ContactUs extends Component {
       ContactMessage:"",
       showLoader: false,
       showMessage: false,
-      posMsg: false,
-      showForm:true
+      showForm:true,
+      errorMsg:false
 
     }
     printsomething = () =>{
@@ -42,35 +42,40 @@ class ContactUs extends Component {
             ContactPhone:this.state.ContactPhone.trim(),
             ContactMessage:this.state.ContactMessage.trim(),
         };
-        
         API.sendTrashTalksAnEmail(theEmail)
         .then( res => 
-            console.log(res),
-            this.setState({
-                showLoader:false,
-                showMessage:true,
-                posMsg: true,
-                isModalOpen:true,
-                showForm:false,
-                
-            })
+            res.data.error 
+                ? this.setState({
+                    theMsg: res.data.error,
+                    errorMsg:true,
+                    showLoader:false
+                }) 
+                : this.setState({
+                    showLoader:false,
+                    isModalOpen:false,
+                    showMessage:true
+                })
         )
         .catch( err => console.log(err))
     }; 
         
     openThisModal = () => {
-        this.setState({isModalOpen: true})    
+        this.setState({
+            isModalOpen: true,
+        })    
     };
 
     handleClose = () => {
         this.setState({
             isModalOpen:false,
             showLoader:false,
-            showMessage:false,
+            errorMsg:false
         })
         
     };
-
+    handleCloseMsg = () => {
+        this.setState({showMessage:false})
+    }
     render() {
 		return(
 			<div>
@@ -91,13 +96,12 @@ class ContactUs extends Component {
 
                         <Grid columns={1} centered>
                             <Grid.Column mobile={14} tablet={14} computer={14} largeScreen={14} widescreen={14}>
-                                {this.state.showMessage  
-                                    ? <Message className = {this.state.posMsg ? "positive" : this.state.warnMsg ? "warning" :  "negative"} >
+                                {this.state.errorMsg  
+                                    ? <Message className =  "warning" >
                                         <Message.Header>
-
-                                        Hey {this.state.ContactName.split(" ")[0]},
-                                        <br/> Thank you  for contacting us! We will reach out to your shortly.
                                         
+                                        {this.state.theMsg}
+                                    
                                         </Message.Header>
                                     </Message>
                                     :null
@@ -107,7 +111,7 @@ class ContactUs extends Component {
                                         <Form.Input 
                                             required
                                             width = {10}
-                                            label = "Name"
+                                            label = "Name:"
                                             placeholder = "First and Last Name"
                                             id = "ContactName"
                                             type = "text"
@@ -128,7 +132,7 @@ class ContactUs extends Component {
                                     <Form.Group>
                                         <Form.Input
                                             width = {6}
-                                            label = "Phone # (Optional)"
+                                            label = "Phone # (Optional):"
                                             placeholder = "888-888-8888"
                                             id = "ContactPhone"
                                             type = "text"
@@ -137,7 +141,7 @@ class ContactUs extends Component {
                                         />
                                         <Form.Input
                                             width = {10}
-                                            label =  "Your Orginaztion/Company"
+                                            label =  "Your Orginaztion/Company:"
                                             placeholder = "Orginazation Name"
                                             id = "ContactOrg"
                                             type = "text"
@@ -169,7 +173,28 @@ class ContactUs extends Component {
                     </Modal.Description>
                 </Modal.Content>
             </Modal>
+            <Modal
+                open={this.state.showMessage}
+                onClose={this.handleCloseMsg}
+                closeIcon
+                size = "small"
+            >
+                
+                <Modal.Header floated="left"> 
+                    Email Has Been Sent!
+                </Modal.Header>
 
+                <Modal.Content>
+                    <Modal.Description>
+                        <Message className =  "positive" >
+                            <Message.Header>
+                                Hey {this.state.ContactName.split(" ")[0]},
+                                <br/> Thank you for emailing us! We will reach out to your shortly.
+                            </Message.Header>
+                        </Message>
+                    </Modal.Description>
+                </Modal.Content>
+            </Modal>
             </div>
         )
     }

@@ -77,7 +77,6 @@ var EmailSignUp = props =>
 											<Checkbox
 												label='Join our mailing list'
 												name='checkToJoinMailingList'
-												checked={props.isBoxChecked}
 												onChange={props.handleCheckboxChange}
 											/>
 										</Form.Field>

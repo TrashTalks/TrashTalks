@@ -51,10 +51,10 @@ var transporter = nodemailer.createTransport(
        if (!validator.isEmail(email)) {
          console.log("Incorrect Email Format.")
           res.json({error: "Incorrect Email Format."});
-        } else if (!validator.isMobilePhone(phone, "any")) {
+        } else if (!validator.isMobilePhone(phone, "any") && phone!="") {
           console.log("Incorrect Phone Format.")
           res.json({error: "Incorrect Phone Format."});
-        } else if (!(message.length)) {
+        } else if (!message) {
           console.log("Incorrect Message Format.")
           res.json({error: "Message Can Not Be Empty."});
         } else {
