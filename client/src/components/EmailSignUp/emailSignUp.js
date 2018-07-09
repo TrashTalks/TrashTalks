@@ -16,7 +16,7 @@ var EmailSignUp = props =>
 	>
 		
 		<Modal.Header> 
-			{"Business Cards and/or Mailing List"}
+			{"Get Our Business Card"}
 		</Modal.Header>
 
 		<Modal.Content>
@@ -84,8 +84,12 @@ var EmailSignUp = props =>
 												onChange={props.handleCheckboxChange}
 											/>
 										</Form.Field>
-										<Button type = "submit" onClick = {props.addEmailToDB} id = "emailSignUpButton">
+										<Button type = "submit" onClick = {props.addEmailToDB} id = "businessSignUpButton">
 											{"Submit To Receive Business Cards " }
+
+										</Button>
+										<Button type = "submit" onClick = {props.handleCheckboxChange} id = "emailSignUpButton">
+											{"Join our mailing list" }
 
 										</Button>
 									</Form>

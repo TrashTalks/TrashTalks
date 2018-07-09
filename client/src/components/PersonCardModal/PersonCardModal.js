@@ -14,7 +14,7 @@ var PersonCardModal =(props) =>
 
   <Modal.Content image>
   
-    <Image rounded src={props.modalImage} />
+    <Image rounded src={props.modalImage} style = {{"max-width":450 }}/>
 
     <Modal.Description>
       <Header>{props.modalName}</Header>

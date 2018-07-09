@@ -73,8 +73,8 @@ class LandingPage extends Component {
 		})
 
 		this.state.isBoxChecked
-		? this.setState({msgContent:theRes.data["added"] +" Business Cards are one the way!"})
-		: this.setState({msgContent:"Business Cards are one the way!"})
+		? this.setState({msgContent:theRes.data["added"] +" Business Cards are on the way!"})
+		: this.setState({msgContent:"Business Cards are on the way!"})
 	};
 	emailNotAdded = (theRes) => {
 		this.setState({showMessage:true});
@@ -82,7 +82,7 @@ class LandingPage extends Component {
 		theRes.data["error"]==="Email Already on list!" 
 		? this.setState({
 			msgHeader:"Awesome!",
-			msgContent:"Business cards are one the way!",
+			msgContent:"Business cards are on the way!",
 			showEmailForm:false,
 			isMsgPositive:true
 

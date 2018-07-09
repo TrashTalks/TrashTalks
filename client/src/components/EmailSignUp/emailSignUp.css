@@ -6,7 +6,11 @@
     margin:50px;
 } */
 
-#emailSignUpButton{
+#businessSignUpButton{
     background-color: #163B53;
+    color: white;
+}
+#emailSignUpButton{
+    background-color: #22859A;
     color: white;
 }
