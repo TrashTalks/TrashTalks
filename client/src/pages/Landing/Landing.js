@@ -82,7 +82,7 @@ class LandingPage extends Component {
 		theRes.data["error"]==="Email Already on list!" 
 		? this.setState({
 			msgHeader:"Awesome!",
-			msgContent:theRes.data["error"] +" Business cards are one the way!",
+			msgContent:"Business cards are one the way!",
 			showEmailForm:false,
 			isMsgPositive:true
 
