@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Image, Header,Icon} from 'semantic-ui-react'
+import {Modal, Image, Header } from 'semantic-ui-react'
 
 var PersonCardModal =(props) => 
   <Modal scrolling

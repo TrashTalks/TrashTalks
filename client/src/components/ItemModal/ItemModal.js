@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Image, Header,Icon,Segment,Grid,Message} from 'semantic-ui-react'
+import {Modal, Image, Header, Segment, Grid, Message} from 'semantic-ui-react'
 import "./ItemModal.css";
 var ItemModal =(props) => 
   <Modal scrolling
@@ -16,7 +16,7 @@ var ItemModal =(props) =>
 
       <Image rounded src={props.itemImage} wrapped  size='small'/>
 
-      <Message className = {props.isRecyclable && props.isVerified ?"positive": props.isRecyclable? "warning" :  "negative"} >
+      <Message className = {props.isRecyclable && props.isVerified ?"positive": props.isRecyclable? "warning" :  "negative"} size="large">
         <Message.Header>
           This {props.itemName} {' '}
 
