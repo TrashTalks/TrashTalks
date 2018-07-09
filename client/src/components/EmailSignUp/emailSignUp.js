@@ -1,18 +1,22 @@
 //-------------- Imports ----------------------//
 	import React from "react";
 	import { Modal, Container, Button, Grid, Form, 
-		Segment, Header, Icon, Message,
-		Loader, Dimmer, Checkbox} from 'semantic-ui-react';
+		 Message, Loader, Dimmer, Checkbox} from 'semantic-ui-react';
 	import "./emailSignUp.css";
 //--------------------------------------------//
 
 //-------------- Sign-up Log-In MODAL with the form -----------------//
 var EmailSignUp = props =>
 
-	<Modal onClose={props.handleCloseESU} open={props.isModalOpen} size = "small" closeIcon>
+	<Modal 
+		onClose={props.handleCloseESU} 
+		open={props.isModalOpen} 
+		size = "small" 
+		closeIcon={{ name: 'close', color: 'grey' }}
+	>
 		
 		<Modal.Header> 
-			{"Sign up for our mailing list!"}
+			{"Business Cards and/or Mailing List"}
 		</Modal.Header>
 
 		<Modal.Content>
@@ -24,7 +28,7 @@ var EmailSignUp = props =>
 							<Grid.Column mobile={16} tablet={14} computer={12} largeScreen={12} widescreen={12}>
 
 								{props.showMessage ?
-									<Message className = {props.msgHeader[0]==="T" ?"positive": "warning"} >
+									<Message className = {props.isMsgPositive ?"positive": "warning"} size="large" >
 										<Message.Header>
 											{props.msgHeader}
 										</Message.Header>
@@ -81,7 +85,7 @@ var EmailSignUp = props =>
 											/>
 										</Form.Field>
 										<Button type = "submit" onClick = {props.addEmailToDB} id = "emailSignUpButton">
-											Receive Business Cards
+											{"Submit To Receive Business Cards " }
 
 										</Button>
 									</Form>

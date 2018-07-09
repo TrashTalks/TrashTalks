@@ -1,10 +1,10 @@
 import React from 'react'
 import "./PersonCard.css"
-import {Image, Icon, Card} from 'semantic-ui-react'
+import {Image, Icon, Card, Popup} from 'semantic-ui-react'
 
 
 var PersonCard = props => 
-
+<Popup trigger={
   <Card centered className="personCard" onClick={props.showModalBio}>
     <Image src={props.imageLink} />
 
@@ -20,4 +20,8 @@ var PersonCard = props =>
     </Card.Content>
 
   </Card>
+}>
+<Popup.Content> Click For Bio</Popup.Content>
+</Popup>
+
 export default PersonCard;

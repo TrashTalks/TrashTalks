@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Form, Button, Modal, Dimmer, Loader, Message, Container} from "semantic-ui-react";
+import { Grid, Form, Button, Modal, Dimmer, Loader, Message } from "semantic-ui-react";
 import "./ContactUs.css";
 // import ItemModal from "../../components/ItemModal";
 import API from "../../utils/API";
@@ -83,7 +83,7 @@ class ContactUs extends Component {
             <Modal
                 open={this.state.isModalOpen}
                 onClose={this.props.parentRefToCloseModal}
-                closeIcon
+                closeIcon={{ name: 'close', color: 'grey' }}
                 size = "small"
             >
                 
@@ -97,7 +97,7 @@ class ContactUs extends Component {
                         <Grid columns={1} centered>
                             <Grid.Column mobile={14} tablet={14} computer={14} largeScreen={14} widescreen={14}>
                                 {this.state.errorMsg  
-                                    ? <Message className =  "warning" >
+                                    ? <Message className =  "warning" size="large" >
                                         <Message.Header>
                                         
                                         {this.state.theMsg}
@@ -186,7 +186,7 @@ class ContactUs extends Component {
 
                 <Modal.Content>
                     <Modal.Description>
-                        <Message className =  "positive" >
+                        <Message className =  "positive" size="large">
                             <Message.Header>
                                 Hey {this.state.ContactName.split(" ")[0]},
                                 <br/> Thank you for emailing us! We will reach out to your shortly.

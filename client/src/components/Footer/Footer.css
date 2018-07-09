@@ -8,4 +8,19 @@
   .footerIcons {
      color: #163B53 !important;
 
-}  
+} 
+/* List items in the middle of navbar should have padding on both sides */
+#Navitem2{
+    padding-left: 5vw;
+    padding-right: 5vw
+}
+
+/* List item on the left should have padding on the right */
+#Navitem1{
+    padding-right: 5vw
+}
+
+/* List item on the right should have padding on the left */
+#Navitem3{
+    padding-left: 5vw;
+}

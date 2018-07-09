@@ -51,33 +51,48 @@ class LandingPage extends Component {
 				meta: "TBA",
 				description: "Sign up for our mailing list for general TrashTalks updates and for news about our mobile app."
 			}
-		]
-		
+		],
+		joinListTooMsg: "",
+		isMsgPositive:false
 
 	};
 
 	handleChanges = (e) =>{
 		const {name,value} = e.target;
 		this.setState({[name]: value});
+		this.setState({showMessage:false})
 	}; 
 	emailAdded = (theRes) => {
 		this.setState({msgHeader:"Thank You!",
-			msgContent:theRes.data["added"],
 			PersonName:"",
 			PersonEmail:"",
 			showEmailForm:false,
 			showLoader:false,
-			showMessage:true
-		});
+			showMessage:true,
+			isMsgPositive:true
+		})
+
+		this.state.isBoxChecked
+		? this.setState({msgContent:theRes.data["added"] +" Business Cards are one the way!"})
+		: this.setState({msgContent:"Business Cards are one the way!"})
 	};
 	emailNotAdded = (theRes) => {
 		this.setState({showMessage:true});
 
 		theRes.data["error"]==="Email Already on list!" 
-		? this.setState({msgHeader:"Awesome!"})
-		: this.setState({msgHeader:"Sorry! Email Not Added"})
+		? this.setState({
+			msgHeader:"Awesome!",
+			msgContent:theRes.data["error"] +" Business cards are one the way!",
+			showEmailForm:false,
+			isMsgPositive:true
+
+		})
+		: this.setState({
+			msgHeader:"Sorry! Email is invalid.",
+			msgContent: "Check your email entry and try again."
+		})
 	 
-		this.setState({msgContent:theRes.data["error"],
+		this.setState({
 			showLoader:false
 		});
 	};
@@ -138,7 +153,9 @@ class LandingPage extends Component {
 			msgContent:"",
 			showEmailForm:true,
 			showMessage:false,
-			isBoxChecked:false
+			isBoxChecked:false,
+			joinListTooMsg:"",
+			isMsgPositive:false
 		})
 	};
 
@@ -169,7 +186,7 @@ class LandingPage extends Component {
 		this.setState({})
 	};
 	handleCheckboxChange = () =>{
-		this.setState({ isBoxChecked:true})
+		this.setState({ isBoxChecked:!this.state.isBoxChecked})
 	}
 
 	closeContactUsModal = () => {
@@ -242,8 +259,9 @@ class LandingPage extends Component {
 						msgContent={this.state.msgContent} 
 						showMessage = {this.state.showMessage}
 						showLoader = {this.state.showLoader}
-
+						joinListTooMsg = {this.state.joinListTooMsg}
 						handleCheckboxChange = {this.handleCheckboxChange}
+						isMsgPositive = {this.state.isMsgPositive}
 					/>
 				</Segment.Group>
 
@@ -281,7 +299,7 @@ class LandingPage extends Component {
 					<ContactUsModal
 						onRef = {ref => (this.ContactUsModal = ref)}
 						parentRefToCloseModal = {this.closeContactUsModal}
-					/>
+					/>	
 				</Founders>
 
 			</Container>

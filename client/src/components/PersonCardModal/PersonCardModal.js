@@ -1,11 +1,11 @@
 import React from 'react'
-import {Modal, Image, Header,Icon} from 'semantic-ui-react'
+import {Modal, Image, Header } from 'semantic-ui-react'
 
 var PersonCardModal =(props) => 
   <Modal scrolling
     open={props.modalOpen}
     onClose={props.handleClose}
-    closeIcon
+    closeIcon={{ name: 'close', color: 'grey' }}
   >
 
     {/* <Header floated="right" id="PCmodalHeader">
