@@ -60,6 +60,7 @@ module.exports={
           sendEmail.signedUp(email, firstName)
           res.json({added: "Email Added Succefully!"});
         } else if (cbRes.length > 0) {
+          sendEmail.signedUp(email, firstName)
           res.json({error: "Email Already on list!"});
         } else {
           res.json({error: "Email Not Saved! Unknown Error!"});

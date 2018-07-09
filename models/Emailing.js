@@ -21,16 +21,16 @@ var transporter = nodemailer.createTransport(
             html: '<p>Hello ' + firstName + ',</p><br><p>Thank you for your request. We appreciate your willingness to assist us in our efforts to reduce waste. Our virtual business cards are attached.</p><br><img src="cid:artuorSalmeron@cid"/><br><img src="cid:lukeChambers@cid"/><br><img src="cid:jacquelineAlexander@cid"/>',// plain text body
             attachments: [
               {
-                path: 'https://i.imgur.com/sEcmgLS.jpg',
-                cid: 'artuorSalmeron@cid'
+                filename: 'LukeCard.jpg',
+                path: __dirname + '/../client/public/LukeCard.jpg'
               },
               {
-                path: 'https://i.imgur.com/4WIxav4.jpg',
-                cid: 'lukeChambers@cid'
+                filename: 'JackieCard.jpg',
+                path: __dirname + '/../client/public/JackieCard.jpg'
               },
               {
-                path: 'https://i.imgur.com/UVcPIHd.jpg',
-                cid: 'jacquelineAlexander@cid'
+                filename: 'ArturoCard.jpg',
+                path: __dirname + '/../client/public/ArturoCard.jpg'
               }
             ]
           };
