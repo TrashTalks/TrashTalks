@@ -18,19 +18,11 @@ var transporter = nodemailer.createTransport(
             from: config.get('TRASHTALKS_ALIAS'), // sender address
             to: email, // list of receivers
             subject: 'TrashTalks Virtual Business Cards', // Subject line
-            html: '<p>Hello ' + firstName + ',</p><br><p>Thank you for your request. We appreciate your willingness to assist us in our efforts to reduce waste. Our virtual business cards are attached.</p><br><img src="cid:artuorSalmeron@cid"/><br><img src="cid:lukeChambers@cid"/><br><img src="cid:jacquelineAlexander@cid"/>',// plain text body
+            html: '<p>Hello ' + firstName + ',</p><br><p>Thank you for your request. We appreciate your willingness to assist us in our efforts to reduce waste. Our virtual business card is attached.</p><br><img src="cid:artuorSalmeron@cid"/><br><img src="cid:lukeChambers@cid"/><br><img src="cid:jacquelineAlexander@cid"/>',// plain text body
             attachments: [
               {
-                filename: 'LukeCard.jpg',
-                path: __dirname + '/../client/public/LukeCard.jpg'
-              },
-              {
-                filename: 'JackieCard.jpg',
-                path: __dirname + '/../client/public/JackieCard.jpg'
-              },
-              {
-                filename: 'ArturoCard.jpg',
-                path: __dirname + '/../client/public/ArturoCard.jpg'
+                filename: 'TrashTalksCard.png',
+                path: __dirname + '/../client/public/TrashTalksCard.png'
               }
             ]
           };
