@@ -8,7 +8,7 @@ class Footer extends Component {
       <div className="Footer">
             <div className="container">
                 <Grid centered>
-                      <List horizontal size="huge" divided relaxed>
+                      <List horizontal size="large" divided relaxed>
                         <List.Item id="Navitem1">
                           <a><Image as="a"src="http://startupsummer.gatech.edu/images/launch.png" href="http://startupsummer.gatech.edu/" target="_blank" size="mini" centered/></a>
                         </List.Item>

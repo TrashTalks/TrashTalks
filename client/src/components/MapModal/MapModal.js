@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Modal, Image} from "semantic-ui-react";
+import { Modal, Image} from "semantic-ui-react";
 import "./MapModal.css";
 // import ItemModal from "../../components/ItemModal";
 
@@ -32,22 +32,18 @@ class MapModal extends Component {
             <Modal
                 open={this.state.showTheMap}
                 onClose={this.props.parentRefToCloseModal}
-                closeIcon={{ name: 'close', color: 'grey' }}
+                basic
+                size = "large"
             >
                 
-                <Modal.Header floated="left"> 
+                {/* <Modal.Header floated="left"> 
                     Life of Trash Map
-                </Modal.Header>
+                </Modal.Header> */}
 
                 <Modal.Content>
-                    <Modal.Description>
 
-                        <Grid columns={1} centered>
-                            <Grid.Column mobile={14} tablet={14} computer={14} largeScreen={14} widescreen={14}>
-                                <Image fluid src="LifeOfTrashMap.png"/>
-                            </Grid.Column>
-                        </Grid>
-                    </Modal.Description>
+                    <Image fluid src="LifeOfTrashMapFinal.png"/>
+                            
                 </Modal.Content>
             </Modal>
     

@@ -262,6 +262,7 @@ class LandingPage extends Component {
 						joinListTooMsg = {this.state.joinListTooMsg}
 						handleCheckboxChange = {this.handleCheckboxChange}
 						isMsgPositive = {this.state.isMsgPositive}
+						isChecked = {this.state.isBoxChecked}
 					/>
 				</Segment.Group>
 
