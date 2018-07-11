@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const config = require('./config');
 const routes = require("./routes");
-const proxy = require("http-proxy-middleware");
+// const proxy = require("http-proxy-middleware");
 const app = express();
 
 // Define middleware here
@@ -23,7 +23,7 @@ app.use(routes);
 //   res.redirect('/employees');
 // });
 //Use for local testing. Comment out once deployed
-app.use('/', proxy({target: 'localhost:8080', changeOrigin: true}));
+// app.use('/', proxy({target: 'localhost:8080', changeOrigin: true}));
 // Basic 404 handler
 app.use((req, res) => {
   res.status(404).send('Not Found');

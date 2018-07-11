@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Founders.css"
-import {Grid,Container,Segment} from 'semantic-ui-react'
+import {Grid, Container, Segment, Icon} from 'semantic-ui-react'
 
 
 var Founders = props =>
@@ -9,7 +9,7 @@ var Founders = props =>
 			<Segment.Group >
 
 				<Segment inverted className="foundersTitle" id = "foundersTitleBackground">
-					<h2>{props.titleHeading}</h2>
+					<h1><Icon name="users" />{props.titleHeading}</h1>
 				</Segment>
 
 				<Segment>

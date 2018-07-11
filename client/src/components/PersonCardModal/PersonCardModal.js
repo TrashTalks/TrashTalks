@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Image, Header } from 'semantic-ui-react'
+import {Modal, Image, Header, Button, Icon } from 'semantic-ui-react'
 
 var PersonCardModal =(props) => 
   <Modal scrolling
@@ -19,7 +19,9 @@ var PersonCardModal =(props) =>
     <Modal.Description>
       <Header>{props.modalName}</Header>
       <p>{props.modalBio}</p>
-
+      <Button color='linkedin'as ="a" href = {props.modalLinkedIn} target="_blank">
+        <Icon name='linkedin' /> LinkedIn
+      </Button>
     </Modal.Description>
 
   </Modal.Content>

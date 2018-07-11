@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Segment, Grid, Container, Button, Icon, Card} from "semantic-ui-react";
+import {Segment, Grid, Container, Button, Icon, Card, Item,Image} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
@@ -136,7 +136,8 @@ class LandingPage extends Component {
 		this.setState({isPersonModalOpen: true ,
 			modalImage:personClicked.imageLink,
 			modalName:personClicked.personName,
-			modalBio:personClicked.fullBio
+			modalBio:personClicked.fullBio,
+			modalLinkedIn: personClicked.linkedIn
 		});
 	}
 
@@ -206,20 +207,49 @@ class LandingPage extends Component {
 				  		<h1 id="h1Annoucement"><Icon name="announcement" />Announcement</h1>
 					</Segment>
 					<Segment className="landingWords"> 
+						<br/>
 						<p>
-						Product Day is coming up on July 11th at Georgia Tech! We are super excited to share 
-						what we have been working on with Create-X this summer. Mark your calendars for July 
-						11th 4pm-8pm, and be sure to stop by our booth at Clough Undergraduate Learning 
-						Commons, on the 2nd Floor, to speak with us in person about our vision and goals.
+						Product Day is <b>today</b> at Georgia Tech! We are super excited to share 
+						what we have been working on with Create-X this summer. Be sure to stop by our booth at Clough Undergraduate Learning 
+						Commons (CULC), on the 2nd Floor, to speak with us in person about our vision and goals.
 						</p>
+						<br/>	
 					</Segment>
-					<Button id = "isemailModalOpen" onClick={this.openThisModal} attached="bottom" className = "emailButton">Click Here To Recieve Our Business Cards</Button>
+					<Button as ="a" id="aboutUsButton" href = "http://create-x.gatech.edu/1home.html" target="_blank" attached="bottom">
+						<Icon name = "rocket"/>Explore Create-X
+					</Button>
 				</Segment.Group>
 			</Container>
+
+			<Container id="aboutContainer">
+				<Segment.Group>
+					<Segment inverted   className="landingTitle" id  = "landingAboutUs" >
+				  		<h1 id="h1AboutUs"><Icon name="inbox" />About Us</h1>
+					</Segment>
+					<Segment className="landingWords"> 
+						<br/>	
+						<p>TrashTalks is a technology solutions company aspiring to disrupt the waste industry.
+						Currently, we are in our customer discovery phase and are excited to build and grow.
+						If you'd like to share your fustractions regarding trash disposal, please contact us  
+						<span link onClick={this.openContactUsModal}> here: </span>
+						 <Icon link name="mail" onClick= {this.openContactUsModal} />
+						</p>
+						<br/>	
+					</Segment>
+					<Button id = "isemailModalOpen" 
+						onClick={this.openThisModal} 
+						attached="bottom" 
+						className = "emailButton"
+					>
+						<Icon name="vcard" />Receive Our Business Card
+					</Button>
+				</Segment.Group>
+			</Container>
+
 			<Container id = "updates">
 				<Segment.Group>
 					<Segment inverted   className="landingTitle" id  = "landingTitleBackground">
-				  		<h1 >Updates</h1>
+				  		<h1 ><Icon name="newspaper" />Updates</h1>
 					</Segment>
 					<Segment className="landingWords">
 						<Card.Group centered> 
@@ -296,6 +326,7 @@ class LandingPage extends Component {
 						modalImage = {this.state.modalImage}
 						modalName = {this.state.modalName}
 						modalBio = {this.state.modalBio}
+						modalLinkedIn = {this.state.modalLinkedIn}
 					/>
 					<ContactUsModal
 						onRef = {ref => (this.ContactUsModal = ref)}
