@@ -21,7 +21,7 @@ p {
   position: relative;
   top: 20%;
 }*/
-#landingTitleBackground, #landingAnnoucements, #landingAboutUs{
+#landingTitleBackground, #landingAnnouncements, #landingAboutUs{
 background-color: #163B53;
     color: white;
 }
