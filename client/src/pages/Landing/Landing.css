@@ -6,7 +6,7 @@
     text-align: left;
 }
 
-#about, #founders, #updates, #annoucement {
+#about, #founders, #updates, #announcement {
     margin: 50px;
 }
 
@@ -22,7 +22,7 @@ p {
   top: 20%;
 }*/
 #landingTitleBackground, #landingAnnoucements, #landingAboutUs{
-    background-color: #163B53;
+background-color: #163B53;
     color: white;
 }
 
@@ -36,5 +36,5 @@ p {
 }
 
 #h1Annoucement, #h1AboutUs{
-    clear: "left"
+clear: "left"
 }
