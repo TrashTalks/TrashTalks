@@ -35,7 +35,7 @@ class LandingPage extends Component {
 		showLoader: false,
 		isBoxChecked: false,
 		ContactUsModal:false,
-		annoucements: [
+		announcements: [
 			{
 				header: "The Beginning",
 				meta: "May 15, 2018",
@@ -200,10 +200,10 @@ class LandingPage extends Component {
 			<div>
 
 		  {/*------- Start of "PageContent"--------- */}
-			<Container id="annoucement">
+			<Container id="announcement">
 				<Segment.Group>
-					<Segment inverted   className="landingTitle" id  = "landingAnnoucements" >
-				  		<h1 id="h1Annoucement"><Icon name="announcement" />Announcement</h1>
+					<Segment inverted   className="landingTitle" id="landingAnnouncements" >
+				  		<h1 id="h1Announcement"><Icon name="announcement" />Announcement</h1>
 					</Segment>
 					<Segment className="landingWords"> 
 						<p>
@@ -224,7 +224,7 @@ class LandingPage extends Component {
 					<Segment className="landingWords">
 						<Card.Group centered> 
 						
-							{this.state.annoucements.map(oneAncmt => 	
+							{this.state.announcements.map(oneAncmt => 	
 								    <Card 
 										header={oneAncmt.header}
 										meta = {oneAncmt.meta}
