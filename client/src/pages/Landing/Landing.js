@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import {Segment, Grid, Container, Button, Icon, Card, Item,Image} from "semantic-ui-react";
+import {Grid, Container, Icon, Card} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
 import EmailSignUp from "../../components/EmailSignUp";
 // import SlideDeck from "../../components/SlideDeck";
-import ContactUsModal from "../../components/ContactUs"
+import ContactUsModal from "../../components/ContactUs";
+import Annoucement from "../../components/Announcement";
+import AboutUs from "../../components/AboutUs";
+import UpdatesCard from "../../components/UpdatesCard";
 import "./Landing.css";
 import API from "../../utils/API";
 class LandingPage extends Component {
@@ -37,9 +40,9 @@ class LandingPage extends Component {
 		ContactUsModal:false,
 		announcements: [
 			{
-				header: "The Beginning",
-				meta: "May 15, 2018",
-				description: 'TrashTalks Inc. began their start-up journey with Create-X and is currently conducting customer interviews. To request a meeting to discuss your experiences with your trash hauler, please complete our "Contact Us" form: '
+				header: "Coming Soon",
+				meta: "TBA",
+				description: "Sign up for our mailing list for general TrashTalks updates and for news about our mobile app."
 			},
 			{
 				header: "Product Day",
@@ -47,13 +50,14 @@ class LandingPage extends Component {
 				description: "TrashTalks Inc. will have a table on the 2nd floor of Georgia Tech's Clough Commons between 4 pm - 8pm."
 			},
 			{
-				header: "Coming Soon",
-				meta: "TBA",
-				description: "Sign up for our mailing list for general TrashTalks updates and for news about our mobile app."
+				header: "The Beginning",
+				meta: "May 15, 2018",
+				description: 'TrashTalks Inc. began their start-up journey with Create-X and is currently conducting customer interviews. To request a meeting to discuss your experiences with your trash hauler, please complete our "Contact Us" form: '
 			}
 		],
 		joinListTooMsg: "",
-		isMsgPositive:false
+		isMsgPositive:false,
+		showAnnouncement:false
 
 	};
 
@@ -201,80 +205,38 @@ class LandingPage extends Component {
 			<div>
 
 		  {/*------- Start of "PageContent"--------- */}
-			<Container id="announcement">
-				<Segment.Group>
-					<Segment inverted   className="landingTitle" id="landingAnnouncements" >
-				  		<h1 id="h1Announcement"><Icon name="announcement" />Announcement</h1>
-					</Segment>
-					<Segment className="landingWords"> 
-						<br/>
-						<p>
-						Product Day is <b>today</b> at Georgia Tech! We are super excited to share 
-						what we have been working on with Create-X this summer. Be sure to stop by our booth at Clough Undergraduate Learning 
-						Commons (CULC), on the 2nd Floor, to speak with us in person about our vision and goals.
-						</p>
-						<br/>	
-					</Segment>
-					<Button as ="a" id="aboutUsButton" href = "http://create-x.gatech.edu/1home.html" target="_blank" attached="bottom">
-						<Icon name = "rocket"/>Explore Create-X
-					</Button>
-				</Segment.Group>
-			</Container>
+			
+			{this.state.showAnnouncement 
+				? <Annoucement
+					theAnnouncement = "Some announcement from the db"
+					showButton = {true}
+					buttonLink = {"href from db"}
+					iconName = {"iconName from db"}
+					buttonText = {"Text for button from db"}
 
-			<Container id="aboutContainer">
-				<Segment.Group>
-					<Segment inverted   className="landingTitle" id  = "landingAboutUs" >
-				  		<h1 id="h1AboutUs"><Icon name="inbox" />About Us</h1>
-					</Segment>
-					<Segment className="landingWords"> 
-						<br/>	
-						<p>TrashTalks is a technology solutions company aspiring to disrupt the waste industry.
-						Currently our focus is on solving inefficiencies with bin right-sizing. Through customer
-						interviews, we've documented the frustrations of materials processors, recycling coordinators,  
-						and sustainability coordinators. This has lead us to our current hypothesis:
-							<br/><br/>
-							<Container textAlign="center"><b> "Waste project managers will buy TrashTalks automated hauling
-								services to eliminate inconsistent and unreliable waste hauling services" </b></Container>
-							<br/>	
-						To share your frustrations regarding trash disposal, please complete our  
-						<span onClick={this.openContactUsModal} > "Contact Us" form: </span>
-						 <Icon link name="wpforms" onClick= {this.openContactUsModal}/>
-						  . To receive our business card, click the button below.
-						</p>
-						<br/>	
-					</Segment>
-					<Button id = "isemailModalOpen" 
-						onClick={this.openThisModal} 
-						attached="bottom" 
-						className = "emailButton"
-					>
-						<Icon name="vcard" />Receive Our Business Card
-					</Button>
-				</Segment.Group>
-			</Container>
-
-			<Container id = "updates">
-				<Segment.Group>
-					<Segment inverted   className="landingTitle" id  = "landingTitleBackground">
-				  		<h1 ><Icon name="newspaper" />Updates</h1>
-					</Segment>
-					<Segment className="landingWords">
-						<Card.Group centered> 
-						
-							{this.state.announcements.map(oneAncmt => 	
-								    <Card 
-										header={oneAncmt.header}
-										meta = {oneAncmt.meta}
-										description={
-											oneAncmt.header ==="The Beginning" 
-											? <div><br/>{oneAncmt.description} <Icon link name = "wpforms" id = "ContactUsModal" onClick={this.openContactUsModal}/></div>
-											: <div><br/>{oneAncmt.description}</div>}>
-											
-									</Card>
-							)}	
-						</Card.Group>
-					</Segment>
+				/>
+				: null}
+			
+					<AboutUs
+						openContactUsModal={this.openContactUsModal} 
+						openThisModal={this.openThisModal} 
+					/>
 				
+
+					<UpdatesCard>
+						{this.state.announcements.map(oneAncmt => 	
+								<Card 
+									header={oneAncmt.header}
+									meta = {oneAncmt.meta}
+									description={
+										oneAncmt.header ==="The Beginning" 
+										? <div><br/>{oneAncmt.description} <Icon link name = "wpforms" id = "ContactUsModal" onClick={this.openContactUsModal}/></div>
+										: <div><br/>{oneAncmt.description}</div>}
+									style = {oneAncmt.header !== "Coming Soon" ? {"background":"#E2E2E2" }:null}	
+								>
+								</Card>
+						)}	
+					</UpdatesCard>
 					<EmailSignUp
 						showForm = {this.state.showEmailForm}
 						handleOpenESU = {this.openThisModal}
@@ -301,9 +263,7 @@ class LandingPage extends Component {
 						isMsgPositive = {this.state.isMsgPositive}
 						isChecked = {this.state.isBoxChecked}
 					/>
-				</Segment.Group>
-
-			</Container>
+				
 
 			<Container id="founders">	
 				<Founders

@@ -21,12 +21,12 @@ p {
   position: relative;
   top: 20%;
 }*/
-#landingTitleBackground, #landingAnnouncements, #landingAboutUs{
+#landingTitleBackground, #landingAboutUs{
 background-color: #163B53;
     color: white;
 }
 
-#isemailModalOpen, #isSlideDeckOpen, #aboutUsButton{
+#isemailModalOpen, #isSlideDeckOpen{
      /* background-color: #308DB7;  */
      /* background-color: #114C75;  */
      background-color:#22859A;
@@ -35,6 +35,6 @@ background-color: #163B53;
 
 }
 
-#h1Annoucement, #h1AboutUs{
+#h1AboutUs{
 clear: "left"
 }

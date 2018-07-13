@@ -1,0 +1,20 @@
+#landingAboutUs{
+    background-color: #163B53;
+        color: white;
+}
+    
+#isemailModalOpen,{
+        /* background-color: #308DB7;  */
+        /* background-color: #114C75;  */
+        background-color:#22859A;
+    color:white;
+    font-size: 18px;
+
+}
+
+#h1AboutUs{
+clear: "left"
+}
+#aboutContainer {
+    margin: 50px;
+}
