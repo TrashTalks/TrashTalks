@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {Grid, Container, Icon, Card} from "semantic-ui-react";
+import moment from "moment";
+import {Grid, Container, Card} from "semantic-ui-react";
 import Founders from "../../components/Founders";
 import PersonCard from "../../components/PersonCard";
 import PersonCardModal from "../../components/PersonCardModal";
@@ -38,23 +39,7 @@ class LandingPage extends Component {
 		showLoader: false,
 		isBoxChecked: false,
 		ContactUsModal:false,
-		announcements: [
-			{
-				header: "Coming Soon",
-				meta: "TBA",
-				description: "Sign up for our mailing list for general TrashTalks updates and for news about our mobile app."
-			},
-			{
-				header: "Product Day",
-				meta: "June 11, 2018",
-				description: "TrashTalks Inc. will have a table on the 2nd floor of Georgia Tech's Clough Commons between 4 pm - 8pm."
-			},
-			{
-				header: "The Beginning",
-				meta: "May 15, 2018",
-				description: 'TrashTalks Inc. began their start-up journey with Create-X and is currently conducting customer interviews. To request a meeting to discuss your experiences with your trash hauler, please complete our "Contact Us" form: '
-			}
-		],
+		updates: [],
 		joinListTooMsg: "",
 		isMsgPositive:false,
 		showAnnouncement:false
@@ -125,15 +110,21 @@ class LandingPage extends Component {
 				console.log("API.grabFoundersInfo res: "+ res.data);
 			}).catch((error)=>{
 				console.log("API.grabFoundersInfo Error: "+ error);
+			});
+		
+		API.grabUpdates()
+			.then(res =>{
+				this.setState({updates:res.data})
 			})
+			.catch(error =>{
+				 console.log(error)
+			});
 	};
-  	
 
 	openThisModal = (personClicked,e) => {
 		personClicked.target === undefined 
 		? this.displayPersonModalInfo(personClicked)
 		: this.setState({[personClicked.target.id]: true})
-		
 	};
 
 	displayPersonModalInfo = (personClicked) => {
@@ -216,27 +207,33 @@ class LandingPage extends Component {
 
 				/>
 				: null}
-			
+				<Container id = "announcementsAndUpdatesContainer">
+			<Grid stackable>
+				<Grid.Row>
+				<Grid.Column width = {11}>
 					<AboutUs
 						openContactUsModal={this.openContactUsModal} 
 						openThisModal={this.openThisModal} 
 					/>
-				
-
+				</Grid.Column>
+				<Grid.Column width = {5}>
 					<UpdatesCard>
-						{this.state.announcements.map(oneAncmt => 	
+						{this.state.updates.map(oneAncmt => 	
 								<Card 
-									header={oneAncmt.header}
-									meta = {oneAncmt.meta}
-									description={
-										oneAncmt.header ==="The Beginning" 
-										? <div><br/>{oneAncmt.description} <Icon link name = "wpforms" id = "ContactUsModal" onClick={this.openContactUsModal}/></div>
-										: <div><br/>{oneAncmt.description}</div>}
-									style = {oneAncmt.header !== "Coming Soon" ? {"background":"#E2E2E2" }:null}	
+									header={oneAncmt.title}
+									meta = {oneAncmt.sub_title}
+									description={oneAncmt.content}
+									href = {oneAncmt.link ? oneAncmt.link :null}
+									target = {oneAncmt.link ? "_blank" : null}
+									style = {moment(oneAncmt.event_date).isBefore( moment().now) ? {"background":"#E2E2E2" }:null}	
 								>
 								</Card>
 						)}	
 					</UpdatesCard>
+					</Grid.Column>
+					</Grid.Row>
+					</Grid>
+					</Container>
 					<EmailSignUp
 						showForm = {this.state.showEmailForm}
 						handleOpenESU = {this.openThisModal}

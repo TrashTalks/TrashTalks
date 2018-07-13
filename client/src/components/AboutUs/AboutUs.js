@@ -9,7 +9,7 @@ var AboutUs = props =>
             <Segment inverted   className="landingTitle" id  = "landingAboutUs" >
                 <h1 id="h1AboutUs"><Icon name="inbox" />About Us</h1>
             </Segment>
-            <Segment className="landingWords"> 
+            <Segment className="landingWords" > 
                 <br/>	
                 <p>TrashTalks is a technology solutions company aspiring to disrupt the waste industry.
                 Currently our focus is on solving inefficiencies with bin right-sizing. Through customer

@@ -44,6 +44,7 @@
     "express": "4.16.2",
     "http-proxy-middleware": "^0.18.0",
     "lodash": "4.17.5",
+    "moment": "^2.22.2",
     "nconf": "0.10.0",
     "nodemailer": "^4.6.7",
     "nodemon": "^1.17.5",
@@ -54,10 +55,10 @@
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "2.2.1",
     "ava": "0.25.0",
-    "proxyquire": "1.8.0",
-    "sinon": "4.3.0",
     "concurrently": "^3.5.0",
-    "nodemon": "^1.17.5"
+    "nodemon": "^1.17.5",
+    "proxyquire": "1.8.0",
+    "sinon": "4.3.0"
   },
   "engines": {
     "node": ">=4.3.2"
