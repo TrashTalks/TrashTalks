@@ -39,7 +39,7 @@ class LandingPage extends Component {
 			{
 				header: "The Beginning",
 				meta: "May 15, 2018",
-				description: "TrashTalks Inc. began their start-up journey with Create-X and is currently conducting customer interviews. To request a meeting to discuss your experiences with your trash hauler, click here:  "
+				description: 'TrashTalks Inc. began their start-up journey with Create-X and is currently conducting customer interviews. To request a meeting to discuss your experiences with your trash hauler, please complete our "Contact Us" form: '
 			},
 			{
 				header: "Product Day",
@@ -229,14 +229,14 @@ class LandingPage extends Component {
 					<Segment className="landingWords"> 
 						<br/>	
 						<p>TrashTalks is a technology solutions company aspiring to disrupt the waste industry.
-						Currently our focus is on solving inefficiencies with bin rigth-sizing. Through customer
+						Currently our focus is on solving inefficiencies with bin right-sizing. Through customer
 						interviews, we've documented the frustrations of materials processors, recycling coordinators,  
 						and sustainability coordinators. This has lead us to our current hypothesis:
 							<br/><br/>
 							<Container textAlign="center"><b> "Waste project managers will buy TrashTalks automated hauling
-								services to elimiate inconsistent and unreliable waste hauling services" </b></Container>
+								services to eliminate inconsistent and unreliable waste hauling services" </b></Container>
 							<br/>	
-						To share your fustractions regarding trash disposal, please complete our  
+						To share your frustrations regarding trash disposal, please complete our  
 						<span onClick={this.openContactUsModal} > "Contact Us" form: </span>
 						 <Icon link name="wpforms" onClick= {this.openContactUsModal}/>
 						  . To receive our business card, click the button below.
@@ -267,7 +267,7 @@ class LandingPage extends Component {
 										meta = {oneAncmt.meta}
 										description={
 											oneAncmt.header ==="The Beginning" 
-											? <div><br/>{oneAncmt.description} <Icon link name = "mail" id = "ContactUsModal" onClick={this.openContactUsModal}/></div>
+											? <div><br/>{oneAncmt.description} <Icon link name = "wpforms" id = "ContactUsModal" onClick={this.openContactUsModal}/></div>
 											: <div><br/>{oneAncmt.description}</div>}>
 											
 									</Card>
