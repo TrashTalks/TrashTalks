@@ -223,11 +223,9 @@ class LandingPage extends Component {
 									header={oneAncmt.title}
 									meta = {oneAncmt.sub_title}
 									description={oneAncmt.content}
-									href = {oneAncmt.link ? oneAncmt.link :null}
-									target = {oneAncmt.link ? "_blank" : null}
-									style = {moment(oneAncmt.event_date).isBefore( moment().now) ? {"background":"#E2E2E2" }:null}	
-								>
-								</Card>
+									onClick = {oneAncmt.link ? () => window.open(oneAncmt.link) :null}
+									style = {moment(oneAncmt.event_date,"L").isBefore( moment().now) ? {"background":"#E2E2E2" }:null}	
+								/>
 						)}	
 					</UpdatesCard>
 					</Grid.Column>
