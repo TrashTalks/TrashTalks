@@ -18,6 +18,9 @@ export default {
 		return axios.post("/api/material/", material);
 	},
 	sendTrashTalksAnEmail: function(contactForm){
-		return axios.post("/api/emailing/contactUs", contactForm);
-	}
+		return axios.post("/api/emailing/contactUs/", contactForm);
+	},
+	grabUpdates: function() {
+		return axios.get("/api/updates/");
+	},
 }

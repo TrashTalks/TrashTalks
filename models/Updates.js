@@ -7,7 +7,7 @@ const ds = Datastore({
   projectId: config.get('GCLOUD_PROJECT')
 });
 
-const kind = 'Employee';
+const kind = 'Updates';
 
 module.exports={
   // ------- Use 'read' to query the table/kind in ds
