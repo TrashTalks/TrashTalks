@@ -1,0 +1,17 @@
+#landingAnnouncements{
+    background-color: #163B53;
+        color: white;
+    }
+    
+     #AnnouncementButton{
+         /* background-color: #308DB7;  */
+         /* background-color: #114C75;  */
+         background-color:#22859A;
+        color:white;
+        font-size: 18px;
+    
+    }
+    
+    #h1Annoucement{
+    clear: "left"
+    }
