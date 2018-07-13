@@ -1,16 +1,16 @@
-#ESUmodalHeader{
-    border-bottom: 0px;
+#ESUmodalHeader {
+  border-bottom: 0px;
 }
 
 /* #emailButtonContainer {
     margin:50px;
 } */
 
-#businessSignUpButton{
-    background-color: #163B53;
-    color: white;
+#businessSignUpButton {
+  background-color: #163b53;
+  color: white;
 }
-#emailSignUpButton{
-    background-color: #22859A;
-    color: white;
+#emailSignUpButton {
+  background-color: #22859a;
+  color: white;
 }
