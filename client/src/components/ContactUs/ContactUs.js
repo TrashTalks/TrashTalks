@@ -141,8 +141,8 @@ class ContactUs extends Component {
                                         />
                                         <Form.Input
                                             width = {10}
-                                            label =  "Your Orginaztion/Company:"
-                                            placeholder = "Orginazation Name"
+                                            label =  "Your Organization/Company:"
+                                            placeholder = "Organization Name"
                                             id = "ContactOrg"
                                             type = "text"
                                             onChange = {this.handleChanges}

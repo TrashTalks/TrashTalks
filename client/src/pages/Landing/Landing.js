@@ -229,10 +229,17 @@ class LandingPage extends Component {
 					<Segment className="landingWords"> 
 						<br/>	
 						<p>TrashTalks is a technology solutions company aspiring to disrupt the waste industry.
-						Currently, we are in our customer discovery phase and are excited to build and grow.
-						If you'd like to share your fustractions regarding trash disposal, please contact us  
-						<span link onClick={this.openContactUsModal}> here: </span>
-						 <Icon link name="mail" onClick= {this.openContactUsModal} />
+						Currently our focus is on solving inefficiencies with bin rigth-sizing. Through customer
+						interviews, we've documented the frustrations of materials processors, recycling coordinators,  
+						and sustainability coordinators. This has lead us to our current hypothesis:
+							<br/><br/>
+							<Container textAlign="center"><b> "Waste project managers will buy TrashTalks automated hauling
+								services to elimiate inconsistent and unreliable waste hauling services" </b></Container>
+							<br/>	
+						To share your fustractions regarding trash disposal, please complete our  
+						<span onClick={this.openContactUsModal} > "Contact Us" form: </span>
+						 <Icon link name="wpforms" onClick= {this.openContactUsModal}/>
+						  . To receive our business card, click the button below.
 						</p>
 						<br/>	
 					</Segment>
