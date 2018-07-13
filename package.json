@@ -10,7 +10,8 @@
     "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "installDeps": "yarn && cd client && yarn",
-    "seed": "node scripts/seed.js"
+    "seed": "node scripts/seed.js",
+    "precommit": "pretty-quick --staged"
   },
   "author": "Luke Chambers",
   "cloud-repo-tools": {
@@ -54,10 +55,14 @@
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "2.2.1",
     "ava": "0.25.0",
-    "proxyquire": "1.8.0",
-    "sinon": "4.3.0",
     "concurrently": "^3.5.0",
-    "nodemon": "^1.17.5"
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "nodemon": "^1.17.5",
+    "prettier": "^1.13.7",
+    "pretty-quick": "^1.6.0",
+    "proxyquire": "1.8.0",
+    "sinon": "4.3.0"
   },
   "engines": {
     "node": ">=4.3.2"
