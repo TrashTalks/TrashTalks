@@ -23,10 +23,9 @@ var AboutUs = props => (
           <br />
           <Container textAlign="center">
             <b>
-              {" "}
               "Waste project managers will buy TrashTalks automated hauling
               services to eliminate inconsistent and unreliable waste hauling
-              services"{" "}
+              services"
             </b>
           </Container>
           <br />
