@@ -43,7 +43,7 @@ var AboutUs = props => (
         attached="bottom"
         className="emailButton"
       >
-        <Icon name="vcard" />Join our mailing list
+        <Icon name="envelope" />Join our mailing list
       </Button>
     </Segment.Group>
   </Container>
