@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import {Sidebar, Menu, Segment } from "semantic-ui-react";
+import {Sidebar, Menu, Segment, Button, Icon } from "semantic-ui-react";
 
 //------Pages to render ---------//
   import Landing from "./pages/Landing";
@@ -50,7 +50,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-        <Sidebar.Pushable as={Segment}>
+        <Sidebar.Pushable as={Segment} style={{"margin-bottom":"0px"}}>
 
           <Sidebar as={Menu} onClick={this.toggleMenu} icon = "labeled" animation='overlay' width='thin' visible={this.state.visible} vertical inverted>
 		      	{this.state.leftMenuItems.map( (item,index) => <Menu.Item key={index} href={item.link}><h3>{item.word}</h3></Menu.Item>)}
@@ -66,7 +66,6 @@ class App extends Component {
               visible={this.state.visible}
               openContactUsModal = {this.openContactUsModal}
               openMapModal = {this.openMapModal}
-
             />
 
             <Switch>
@@ -74,8 +73,9 @@ class App extends Component {
               <Route exact path = "/EasterEgg" component = {Page2}/>
               <Route exact path = "/scanner" component = {ItemInfo}/>
             </Switch>
+          
+            <Footer/>
 
-            <Footer />
             <ContactUsModal
     					onRef = {ref => (this.ContactUsModal = ref)}
   						parentRefToCloseModal = {this.closeContactUsModal}
@@ -86,6 +86,9 @@ class App extends Component {
 					/>
           </Sidebar.Pusher>
 		    </Sidebar.Pushable>
+        <Button icon secondary size = "mini" color = "black" style={{"opacity":0.5, "z-index":5, "position":"fixed", "top":"90vh", "right":"0vw"}} href = "#topOfPage">
+              <Button.Content ><Icon name = "arrow circle up"/></Button.Content>
+        </Button>
         </div>
       </Router>
     )

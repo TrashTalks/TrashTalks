@@ -42,7 +42,8 @@ class LandingPage extends Component {
 		updates: [],
 		joinListTooMsg: "",
 		isMsgPositive:false,
-		showAnnouncement:false
+		showAnnouncement:false,
+		otherHeight:""
 
 	};
 
@@ -119,6 +120,7 @@ class LandingPage extends Component {
 			.catch(error =>{
 				 console.log(error)
 			});
+		this.findHeights();
 	};
 
 	openThisModal = (personClicked,e) => {
@@ -191,9 +193,16 @@ class LandingPage extends Component {
 	openContactUsModal = () => {
 		this.ContactUsModal.openThisModal()
 	}
+	findHeights = () => {
+		const whiteSegment = document.getElementById("AboutUsSegment").clientHeight;
+		const buttonSegment = document.getElementById("isemailModalOpen").clientHeight;
+		this.setState({otherHeight: whiteSegment + buttonSegment})
+		console.log("height now: " + this.state.otherHeight)
+
+	}
 	render() {
 		return(
-			<div>
+			<div >
 
 		  {/*------- Start of "PageContent"--------- */}
 			
@@ -210,14 +219,15 @@ class LandingPage extends Component {
 				<Container id = "announcementsAndUpdatesContainer">
 			<Grid stackable>
 				<Grid.Row>
-				<Grid.Column width = {11}>
+				<Grid.Column width = {11} 
+>
 					<AboutUs
 						openContactUsModal={this.openContactUsModal} 
 						openThisModal={this.openThisModal} 
-					/>
+						ref={ (divElement) => this.setState({otherHeight:divElement.offsetHeight})}				/>
 				</Grid.Column>
 				<Grid.Column width = {5}>
-					<UpdatesCard>
+					<UpdatesCard height={this.state.otherHeight}>
 						{this.state.updates.map(oneAncmt => 	
 								<Card 
 									header={oneAncmt.title}

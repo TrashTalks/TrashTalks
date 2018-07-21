@@ -10,7 +10,7 @@ var AboutUs = props => (
           <Icon name="inbox" />About Us
         </h1>
       </Segment>
-      <Segment className="landingWords">
+      <Segment id="AboutUsSegment" className="landingWords">
         <br />
         <p>
           TrashTalks is a technology solutions company aspiring to disrupt the

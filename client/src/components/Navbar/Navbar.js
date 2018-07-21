@@ -21,7 +21,7 @@ const rightMenuItems = [
 ];
 
 var NavComponent = (props) => 
-<div>
+<div id = "topOfPage">
   <Responsive minWidth = {Responsive.onlyTablet.minWidth}>
     <Menu borderless pointing >
       <Menu.Item>
@@ -48,7 +48,7 @@ var NavComponent = (props) =>
 
           <Menu.Item >
               <Icon.Group size='huge'> 
-               <Image src = "logo.png" size ="small" href ="/"/>
+                <Image src = "logo.png" size ="small" href ="/"/>
               </Icon.Group>
 
           </Menu.Item>

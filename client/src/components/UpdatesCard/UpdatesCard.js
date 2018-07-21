@@ -10,7 +10,7 @@ var UpdatesCard = props =>
             <Segment inverted    className = "updatesTitle" id  = "updatesCardSegment">
                     <h1 ><Icon name="newspaper" />Updates</h1>
             </Segment>
-            <Segment className="updatesWords" centered style={{"overflow-y":"auto","height":200}}>
+            <Segment className="updatesWords" centered style={{"overflow-y":"auto", "height":props.height}}>
                 <Card.Group centered>  
                     {props.children}
                 </Card.Group>
