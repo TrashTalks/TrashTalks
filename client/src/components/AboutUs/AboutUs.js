@@ -23,10 +23,9 @@ var AboutUs = props => (
           <br />
           <Container textAlign="center">
             <b>
-              {" "}
               "Waste project managers will buy TrashTalks automated hauling
               services to eliminate inconsistent and unreliable waste hauling
-              services"{" "}
+              services"
             </b>
           </Container>
           <br />
@@ -44,7 +43,7 @@ var AboutUs = props => (
         attached="bottom"
         className="emailButton"
       >
-        <Icon name="vcard" />Join our mailing list
+        <Icon name="envelope" />Join our mailing list
       </Button>
     </Segment.Group>
   </Container>

@@ -1,7 +1,6 @@
-import React from 'react'
-import "./UpdatesCard.css"
-import { Container, Segment, Icon, Card} from 'semantic-ui-react'
-
+import React from "react";
+import "./UpdatesCard.css";
+import { Container, Segment, Icon, Card } from "semantic-ui-react";
 
 var UpdatesCard = props =>
 
