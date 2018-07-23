@@ -41,7 +41,8 @@ class LandingPage extends Component {
     updates: [],
     joinListTooMsg: "",
     isMsgPositive: false,
-    showAnnouncement: false
+	showAnnouncement: false,
+	updatesHeight:""
   };
 
   handleChanges = e => {
@@ -119,8 +120,17 @@ class LandingPage extends Component {
       })
       .catch(error => {
         console.log(error);
-      });
-  }
+	  });
+	  this.changeUpdatesSegmentHeight();
+	  window.addEventListener("resize", this.changeUpdatesSegmentHeight.bind(this));
+  };
+  changeUpdatesSegmentHeight = () =>
+  this.setState({
+	  updatesHeight :
+	   document.getElementById("AboutUsSegment").clientHeight 
+	   + document.getElementById("isemailModalOpen").clientHeight
+	})
+
 
   openThisModal = (personClicked, e) => {
     personClicked.target === undefined
@@ -218,7 +228,7 @@ class LandingPage extends Component {
                 />
               </Grid.Column>
               <Grid.Column width={5}>
-                <UpdatesCard>
+                <UpdatesCard height = {this.state.updatesHeight}>
                   {this.state.updates.map(oneAncmt => (
                     <Card
                       header={oneAncmt.title}
