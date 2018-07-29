@@ -146,7 +146,8 @@ class LandingPage extends Component {
       modalImage: personClicked.imageLink,
       modalName: personClicked.personName,
       modalBio: personClicked.fullBio,
-      modalLinkedIn: personClicked.linkedIn
+      modalLinkedIn: personClicked.linkedIn,
+      modalEmail: personClicked.email
     });
   };
 
@@ -307,6 +308,7 @@ class LandingPage extends Component {
               modalName={this.state.modalName}
               modalBio={this.state.modalBio}
               modalLinkedIn={this.state.modalLinkedIn}
+              modalEmail={this.state.modalEmail}
             />
             <ContactUsModal
               onRef={ref => (this.ContactUsModal = ref)}
