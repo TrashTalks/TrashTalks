@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "installDeps": "yarn && cd client && yarn",
     "seed": "node scripts/seed.js",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "pulldata": "node scripts/pulldata.js"
   },
   "author": "Luke Chambers",
   "cloud-repo-tools": {
