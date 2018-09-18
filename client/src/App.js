@@ -7,6 +7,7 @@ import { Sidebar, Menu, Segment, Button, Icon } from "semantic-ui-react";
 import Landing from "./pages/Landing";
 import Page2 from "./pages/Page2";
 import ItemInfo from "./pages/ItemInfo";
+import Page404 from "./pages/Page404";
 // -----------------------------//
 
 // ---Components for all pages ---//
@@ -93,6 +94,7 @@ class App extends Component {
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/EasterEgg" component={Page2} />
                 <Route exact path="/scanner" component={ItemInfo} />
+                <Route component={Page404} />
               </Switch>
 
               <Footer />

@@ -1,23 +1,20 @@
 import React, { Component } from "react";
 import { Container, Image, Segment } from "semantic-ui-react";
-import "./Page2.css";
+import "./Page404.css";
 
-class Page2 extends Component {
+class Page404 extends Component {
   render() {
     return (
       <div>
-        <Container className="page2Container">
+        <Container className="Page404Container">
           <Segment.Group>
             <Segment inverted className="landingTitle" id="EELandingTitle">
-              <h1>Yo momma so innovative....</h1>
+              <h1>404 Page</h1>
             </Segment>
 
             <Segment className="landingWords">
-              <p>She made these nice easter eggs!</p>
-              <Image
-                src="https://www.impactbnd.com/hubfs/internet-easter-eggs.jpg?t=1527282880128"
-                wrapped
-              />
+              <p>404 Puppies</p>
+              <Image src="Puppies404.jpg" wrapped />
             </Segment>
           </Segment.Group>
         </Container>
@@ -26,4 +23,4 @@ class Page2 extends Component {
   }
 }
 
-export default Page2;
+export default Page404;
