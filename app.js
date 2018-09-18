@@ -2,6 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const config = require("./config");
 const routes = require("./routes");
 // const proxy = require("http-proxy-middleware");
@@ -27,9 +28,6 @@ app.use(routes);
 // app.use((req, res) => {
 //   res.status(404).send("Not Found");
 // });
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-});
 
 // Basic error handler (I think not being used because of react router)
 app.use((err, req, res, next) => {
@@ -38,6 +36,10 @@ app.use((err, req, res, next) => {
   // If our routes specified a specific response, then send that. Otherwise,
   // send a generic message so as not to leak anything.
   res.status(500).send(err.response || "Something broke!");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 if (module === require.main) {
