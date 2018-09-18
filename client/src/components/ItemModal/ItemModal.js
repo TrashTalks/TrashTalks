@@ -80,7 +80,7 @@ var ItemModal = props => (
           largeScreen={11}
           widescreen={11}
         >
-          <Segment textAlign="center">
+          {/* <Segment textAlign="center">
             {props.binLocation !== "" ? (
               <Header>Closest Recycling Station {props.binLocation}</Header>
             ) : (
@@ -88,7 +88,7 @@ var ItemModal = props => (
             )}
 
             <Image rounded src={props.binMapImage} />
-          </Segment>
+          </Segment> */}
 
           <Segment>
             <Header>Product Information</Header>
