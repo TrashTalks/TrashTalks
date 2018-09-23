@@ -17,7 +17,8 @@ class ItemInfo extends Component {
     isVerified: "",
     itemImage: "",
     binLocation: "",
-    binType: ""
+    binType: "",
+    recycleCategory: ""
   };
 
   handleChanges = e => {
@@ -44,6 +45,7 @@ class ItemInfo extends Component {
         this.setState({ isRecyclable: res.data.wholly_recyclable });
         this.setState({ isVerified: res.data.verified });
         this.setState({ itemImage: res.data.img_url });
+        this.setState({ recycleCategory: res.data.recycle_category });
 
         res.data.bin_location !== "g"
           ? this.setState({ binLocation: res.data.bin_location })
@@ -126,6 +128,7 @@ class ItemInfo extends Component {
               companyName={this.state.producing_company}
               binLocation={this.state.binLocation}
               binType={this.state.binType}
+              recycleCategory={this.state.recycleCategory}
               binMapImage="Culc2ndFloor.png"
             >
               {this.state.components.map((component, index) => {

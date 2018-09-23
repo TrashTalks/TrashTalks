@@ -54,6 +54,7 @@ module.exports = {
           console.log("Material Not Found!");
           res.json({ error: "Empty Submission" });
         } else {
+          cbRes[0].producing_company = cbRes[0].producing_company.toProperCase();
           cbRes[0].material_name = cbRes[0].material_name.toProperCase();
           console.log(cbRes);
           res.json(cbRes[0]);
@@ -107,6 +108,7 @@ module.exports = {
             });
           // res.json(newMaterial);
         } else {
+          cbRes[0].producing_company = cbRes[0].producing_company.toProperCase();
           cbRes[0].material_name = cbRes[0].material_name.toProperCase();
           console.log(cbRes);
           res.json(cbRes[0]);
