@@ -41,8 +41,8 @@ class LandingPage extends Component {
     updates: [],
     joinListTooMsg: "",
     isMsgPositive: false,
-	showAnnouncement: false,
-	updatesHeight:""
+    showAnnouncement: false,
+    updatesHeight: ""
   };
 
   handleChanges = e => {
@@ -120,17 +120,19 @@ class LandingPage extends Component {
       })
       .catch(error => {
         console.log(error);
-	  });
-	  this.changeUpdatesSegmentHeight();
-	  window.addEventListener("resize", this.changeUpdatesSegmentHeight.bind(this));
-  };
+      });
+    this.changeUpdatesSegmentHeight();
+    window.addEventListener(
+      "resize",
+      this.changeUpdatesSegmentHeight.bind(this)
+    );
+  }
   changeUpdatesSegmentHeight = () =>
-  this.setState({
-	  updatesHeight :
-	   document.getElementById("AboutUsSegment").clientHeight 
-	   + document.getElementById("isemailModalOpen").clientHeight
-	})
-
+    this.setState({
+      updatesHeight:
+        document.getElementById("AboutUsSegment").clientHeight +
+        document.getElementById("isemailModalOpen").clientHeight
+    });
 
   openThisModal = (personClicked, e) => {
     personClicked.target === undefined
@@ -228,7 +230,7 @@ class LandingPage extends Component {
                 />
               </Grid.Column>
               <Grid.Column width={5}>
-                <UpdatesCard height = {this.state.updatesHeight}>
+                <UpdatesCard height={this.state.updatesHeight}>
                   {this.state.updates.map(oneAncmt => (
                     <Card
                       header={oneAncmt.title}
@@ -312,17 +314,6 @@ class LandingPage extends Component {
             />
           </Founders>
         </Container>
-
-        {/*---------- End of "PageContent" ---------*/}
-        {/* <SlideDeck
-                modalOpen = {this.state.isSlideDeckOpen}
-                handleClose = {this.SDhandleClose}
-                modalImage = {"TrashTalks_Slide"+(this.state.slideCount+1)+".png"} 
-                SDtitle = {this.state.slideTitles[this.state.slideCount]}
-                slideBack = {this.slideBackNow}
-                slideForward = {this.slideForwardNow}
-            />
-            <Button id ="isSlideDeckOpen" onClick = {this.openThisModal} content = "Slide Deck"/> */}
       </div>
     );
   }
