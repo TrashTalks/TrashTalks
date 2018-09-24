@@ -1,9 +1,8 @@
-import React from 'react'
-import "./PersonCard.css"
-import {Image, Icon, Card} from 'semantic-ui-react'
+import React from "react";
+import "./PersonCard.css";
+import { Image, Icon, Card } from "semantic-ui-react";
 
-
-var PersonCard = props => 
+var PersonCard = props => (
   <Card centered className="personCard" onClick={props.showModalBio}>
     <Image src={props.imageLink} />
 
@@ -14,10 +13,10 @@ var PersonCard = props =>
     </Card.Content>
 
     <Card.Content extra>
-        <Icon name={props.iconTypeName} />
-        {props.funFact}
+      <Icon name={props.iconTypeName} />
+      {props.funFact}
     </Card.Content>
-
   </Card>
+);
 
 export default PersonCard;

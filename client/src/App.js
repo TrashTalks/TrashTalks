@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Sidebar, Menu, Segment, Button, Icon } from "semantic-ui-react";
+import { Sidebar, Menu, Segment } from "semantic-ui-react";
 
 //------Pages to render ---------//
 import Landing from "./pages/Landing";
@@ -33,7 +33,6 @@ class App extends Component {
   goTo(route) {
     this.props.history.replace(`/${route}`);
   }
-
   openContactUsModal = () => {
     this.ContactUsModal.openThisModal();
   };

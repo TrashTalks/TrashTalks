@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const config = require("./config");
 const routes = require("./routes");
-// const proxy = require("http-proxy-middleware");
 const app = express();
 
 // Define middleware here
@@ -17,17 +16,6 @@ if (process.env.NODE_ENV === "production") {
 }
 // Add routes, both API and view
 app.use(routes);
-
-// Redirect root to /employees
-// app.get('/', (req, res) => {
-//   res.redirect('/employees');
-// });
-//Use for local testing. Comment out once deployed
-// app.use('/', proxy({target: 'localhost:8080', changeOrigin: true}));
-// Basic 404 handler (I think not being used because of react router)
-// app.use((req, res) => {
-//   res.status(404).send("Not Found");
-// });
 
 // Basic error handler (I think not being used because of react router)
 app.use((err, req, res, next) => {
