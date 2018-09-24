@@ -36,7 +36,7 @@ class LandingPage extends Component {
     showEmailForm: true,
     showMessage: false,
     showLoader: false,
-    isBoxChecked: false,
+    isBoxChecked: true, //removed the checkbox so set this to true by default
     ContactUsModal: false,
     updates: [],
     joinListTooMsg: "",
@@ -63,7 +63,7 @@ class LandingPage extends Component {
 
     this.state.isBoxChecked
       ? this.setState({
-          msgContent: theRes.data["added"] + " Business Cards are on the way!"
+          msgContent: theRes.data["added"]
         })
       : this.setState({ msgContent: "Business Cards are on the way!" });
   };
@@ -73,7 +73,7 @@ class LandingPage extends Component {
     theRes.data["error"] === "Email Already on list!"
       ? this.setState({
           msgHeader: "Awesome!",
-          msgContent: "Business cards are on the way!",
+          msgContent: "You're already on the list!",
           showEmailForm: false,
           isMsgPositive: true
         })
@@ -93,7 +93,7 @@ class LandingPage extends Component {
       First_Name: this.state.PersonFirstName.trim(),
       Last_Name: this.state.PersonLastName.trim(),
       Subscriber_Email: this.state.PersonEmail.trim(),
-      MailList: this.state.isBoxChecked
+      MailList: true //this.state.isBoxChecked
     };
 
     API.addUserToEmailList(info)
@@ -146,7 +146,8 @@ class LandingPage extends Component {
       modalImage: personClicked.imageLink,
       modalName: personClicked.personName,
       modalBio: personClicked.fullBio,
-      modalLinkedIn: personClicked.linkedIn
+      modalLinkedIn: personClicked.linkedIn,
+      modalEmail: personClicked.email
     });
   };
 
@@ -307,6 +308,7 @@ class LandingPage extends Component {
               modalName={this.state.modalName}
               modalBio={this.state.modalBio}
               modalLinkedIn={this.state.modalLinkedIn}
+              modalEmail={this.state.modalEmail}
             />
             <ContactUsModal
               onRef={ref => (this.ContactUsModal = ref)}
