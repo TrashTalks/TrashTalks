@@ -22,5 +22,8 @@ export default {
   },
   grabUpdates: function() {
     return axios.get("/api/updates/");
+  },
+  grabBinInfo: function() {
+    return axios.get("/api/bin/");
   }
 };
