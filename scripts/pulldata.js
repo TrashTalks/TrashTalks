@@ -3,7 +3,15 @@
 const Datastore = require("@google-cloud/datastore");
 const config = require("../config");
 const fs = require("fs");
-const kinds = ["Components", "Employee", "MailingList", "Updates", "Waste"];
+const kinds = [
+  "Components",
+  "Employee",
+  "MailingList",
+  "Updates",
+  "Waste",
+  "Bin",
+  "User"
+];
 
 const ds = Datastore({
   projectId: config.get("GCLOUD_PROJECT")
