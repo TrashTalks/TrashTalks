@@ -94,17 +94,27 @@ module.exports = {
               console.log(newMaterial);
               module.exports.update(newMaterial); //need to add the res parameter and get it back from the update function
               res.json(newMaterial);
-              // .then(response => {
-              //   console.log(response)
-              //   res.json(response)
-              // })
-              // .catch(error => {
-              //   res.json(error);
-              // })
             })
             .catch(error => {
-              console.log(error);
-              res.json({ error: "Unable to locate item" });
+              // console.log(error);
+              // console.log("Material Not Found!");
+              // res.json({ error: "Empty Submission" });
+              const newMaterial = {
+                components: [],
+                material_name: "Not Found",
+                producing_company: "Not Found",
+                product_description: "Not Found",
+                submitted_by: "",
+                timestamp: new Date(Date.now()),
+                upc_code: upcCode,
+                wholly_recyclable: false,
+                verified: false,
+                img_url:
+                  "https://cdn3.iconfinder.com/data/icons/modifiers-add-on-1/48/v-17-512.png"
+              };
+              console.log(newMaterial);
+              module.exports.update(newMaterial); //need to add the res parameter and get it back from the update function
+              res.json(newMaterial);
             });
           // res.json(newMaterial);
         } else {
