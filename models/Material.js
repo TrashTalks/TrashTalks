@@ -14,7 +14,12 @@ const kind = "Waste";
 module.exports = {
   update: function(req, res) {
     const upcCode = req.upc_code;
-    const theQuery = ds.createQuery([kind]).filter("upc_code", "=", upcCode);
+    const waste = req.material_name;
+    if (waste) {
+      var theQuery = ds.createQuery([kind]).filter("material_name", "=", waste);
+    } else {
+      var theQuery = ds.createQuery([kind]).filter("upc_code", "=", upcCode);
+    }
 
     ds.runQuery(theQuery, function(err, cbRes) {
       //needs to be updated to allow the res.json to work
@@ -25,9 +30,6 @@ module.exports = {
           data: req,
           key: ds.key(kind)
         });
-        // res.json([req])
-      } else {
-        res.json({ error: "Unable to locate item" });
       }
     });
   },
@@ -51,8 +53,24 @@ module.exports = {
         if (err) {
           res.json(err);
         } else if (cbRes.length == 0) {
-          console.log("Material Not Found!");
-          res.json({ error: "Empty Submission" });
+          // console.log("Material Not Found!");
+          // res.json({ error: "Empty Submission" });
+          const newMaterial = {
+            components: [],
+            material_name: waste,
+            producing_company: "Not Found",
+            product_description: "Not Found",
+            submitted_by: "",
+            timestamp: new Date(Date.now()),
+            upc_code: "",
+            wholly_recyclable: false,
+            verified: false,
+            img_url:
+              "https://cdn3.iconfinder.com/data/icons/modifiers-add-on-1/48/v-17-512.png"
+          };
+          console.log(newMaterial);
+          module.exports.update(newMaterial); //need to add the res parameter and get it back from the update function
+          res.json(newMaterial);
         } else {
           cbRes[0].producing_company = cbRes[0].producing_company.toProperCase();
           cbRes[0].material_name = cbRes[0].material_name.toProperCase();

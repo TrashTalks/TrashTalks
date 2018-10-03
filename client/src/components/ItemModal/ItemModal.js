@@ -29,7 +29,7 @@ var ItemModal = props => (
       {props.isRecyclable && props.isVerified ? (
         <span>RECYCLABLE</span>
       ) : !props.isVerified ? (
-        <span> Not Verified. </span>
+        <span> Not Found </span>
       ) : (
         <span>
           {" "}
